@@ -6,6 +6,23 @@
 
 analysis of genetic variants
 
+
+```mermaid
+flowchart TD
+    DATA[Variant Data] --> PD[Prompt Design]
+    AC[Analysis Criteria] --> PD[Prompt Design]
+    PD --> GS[Gene Search]
+    PD --> VI[Variant Information]
+    PD --> DS[Database Search]
+    GS --> R[Combined Results]
+    VI --> R[Combined Results]
+    DS --> R[Combined Results]
+    R --> F[Final Report]
+    F --> |Feedback| R
+```
+
+
+
 ## Project Organization
 
 ```
