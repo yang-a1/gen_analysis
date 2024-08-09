@@ -1,5 +1,5 @@
 import pandas as pd
-import openai
+import  openai 
 import numpy as np
 from dotenv import load_dotenv
 import os
@@ -12,14 +12,41 @@ load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 def read_tsv(file_path):
-    """Reads a TSV file into a DataFrame."""
+    """
+    Reads a TSV file into a DataFrame.
+
+    Args:
+        file_path (str): The path to the TSV file.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the data from the TSV file.
+    """
     return pd.read_csv(file_path, sep='\t')
 
 def generate_elaboration(prompt):
-    """Generates elaboration text using the OpenAI API with gpt-3.5-turbo."""
+    """
+    Generates elaboration text using the OpenAI API with the gpt-3.5-turbo model.
+
+    Args:
+        prompt (str): The prompt to be sent to the OpenAI API.
+
+    Returns:
+        str: The generated elaboration text.
+
+    Raises:
+        openai.error.RateLimitError: If rate limit is exceeded, waits and retries.
+        openai.error.InvalidRequestError: If the request is invalid.
+        openai.error.OpenAIError: For general OpenAI API errors.
+        Exception: For unexpected errors.
+    """
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Ensure correct model
+        api_key = os.getenv('OPENAI_API_KEY')
+        if  api_key is None:
+            api_key = os.environ.get('OPENAI_API_KEY', None)
+        assert  api_key  is not None, "OpenAI API key not found."
+        openai.api_key = api_key
+        response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",        
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
@@ -27,7 +54,8 @@ def generate_elaboration(prompt):
             max_tokens=150,
             temperature=0.7
         )
-        return response.choices[0].message['content'].strip()
+        content = response.choices[0].message.content.strip()
+        return content
     except openai.error.RateLimitError:
         print("Rate limit exceeded. Waiting for 60 seconds before retrying...")
         time.sleep(60)  # Wait for 60 seconds before retrying
@@ -43,7 +71,15 @@ def generate_elaboration(prompt):
         return "Error generating elaboration."
 
 def format_variant_info(row):
-    """Formats the variant information from a DataFrame row."""
+    """
+    Formats the variant information from a DataFrame row into a human-readable string.
+
+    Args:
+        row (pd.Series): A row from the DataFrame containing genetic variant information.
+
+    Returns:
+        str: Formatted variant information.
+    """
     info = ""
     
     # Extract gene symbol
@@ -87,7 +123,12 @@ def format_variant_info(row):
     return info
 
 def process_file(file_path):
-    """Processes the TSV file and outputs formatted information."""
+    """
+    Processes the TSV file and outputs formatted information.
+
+    Args:
+        file_path (str): The path to the TSV file.
+    """
     df = read_tsv(file_path)
     
     # Extract necessary columns (adjust as needed based on your data)
@@ -119,8 +160,7 @@ def process_file(file_path):
 
 
 def main():
-    # Define the path to your TSV file
-    #file_path = '20240701_example_file_v2.xlsx - TESTER PROMPT.tsv'
+    file_path = '20240701_example_file_v2.xlsx - TESTER PROMPT.tsv'
     #file_path = '20240701_example_file_v2.xlsx - Sheet1.tsv'
     #file_path = '20240701_example_file_v2.xlsx - BASELINE.tsv'
     
