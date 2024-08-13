@@ -4,11 +4,10 @@ import numpy as np
 from dotenv import load_dotenv
 import os
 import time
-
 from openai import AzureOpenAI
 
 # Load environment variables from .env file
-load_dotenv("/nfs/turbo/umms-mblabns/test/20240809_gpt.env")
+load_dotenv()
 
 """ Example .env file for Umich
 model = Model names (gpt-35-turbo, gpt-4, gpt-4o, and etc) API gateway URL = "https://api.umgpt.umich.edu/azure-openai-api"
@@ -17,11 +16,6 @@ DEPLOYMENT_ID = "gpt-35-turbo" #chat deployment model name
 API_KEY #your 32 character API key
 ORGANIZATION #a valid 6 digit shortcode
 """
-
-
-
-
-
 
 # Retrieve the API key from the environment variable
 # openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -195,12 +189,13 @@ def process_file(file_path):
 
 
 def main():
-    file_path = '20240701_example_file_v2.xlsx - TESTER PROMPT.tsv'
-    #file_path = '20240701_example_file_v2.xlsx - Sheet1.tsv'
-    #file_path = '20240701_example_file_v2.xlsx - BASELINE.tsv'
+    file_path = 'TESTER PROMPT.tsv'
+    #file_path = 'SHEET.tsv'
+    #file_path = 'BASELINE.tsv'
 
     # Process the file
     process_file(file_path)
 
 if __name__ == "__main__":
     main()
+
