@@ -1,15 +1,14 @@
 import pandas as pd
-import  openai 
+import  openai
 import numpy as np
 from dotenv import load_dotenv
 import os
 import time
+from openai import AzureOpenAI
 
 # Load environment variables from .env file
-load_dotenv()
+load_dotenv("/nfs/turbo/umms-mblabns/test/20240816_amy_gpt.env")
 
-# Retrieve the API key from the environment variable
-openai.api_key = os.getenv('OPENAI_API_KEY')
 
 def read_tsv(file_path):
     """
@@ -40,13 +39,15 @@ def generate_elaboration(prompt):
         Exception: For unexpected errors.
     """
     try:
-        api_key = os.getenv('OPENAI_API_KEY')
-        if  api_key is None:
-            api_key = os.environ.get('OPENAI_API_KEY', None)
-        assert  api_key  is not None, "OpenAI API key not found."
-        openai.api_key = api_key
-        response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",        
+        client = AzureOpenAI(
+            api_key=os.environ['OPENAI_API_KEY'],
+            api_version=os.environ['API_VERSION'],
+            azure_endpoint = os.environ['openai_api_base'],
+            organization = os.environ['OPENAI_organization'])
+
+
+        response = client.chat.completions.create(
+            model="gpt-35-turbo",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
@@ -56,14 +57,14 @@ def generate_elaboration(prompt):
         )
         content = response.choices[0].message.content.strip()
         return content
-    except openai.error.RateLimitError:
+    except client.error.RateLimitError:
         print("Rate limit exceeded. Waiting for 60 seconds before retrying...")
         time.sleep(60)  # Wait for 60 seconds before retrying
         return generate_elaboration(prompt)
-    except openai.error.InvalidRequestError as e:
+    except client.error.InvalidRequestError as e:
         print(f"Invalid request: {e}")
         return "Error generating elaboration."
-    except openai.error.OpenAIError as e:
+    except client.error.OpenAIError as e:
         print(f"OpenAI API error: {e}")
         return "Error generating elaboration."
     except Exception as e:
@@ -81,10 +82,10 @@ def format_variant_info(row):
         str: Formatted variant information.
     """
     info = ""
-    
+
     # Extract gene symbol
     gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
-    
+
     # Prepare prompts for elaboration
     mouse_prompt = f"Provide a detailed description of mouse phenotypes associated with {gene_symbol}."
     omim_prompt = f"Provide a detailed description of diseases associated with {gene_symbol} as found in OMIM/GeneCards."
@@ -96,7 +97,7 @@ def format_variant_info(row):
     info += f"Gene: {gene_symbol}\n"
     info += f"Mouse phenotype: {mouse_phenotype_description}\n"
     info += f"OMIM/GeneCards: {omim_description}\n"
-    
+
     # Extract alternative alleles
     if 'alternative allele' in row and pd.notna(row['alternative allele']):
         alleles = row['alternative allele']
@@ -104,7 +105,7 @@ def format_variant_info(row):
             alleles = alleles.split(',')  # Assuming comma-separated
         elif not isinstance(alleles, list):
             alleles = [alleles]
-        
+
         for i, allele in enumerate(alleles):
             info += f"{i+1}. Variant description for {allele} (details):\n"
             gnomad_af = row['gnomad genome af'][0] if isinstance(row['gnomad genome af'], list) else row['gnomad genome af']
@@ -130,7 +131,7 @@ def process_file(file_path):
         file_path (str): The path to the TSV file.
     """
     df = read_tsv(file_path)
-    
+
     # Extract necessary columns (adjust as needed based on your data)
     columns_of_interest = [
         'chromosome', 'position', 'allele', 'family', 'symbol', 'variant_class', 'impact',
@@ -142,10 +143,10 @@ def process_file(file_path):
         'hgvsg', 'var_type', 'consequence', 'feature', 'feature_type', 'gene', 'gnomad genome af',
         'hgvsc', 'hgvsp', 'revel', 'sift', 'strand', 'uniparc', 'symbol_list', 'gene_list'
     ]
-    
+
     dfColumns = list( set(df.columns) & set(columns_of_interest))
 
-    if  len(dfColumns) >0: 
+    if  len(dfColumns) >0:
         df1 = df[dfColumns]
 
         # Process each row and print formatted information
@@ -160,10 +161,11 @@ def process_file(file_path):
 
 
 def main():
-    file_path = '20240701_example_file_v2.xlsx - TESTER PROMPT.tsv'
+    # file_path = '20240701_example_file_v2.xlsx - TESTER PROMPT.tsv'
     #file_path = '20240701_example_file_v2.xlsx - Sheet1.tsv'
     #file_path = '20240701_example_file_v2.xlsx - BASELINE.tsv'
-    
+    file_path = "/nfs/turbo/umms-mblabns/test/20240816_tester_prompt.tsv"
+
     # Process the file
     process_file(file_path)
 

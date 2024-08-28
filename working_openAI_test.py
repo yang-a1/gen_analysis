@@ -14,11 +14,14 @@ print("starting test")
 print(os.getcwd())
 print("loading .env file")
 
+env_file_path = "/nfs/turbo/umms-mblabns/test/20240809_gpt.env"
+
 
 
 #Load environment file for secrets.
 try:
-    if load_dotenv('working_20240315_gpt.env') is False:
+
+    if load_dotenv(env_file_path) is False:
         raise TypeError
 except TypeError:
     print('Unable to load .env file.')
@@ -43,7 +46,7 @@ response = client.chat.completions.create(
         # model="gpt-35-turbo", # this works
         model=os.environ['model'],
         messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "system", "content": "Answer the question as a pirate."},
             {"role": "user", "content": "What is 2 + 2?"}
         ],
         temperature=0,

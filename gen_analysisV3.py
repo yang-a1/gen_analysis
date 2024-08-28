@@ -7,7 +7,7 @@ import time
 from openai import AzureOpenAI
 
 # Load environment variables from .env file
-load_dotenv()
+load_dotenv("/nfs/turbo/umms-mblabns/test/20240809_gpt.env")
 
 """ Example .env file for Umich
 model = Model names (gpt-35-turbo, gpt-4, gpt-4o, and etc) API gateway URL = "https://api.umgpt.umich.edu/azure-openai-api"
@@ -189,7 +189,11 @@ def process_file(file_path):
 
 
 def main():
-    file_path = 'TESTER PROMPT.tsv'
+    # file_path = 'TESTER PROMPT.tsv'
+    # file_path = "/nfs/turbo/umms-mblabns/test/20240701_example_file_v2.xlsx.Sheet1.tsv"
+    file_path = "/nfs/turbo/umms-mblabns/test/20240816_tester_prompt.tsv"
+
+
     #file_path = 'SHEET.tsv'
     #file_path = 'BASELINE.tsv'
 
