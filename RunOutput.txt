@@ -1,0 +1,156 @@
+PS D:\gen_analysis> & d:/gen_analysis/.venv/Scripts/python.exe d:/gen_analysis/PythonTest/gen_analysis/gen_analysis.py
+SAMD11 Variants
+Chromosome: 1
+Alleles: T, deletion
+Families: 210006, 200046
+Types of variants with frequencies:
+Variant position: 930314 a. Family: 210006 b. Variant class: SNV c. Max_af: 0.1388999968767166 d. Gnomadg_af: 0.0218
+Variant position: 938037 a. Family: 200046 b. Variant class: deletion c. Max_af: N/A d. Gnomadg_af: nan (same variant found in multiple families)
+
+NOC2L Variants
+Chromosome: 1
+Alleles: A
+Families: 200081, 200095, 210006
+Types of variants with frequencies:
+Variant position: 952587 a. Family: 200081 b. Variant class: SNV c. Max_af: 0.002011999954 d. Gnomadg_af: 9.19899976e-05
+Variant position: 953858 a. Family: 200081 b. Variant class: SNV c. Max_af: 0.08848000318 d. Gnomadg_af: 0.04512 (same variant found in multiple families)
+Variant position: 953858 a. Family: 200095 b. Variant class: SNV c. Max_af: 0.08848000318 d. Gnomadg_af: 0.04512 (same variant found in multiple families)
+Variant position: 953858 a. Family: 210006 b. Variant class: SNV c. Max_af: 0.08848000318 d. Gnomadg_af: 0.04512 (same variant found in multiple families)
+
+KLHL17 Variants
+Chromosome: 1
+Alleles: G, GCCGA
+Families: 210041, 200095, 210006
+Types of variants with frequencies:
+Variant position: 963162 a. Family: 200095 b. Variant class: substitution c. Max_af: 0.005605999846 d. Gnomadg_af: 0.0003877
+Variant position: 963162 a. Family: 210006 b. Variant class: SNV c. Max_af: 0.005605999846 d. Gnomadg_af: 0.0003877 (same variant found in multiple families)
+Variant position: 963162 a. Family: 210041 b. Variant class: SNV c. Max_af: 0.005605999846 d. Gnomadg_af: 0.0003877 (same variant found in multiple families)
+
+PLEKHN1 Variants
+Chromosome: 1
+Alleles: A, ACCTGGG, T, CCTGGG
+Families: 200082, 210043, 210051, 210006, 200081
+Types of variants with frequencies:
+Variant position: 966748 a. Family: 200082 b. Variant class: SNV c. Max_af: 0.1409000009298324 d. Gnomadg_af: 0.02383
+Variant position: 966748 a. Family: 210006 b. Variant class: SNV c. Max_af: 0.1409000009298324 d. Gnomadg_af: 0.02383 (same variant found in multiple families)
+Variant position: 966748 a. Family: 210051 b. Variant class: SNV c. Max_af: 0.1409000009298324 d. Gnomadg_af: 0.02383 (same variant found in multiple families)
+Variant position: 971132 a. Family: 210006 b. Variant class: SNV c. Max_af: 0.006000000052 d. Gnomadg_af: 0.0002103 (same variant found in multiple families)
+Variant position: 973856 a. Family: 200081 b. Variant class: substitution c. Max_af: N/A d. Gnomadg_af: nan (same variant found in multiple families)
+Variant position: 973857 a. Family: 210043 b. Variant class: substitution c. Max_af: N/A d. Gnomadg_af: nan (same variant found in multiple families)
+
+AGRN Variants
+Chromosome: 1
+Alleles: A, G
+Families: 200081, 200082, 200095, 210006
+Types of variants with frequencies:
+Variant position: 1043594 a. Family: 200082 b. Variant class: SNV c. Max_af: 0.04560000077 d. Gnomadg_af: 0.007214
+Variant position: 1045172 a. Family: 200095 b. Variant class: SNV c. Max_af: 0.005394999869 d. Gnomadg_af: 0.0009004 (same variant found in multiple families)
+Variant position: 1045172 a. Family: 210006 b. Variant class: SNV c. Max_af: 0.005394999869 d. Gnomadg_af: 0.0009004 (same variant found in multiple families)
+Variant position: 1045751 a. Family: 200081 b. Variant class: SNV c. Max_af: 0.0997999981 d. Gnomadg_af: 0.02464 (same variant found in multiple families)
+Variant position: 1048218 a. Family: 210006 b. Variant class: SNV c. Max_af: 0.00192900002 d. Gnomadg_af: 0.0002105 (same variant found in multiple families)
+
+TTLL10 Variants
+Chromosome: 1
+Alleles: A, GGA
+Families: 200088, 210067, 210051
+Types of variants with frequencies:
+Variant position: 1179286 a. Family: 210051 b. Variant class: substitution c. Max_af: 0.1777999997138977 d. Gnomadg_af: 0.08753
+Variant position: 1179288 a. Family: 210067 b. Variant class: SNV c. Max_af: 0.1777999997138977 d. Gnomadg_af: 0.08753 (same variant found in multiple families)
+Variant position: 1180225 a. Family: 200088 b. Variant class: SNV c. Max_af: 0.03170000017 d. Gnomadg_af: 0.001091 (same variant found in multiple families)
+
+TNFRSF18 Variants
+Chromosome: 1
+Alleles: A, CA
+Families: 210041, 210051
+Types of variants with frequencies:
+Variant position: 1203829 a. Family: 210041 b. Variant class: SNV c. Max_af: 0.01688000001 d. Gnomadg_af: 0.0005585
+Variant position: 1206545 a. Family: 210051 b. Variant class: substitution c. Max_af: 0.003901999909 d. Gnomadg_af: 0.0001511 (same variant found in multiple families)
+
+TNFRSF4 Variants
+Chromosome: 1
+Alleles: CCC, C, TCCC, T
+Families: 210043, 200082, 210051, 200046
+Types of variants with frequencies:
+Variant position: 1211860 a. Family: 200082 b. Variant class: substitution c. Max_af: 0.1474000066518783 d. Gnomadg_af: 0.08296
+Variant position: 1211860 a. Family: 210051 b. Variant class: substitution c. Max_af: 0.1474000066518783 d. Gnomadg_af: 0.08296 (same variant found in multiple families)
+Variant position: 1211861 a. Family: 210043 b. Variant class: substitution c. Max_af: 0.1474000066518783 d. Gnomadg_af: 0.08296 (same variant found in multiple families)
+Variant position: 1211863 a. Family: 200046 b. Variant class: SNV c. Max_af: 0.1474000066518783 d. Gnomadg_af: 0.08296 (same variant found in multiple families)
+Variant position: 1211902 a. Family: 200082 b. Variant class: SNV c. Max_af: 0.00139999995 d. Gnomadg_af: 7.22999976e-05 (same variant found in multiple families)
+
+C1QTNF12 Variants
+Chromosome: 1
+Alleles: A, CCA
+Families: 200082, 200095, 210043, 200081, 200046
+Types of variants with frequencies:
+Variant position: 1243545 a. Family: 200046 b. Variant class: SNV c. Max_af: 0.1782000064849853 d. Gnomadg_af: 0.108
+Variant position: 1243545 a. Family: 200082 b. Variant class: SNV c. Max_af: 0.1782000064849853 d. Gnomadg_af: 0.108 (same variant found in multiple families)
+Variant position: 1243545 a. Family: 210043 b. Variant class: SNV c. Max_af: 0.1782000064849853 d. Gnomadg_af: 0.108 (same variant found in multiple families)
+Variant position: 1244097 a. Family: 200095 b. Variant class: substitution c. Max_af: 0.02280000038 d. Gnomadg_af: 0.000762 (same variant found in multiple families)
+Variant position: 1244099 a. Family: 200081 b. Variant class: SNV c. Max_af: 0.02280000038 d. Gnomadg_af: 0.000762 (same variant found in multiple families)
+
+SCNN1D Variants
+Chromosome: 1
+Alleles: A, GGCAG
+Families: 210067
+Types of variants with frequencies:
+Variant position: 1291090 a. Family: 210067 b. Variant class: SNV c. Max_af: 0.001000000047 d. Gnomadg_af: 0.0001449
+Variant position: 1291374 a. Family: 210067 b. Variant class: substitution c. Max_af: 0.1671999990940094 d. Gnomadg_af: 0.07334 (same variant found in multiple families)
+
+ACAP3 Variants
+Chromosome: 1
+Alleles: T
+Families: 200081
+Types of variants with frequencies:
+Variant position: 1295748 a. Family: 200081 b. Variant class: SNV c. Max_af: 0.0007999999798 d. Gnomadg_af: 3.28499991e-05
+
+PUSL1 Variants
+Chromosome: 1
+Alleles: G
+Families: 210051
+Types of variants with frequencies:
+Variant position: 1310638 a. Family: 210051 b. Variant class: SNV c. Max_af: 0.00689999992 d. Gnomadg_af: 0.0001905
+
+INTS11 Variants
+Chromosome: 1
+Alleles: G
+Families: 200046
+Types of variants with frequencies:
+Variant position: 1313914 a. Family: 200046 b. Variant class: SNV c. Max_af: N/A d. Gnomadg_af: nan
+
+CPTP Variants
+Chromosome: 1
+Alleles: A
+Families: 200096
+Types of variants with frequencies:
+Variant position: 1327495 a. Family: 200096 b. Variant class: SNV c. Max_af: 0.004420000128 d. Gnomadg_af: 0.0001905
+
+TAS1R3 Variants
+Chromosome: 1
+Alleles: A
+Families: 200046
+Types of variants with frequencies:
+Variant position: 1334052 a. Family: 200046 b. Variant class: SNV c. Max_af: 0.01463000011 d. Gnomadg_af: 0.0006175
+
+MXRA8 Variants
+Chromosome: 1
+Alleles: A
+Families: 210041
+Types of variants with frequencies:
+Variant position: 1354483 a. Family: 210041 b. Variant class: SNV c. Max_af: 0.007178999949 d. Gnomadg_af: 0.0003876
+
+AURKAIP1 Variants
+Chromosome: 1
+Alleles: A
+Families: 200096
+Types of variants with frequencies:
+Variant position: 1374187 a. Family: 200096 b. Variant class: SNV c. Max_af: 0.004805999808 d. Gnomadg_af: 0.0001708
+
+CCNL2 Variants
+Chromosome: 1
+Alleles: C, T
+Families: 200088, 200082
+Types of variants with frequencies:
+Variant position: 1395491 a. Family: 200088 b. Variant class: SNV c. Max_af: 0.001087000011 d. Gnomadg_af: 2.62899994e-05
+Variant position: 1398672 a. Family: 200082 b. Variant class: indel c. Max_af: 0.1027000024914741 d. Gnomadg_af: 0.05835 (same variant found in multiple families)
+
+PS D:\gen_analysis>    
