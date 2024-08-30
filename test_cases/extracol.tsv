@@ -1,0 +1,2 @@
+"chromosome	position	allele	family	symbol	variant_class	impact	gnomadg_af	max_af	...	extra_column_1	extra_column_2"
+"1	12345	A/T	Family1	Symbol1	""substitution""	""high""	""0.001""	""0.002""	...	extra_value1	extra_value2"

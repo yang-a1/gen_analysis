@@ -191,8 +191,14 @@ def process_file(file_path):
 def main():
     # file_path = 'TESTER PROMPT.tsv'
     # file_path = "/nfs/turbo/umms-mblabns/test/20240701_example_file_v2.xlsx.Sheet1.tsv"
-    file_path = "/nfs/turbo/umms-mblabns/test/20240816_tester_prompt.tsv"
+    # file_path = "/nfs/turbo/umms-mblabns/test/20240816_tester_prompt.tsv"
 
+    #Edge Cases
+    file_path = 'empty.tsv'
+    #file_path = 'extracol.tsv'
+    #file_path = 'header.tsv'
+    #file_path = 'malformed.tsv'
+    #file_path = 'missingcol.tsv'
 
     #file_path = 'SHEET.tsv'
     #file_path = 'BASELINE.tsv'
