@@ -1,0 +1,25 @@
+chromosome	position	allele	family	symbol	variant_class	note	impact	max_af	gnomadg_af	variant_occurance_between_families_count	unique_alternative_allele_count	location_occurance_across_families	child: allele frequency	father: allele frequency	mother: allele frequency	child: short alt observations	child: short ref observations	father: short alt observations	father: short ref observations	mother: short alt observations	mother: short ref observations	child: read depth	father: read depth	mother: read depth	prob: absent	prob: artifact	prob: denovo_child	prob: inherited	brother: read depth	sister: read depth	prob: shared	prob: denovo	prob: inherit	nephew: read depth	probandF: read depth	abs_ref_alt_diff	alternative allele	chr_pos_alt_allele	clinical significance	existing_variation	hgvsg	var_type	consequence	exon	feature	feature_type	gene	gene_pheno	gnomad genome af	gnomade_af	hgvsc	hgvsp	high_inf_pos	id	loftool	mane_plus_clinical	mane_select	pheno	polyphen	protein alteration (short)	protein position	reference allele	revel	sift	somatic	strand	uniparc	symbol_list	gene_list
+1	930314	T	Family_A	['SAMD11']	SNV		['MODERATE']	0.1388999968767166	[0.0218]	1	1	1	0.5	0.5	0	24V3S1B	21V4S1B	10V2S	25V	1B	33V2S	54	37	36	[0.]	[0.]	[5.72399938e-26]	[1.]								0	T	1_930314_T	['benign']	"['rs9988179', 'COSV59703880']"	1:g.930314C>T	exon	['missense_variant']	"['number / total: 1 / 12' 'number / total: 3 / 14' 'number / total: 3 / 5'
+ 'number / total: 2 / 11' 'number / total: 2 / 13'
+ 'number / total: 2 / 10' 'number / total: 2 / 12']"	"['ENST00000341065' 'ENST00000342066' 'ENST00000437963' 'ENST00000616016'
+ 'ENST00000616125' 'ENST00000617307' 'ENST00000618181' 'ENST00000618323'
+ 'ENST00000618779' 'ENST00000622503']"	['Transcript']	['ENSG00000187634']	"[""['1']""]"		[0.02893]	"['ENST00000341065.8:c.4C>T' 'ENST00000342066.8:c.232C>T'
+ 'ENST00000437963.5:c.232C>T' 'ENST00000616016.5:c.769C>T'
+ 'ENST00000616125.5:c.232C>T' 'ENST00000617307.5:c.232C>T'
+ 'ENST00000618181.5:c.232C>T' 'ENST00000618323.5:c.769C>T'
+ 'ENST00000618779.5:c.232C>T' 'ENST00000622503.5:c.232C>T']"	"['ENSP00000349216.4:p.His2Tyr' 'ENSP00000342313.3:p.His78Tyr'
+ 'ENSP00000393181.1:p.His78Tyr' 'ENSP00000478421.2:p.His257Tyr'
+ 'ENSP00000484643.1:p.His78Tyr' 'ENSP00000482090.2:p.His78Tyr'
+ 'ENSP00000480870.1:p.His78Tyr' 'ENSP00000480678.2:p.His257Tyr'
+ 'ENSP00000484256.1:p.His78Tyr' 'ENSP00000482138.1:p.His78Tyr']"	[nan]	['rs9988179']	[nan]	['']	['' 'NM_001385641.1']	"[""['1', '1']""]"	"[""{'benign': 0.009999999776482582}""
+ ""{'possibly_damaging': 0.7360000014305115}""
+ ""{'possibly_damaging': 0.8539999723434448}""
+ ""{'possibly_damaging': 0.7429999709129333}""
+ ""{'possibly_damaging': 0.8669999837875366}"" ""{'unknown': 0.0}""
+ ""{'possibly_damaging': 0.8949999809265137}""
+ ""{'possibly_damaging': 0.906000018119812}""
+ ""{'possibly_damaging': 0.7979999780654907}""]"	"[""['H', 'Y']""]"	['2' '78' '257']	['C']	[  nan 0.103]	"[""{'deleterious': 0.009999999776482582}""
+ ""{'deleterious_low_confidence': 0.009999999776482582}""
+ ""{'deleterious': 0.0}""]"	"[""['0', '1']""]"	[1.]	"['UPI0001574875' 'UPI0000D61E04' 'UPI000155D47B' 'UPI0015DA7BD7'
+ 'UPI0004E4CACB' 'UPI00194D500F' 'UPI0004E4CAA9' 'UPI0015DAE665'
+ 'UPI0004E4CB24' 'UPI0004E4CA1D']"	['SAMD11']	['ENSG00000187634']
