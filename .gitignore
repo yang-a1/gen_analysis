@@ -33,3 +33,12 @@
 
 # environment files
 *.env
+
+# any data stored in external, interim, processed, and raw
+/data/external/**
+/data/interim/**
+/data/processed/**
+/data/raw/**
+
+# any cache folders named __pycache__
+**/__pycache__/
