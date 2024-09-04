@@ -5,9 +5,29 @@ from dotenv import load_dotenv
 import os
 import time
 from openai import AzureOpenAI
+from config import RAW_DATA_DIR, INTERIM_DATA_DIR
+
+
 
 # Load environment variables from .env file
 load_dotenv("/nfs/turbo/umms-mblabns/test/20240816_amy_gpt.env")
+
+def get_files_in_folder(folder_path):
+    """
+    Get all the tsv files in a specified folder and create a list of the full path.
+
+    Args:
+        folder_path (str): The path to the folder.
+
+    Returns:
+        list: A list of full paths to the files in the folder.
+    """
+    file_paths = []
+    for file in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, file)
+        if os.path.isfile(file_path) and file.endswith(".tsv"):
+            file_paths.append(file_path)
+    return file_paths
 
 
 def read_tsv(file_path):
@@ -160,14 +180,15 @@ def process_file(file_path):
         print(row)
 
 
-def main():
-    # file_path = '20240701_example_file_v2.xlsx - TESTER PROMPT.tsv'
-    #file_path = '20240701_example_file_v2.xlsx - Sheet1.tsv'
-    #file_path = '20240701_example_file_v2.xlsx - BASELINE.tsv'
-    file_path = "/nfs/turbo/umms-mblabns/test/20240816_tester_prompt.tsv"
 
-    # Process the file
-    process_file(file_path)
+
+def main():
+    # Get all .tsv files from RAW_DATA_DIR
+    tsv_files = get_files_in_folder(RAW_DATA_DIR)
+
+
+    for file_path in tsv_files:
+        process_file(file_path)
 
 if __name__ == "__main__":
     main()

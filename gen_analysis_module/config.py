@@ -21,6 +21,10 @@ MODELS_DIR = PROJ_ROOT / "models"
 REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
 
+# add test directory and test data locations
+TEST_DIR = PROJ_ROOT / "tests"
+TEST_DATA_DIR = TEST_DIR / "data"
+
 # If tqdm is installed, configure loguru with tqdm.write
 # https://github.com/Delgan/loguru/issues/135
 try:
