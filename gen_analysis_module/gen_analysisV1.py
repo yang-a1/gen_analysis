@@ -3,6 +3,7 @@ import os
 from collections import defaultdict
 import openai  
 from dotenv import load_dotenv, find_dotenv 
+from docx import Document
 
 # Load the .env file and get the OpenAI API Key from the .env file
 # The .env file should contain the line: OPENAI_API_KEY=your_openai_api_key
@@ -129,6 +130,12 @@ def main():
     tsv_file = '20240701_example_file_v2.xlsx - Sheet1.tsv'
     variants = process_tsv_file(tsv_file)
     format_output(variants)
+
+    document = Document()
+    document.add_paragraph(format_output(variants))
+
+    document.save('gen_analysis.docx')
+
 
 if __name__ == "__main__":
     main()
