@@ -1,16 +1,17 @@
 import pandas as pd
 import  openai
 import numpy as np
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
 from config import RAW_DATA_DIR, INTERIM_DATA_DIR
 
 
-
 # Load environment variables from .env file
-load_dotenv("/nfs/turbo/umms-mblabns/test/20240816_amy_gpt.env")
+# this enviroment file should be in the root of the project
+load_dotenv(find_dotenv("gen_analysis.env"))
+# load_dotenv(find_dotenv(os.getcwd()))
 
 def get_files_in_folder(folder_path):
     """
