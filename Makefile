@@ -49,7 +49,6 @@ create_environment:
 
 
 
-
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
@@ -80,8 +79,7 @@ help:
 	@$(PYTHON_INTERPRETER) -c "${PRINT_HELP_PYSCRIPT}" < $(MAKEFILE_LIST)
 
 
-## Run pytest
-##  CHANGE THIS
+## Checks for updates and reloads gen_analysis module if there are changes. Runs pytest
 .PHONY: test
 test: requirements
-	pytest gen_analysis_module
+	bash -c "source ~/.bashrc && conda activate $(PROJECT_NAME) && pytest"

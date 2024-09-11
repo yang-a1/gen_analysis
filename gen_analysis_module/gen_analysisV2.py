@@ -5,7 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from config import RAW_DATA_DIR, INTERIM_DATA_DIR
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR
 
 
 # Load environment variables from .env file
