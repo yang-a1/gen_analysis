@@ -83,3 +83,30 @@ help:
 .PHONY: test
 test: requirements
 	bash -c "source ~/.bashrc && conda activate $(PROJECT_NAME) && pytest"
+
+## Run SLURM job to execute working_openAI_test.py
+## add requirements to slurm_test
+.PHONY: slurm_test
+slurm_test: requirements
+	bash tests/slurm/slurm_request_run_working_openAI_test.sh
+
+## run test using slurm with sbatch command
+.PHONY: sbatch_test
+sbatch_test: requirements
+	sbatch --time=10:00 --cpus-per-task=1 --wrap="bash -c 'source ~/.bashrc && conda activate $(PROJECT_NAME) && pytest'" | tee temp_slurm_job_id.txt
+	sleep 10
+	@job_id=$$(cat temp_slurm_job_id.txt | awk '{print $$4}'); \
+	echo "Waiting for job $$job_id to complete..."; \
+	sacct -j $$job_id --format=State --noheader | grep -q "COMPLETED" || sleep 1; \
+	while ! sacct -j $$job_id --format=State --noheader | grep -q "COMPLETED"; do sleep 1; done; \
+	echo "Job $$job_id completed. Output:"; \
+	cat slurm-$$job_id.out; \
+	rm temp_slurm_job_id.txt; \
+	rm slurm-$$job_id.out
+
+
+
+
+## Run all test functions
+.PHONY: test_all
+test_all: test slurm_test sbatch_test

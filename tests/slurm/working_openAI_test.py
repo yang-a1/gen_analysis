@@ -3,31 +3,23 @@
 from openai import AzureOpenAI
 import os
 from dotenv import load_dotenv, find_dotenv
-import httpx
 
 
-# send a ping request to www.yahoo.com and get the response
-response = httpx.get("http://www.google.com")
-print(response.status_code)
 
 
-# proxy_url = httpx.Client(proxy="http://proxy1.arc-ts.umich.edu:3128/")
 
 print("starting test")
 
-# env_path = Path("20240314_gpt.env").resolve()
-#Sets the current working directory to be the same as the file.
-# os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 
 # print cwd
 print(os.getcwd())
 print("loading .env file")
 
-# env_file_path = "/nfs/turbo/umms-mblabns/test/20240809_gpt.env"
 
 
 
-#Load environment file for secrets.
+#Load environment file for keys and other sensitive information.
 try:
 
     if load_dotenv(find_dotenv("gen_analysis.env")) is False:

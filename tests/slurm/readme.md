@@ -146,3 +146,23 @@ Here’s a step-by-step guide to handle this:
 By following these steps, you ensure that the necessary environment is activated, and your program runs correctly within the Slurm job.
 
 https://github.com/um-dang/conda_on_the_cluster
+
+
+
+
+# getting proxy to work on a cluster.
+At this time, there is a requirement to use a different openai_api_base on the cluster.
+openai_api_base="https://umichai.azure-api.net/azure-openai-api"
+as opposed to
+openai_api_base="https://api.umgpt.umich.edu/azure-openai-api"
+
+
+The NO_PROXY environment variable is used to exclude specific domains from the proxy settings. For the cluster, it excludes .umich.edu domains
+
+CNAME might change in the future so if it breaks you want to run nslookup api.umgpt.umich.edu  and see what it was updated to
+
+```bash
+
+nslookup api.umgpt.umich.edu
+nslookup umichai.azure-api.net
+```
