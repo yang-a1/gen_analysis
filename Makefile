@@ -105,8 +105,6 @@ sbatch_test: requirements
 	rm slurm-$$job_id.out
 
 
-
-
 ## Run all test functions
 .PHONY: test_all
 test_all: test slurm_test sbatch_test
