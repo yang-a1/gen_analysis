@@ -187,9 +187,11 @@ def process_file(file_path):
             print(formatted_info)
 
     df2 = df[df.columns.difference(dfColumns)]
-    print("Additional Information:")
-    for index, row in df2.iterrows():
-        print(row)
+
+    # removed this until it is reformatted to be more readable
+    # print("Additional Information:")
+    # for index, row in df2.iterrows():
+    #    print(row)
 
 
 
