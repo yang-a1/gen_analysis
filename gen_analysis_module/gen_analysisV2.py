@@ -111,6 +111,7 @@ def format_variant_info(row):
     mouse_prompt = f"Provide a detailed description of mouse phenotypes associated with {gene_symbol}."
     omim_prompt = f"Provide a detailed description of diseases associated with {gene_symbol} as found in OMIM/GeneCards."
 
+
     # Get elaborations from the OpenAI API
     mouse_phenotype_description = generate_elaboration(mouse_prompt)
     omim_description = generate_elaboration(omim_prompt)
@@ -135,12 +136,19 @@ def format_variant_info(row):
             revel = row['revel'][0] if isinstance(row['revel'], list) else row['revel']
             sift = row['sift'][0] if isinstance(row['sift'], list) else row['sift']
             hgvsc = row['hgvsc'][0] if isinstance(row['hgvsc'], list) else row['hgvsc']
+            hgvsp = row['hgvsp'][0] if isinstance(row['hgvsp'], list) else row['hgvsp']
 
+            # contains  ": allele frequency" where this is a value.
+
+            info += f"\tc. Amino acid change: {consequence if not pd.isna(consequence) else 'ND'}\n"
             info += f"\ta. Gnomade allele frequency: {gnomad_af if not pd.isna(gnomad_af) else 'nan'}\n"
             info += f"\tb. Max allele frequency: {max_af}\n"
-            info += f"\tc. Amino acid change: {consequence if not pd.isna(consequence) else 'ND'}\n"
             info += f"\td. Polyphen/SIFT: {revel if not pd.isna(revel) else 'ND'}/{sift if not pd.isna(sift) else 'ND'}\n"
-            info += f"\te. Effect of amino acid change: {hgvsc if not pd.isna(hgvsc) else 'unknown'}\n"
+            info += f"\te. Effect of amino acid change: {hgvsp if not pd.isna(hgvsp) else 'unknown'}\n"
+            info += f"\te. The hgvsg information of the change: {hgvsc if not pd.isna(hgvsc) else 'unknown'}\n"
+
+
+
 
     return info
 
@@ -164,6 +172,9 @@ def process_file(file_path):
         'hgvsg', 'var_type', 'consequence', 'feature', 'feature_type', 'gene', 'gnomad genome af',
         'hgvsc', 'hgvsp', 'revel', 'sift', 'strand', 'uniparc', 'symbol_list', 'gene_list'
     ]
+
+
+
 
     dfColumns = list( set(df.columns) & set(columns_of_interest))
 
