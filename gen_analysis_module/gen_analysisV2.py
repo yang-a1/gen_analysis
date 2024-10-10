@@ -184,9 +184,13 @@ def process_file(file_path):
         # Process each row and print formatted information
         for index, row in df1.iterrows():
             formatted_info = format_variant_info(row)
+            # TODO:  Have this saved to a markdown file.  After file is created, add markdown header to Gene:
             print(formatted_info)
 
+
     df2 = df[df.columns.difference(dfColumns)]
+
+    # TODO: Reformat the additional information so that it is readable in markdown format
 
     # removed this until it is reformatted to be more readable
     # print("Additional Information:")
