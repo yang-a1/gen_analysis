@@ -77,3 +77,63 @@ flowchart TD
 
 --------
 
+# Project README
+
+## Overview
+This project involves a genetic analysis workflow, utilizing scripts and modules to process and analyze genetic data. The following sections detail the contents of the project, including scripts, modules, and their respective functionalities.
+
+## Directory Structure
+
+### `contrib/`
+This folder contains utility scripts and additional resources to aid users in executing analyses.
+
+- **`20241004_quickrun_gen_analysisV2.sh`**: A bash script that activates a conda environment and lists files in the raw data directory. It prompts the user for confirmation before running the `gen_analysisV2.py` script, which processes genetic data and generates reports in Markdown and DOCX formats.
+
+- **`pandoc.sh`**: A simple script example for converting Markdown files to DOCX using Pandoc.
+
+- **`rm_request_open_terminal.sh`**: A script to submit an interactive job to a SLURM scheduler, providing access to a terminal for executing commands.
+
+### `gen_analysis_module/`
+This module includes the core functionality for data processing and analysis.
+
+- **`config.py`**: Configures project directories and loads environment variables. Sets paths for raw, processed, and external data.
+
+- **`dataset.py`**: Contains a command-line interface for processing datasets, with customizable input and output paths.
+
+- **`features.py`**: Similar to `dataset.py`, this script generates features from processed datasets and allows for path customization.
+
+- **`gen_analysisV2.py`**: The main analysis script that reads TSV files, processes genetic variant information, and generates elaborated descriptions using the OpenAI API.
+
+- **`plots.py`**: A placeholder for future plotting functionalities, designed to generate visual representations of the processed data.
+
+### `tests/`
+This directory includes test cases to ensure the functionality of the project.
+
+- **`test_gen_analysisV2.py`**: Uses `pytest` to validate the existence of TSV files in the test data directory and tests the core functions for getting file paths and generating elaboration from prompts.
+
+### `data/`
+Contains various test cases in the form of TSV files used for validating the functionality of the scripts. Notable files include:
+
+- **`empty.tsv`**
+- **`extracol.tsv`**
+- **`header.tsv`**
+- **`malformed.tsv`**
+- **`missingcol.tsv`**
+- **`test_file_1.tsv`**
+- **`test_file_2.tsv`**
+
+## Usage
+To run the analysis, follow these steps:
+1. Navigate to the `contrib` directory.
+2. Execute the `20241004_quickrun_gen_analysisV2.sh` script.
+3. Confirm the continuation when prompted.
+4. The analysis will be executed, generating outputs in the specified formats.
+
+## SLURM Job Management
+The project includes guidelines for submitting jobs to SLURM, with a focus on managing job numbers and ensuring the correct environment is activated for execution.
+
+## Additional Notes
+- Ensure that the necessary environment variables for the OpenAI API are set in the `.env` file.
+- For any issues related to the SLURM job environment, refer to the provided commands and troubleshooting steps.
+
+
