@@ -6,7 +6,16 @@ import os
 import time
 from openai import AzureOpenAI
 from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR
+import json
 
+# Load prompts from the JSON configuration file
+def load_prompts(config_path):
+    with open(config_path, 'r') as file:
+        prompts = json.load(file)
+    return prompts
+
+# Load prompts at the beginning of your script
+prompts = load_prompts('prompts.json')
 
 # Load environment variables from .env file
 # this enviroment file should be in the root of the project
@@ -107,10 +116,9 @@ def format_variant_info(row):
     # Extract gene symbol
     gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
 
-    # Prepare prompts for elaboration
-    mouse_prompt = f"Provide a detailed description of mouse phenotypes associated with {gene_symbol}."
-    omim_prompt = f"Provide a detailed description of diseases associated with {gene_symbol} as found in OMIM/GeneCards."
-
+    # Prepare prompts for elaboration using the loaded configuration
+    mouse_prompt = prompts['mouse_prompt'].format(gene_symbol=gene_symbol)
+    omim_prompt = prompts['omim_prompt'].format(gene_symbol=gene_symbol)
 
     # Get elaborations from the OpenAI API
     mouse_phenotype_description = generate_elaboration(mouse_prompt)

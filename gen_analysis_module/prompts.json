@@ -1,0 +1,4 @@
+{
+    "mouse_prompt": "Provide a detailed description of mouse phenotypes associated with {gene_symbol}.",
+    "omim_prompt": "Provide a detailed description of diseases associated with {gene_symbol} as found in OMIM/GeneCards."
+}
