@@ -109,7 +109,7 @@ This module includes the core functionality for data processing and analysis.
 ### `tests/`
 This directory includes test cases to ensure the functionality of the project.
 
-- **`test_gen_analysisV2.py`**: Uses `pytest` to validate the existence of TSV files in the test data directory and tests the core functions for getting file paths and generating elaboration from prompts.
+- **`test_gen_analysis.py`**: Uses `pytest` to validate the existence of TSV files in the test data directory and tests the core functions for getting file paths and generating elaboration from prompts.
 
 ### `data/`
 Contains various test cases in the form of TSV files used for validating the functionality of the scripts. Notable files include:
