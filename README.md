@@ -87,7 +87,7 @@ This project involves a genetic analysis workflow, utilizing scripts and modules
 ### `contrib/`
 This folder contains utility scripts and additional resources to aid users in executing analyses.
 
-- **`20241004_quickrun_gen_analysisV2.sh`**: A bash script that activates a conda environment and lists files in the raw data directory. It prompts the user for confirmation before running the `gen_analysisV2.py` script, which processes genetic data and generates reports in Markdown and DOCX formats.
+- **`20241004_quickrun_gen_analysisV2.sh`**: A bash script that activates a conda environment and lists files in the raw data directory. It prompts the user for confirmation before running the `gen_analysis.py` script, which processes genetic data and generates reports in Markdown and DOCX formats.
 
 - **`pandoc.sh`**: A simple script example for converting Markdown files to DOCX using Pandoc.
 
@@ -102,7 +102,7 @@ This module includes the core functionality for data processing and analysis.
 
 - **`features.py`**: Similar to `dataset.py`, this script generates features from processed datasets and allows for path customization.
 
-- **`gen_analysisV2.py`**: The main analysis script that reads TSV files, processes genetic variant information, and generates elaborated descriptions using the OpenAI API.
+- **`gen_analysis.py`**: The main analysis script that reads TSV files, processes genetic variant information, and generates elaborated descriptions using the OpenAI API.
 
 - **`plots.py`**: A placeholder for future plotting functionalities, designed to generate visual representations of the processed data.
 

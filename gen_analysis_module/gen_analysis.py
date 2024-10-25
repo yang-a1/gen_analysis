@@ -116,9 +116,10 @@ def format_variant_info(row):
     mouse_phenotype_description = generate_elaboration(mouse_prompt)
     omim_description = generate_elaboration(omim_prompt)
 
-    info += f"Gene: {gene_symbol}\n"
-    info += f"Mouse phenotype: {mouse_phenotype_description}\n"
-    info += f"OMIM/GeneCards: {omim_description}\n"
+    info += f"\ngen_analysis.tsv\n================="
+    info += f"# Gene: {gene_symbol}\n"
+    info += f"## Mouse phenotype: \n{mouse_phenotype_description}\n"
+    info += f"## OMIM/GeneCards: \n{omim_description}\n"
 
     # Extract alternative alleles
     if 'alternative allele' in row and pd.notna(row['alternative allele']):
@@ -140,12 +141,12 @@ def format_variant_info(row):
 
             # contains  ": allele frequency" where this is a value.
 
-            info += f"\tc. Amino acid change: {consequence if not pd.isna(consequence) else 'ND'}\n"
-            info += f"\ta. Gnomade allele frequency: {gnomad_af if not pd.isna(gnomad_af) else 'nan'}\n"
-            info += f"\tb. Max allele frequency: {max_af}\n"
+            info += f"\ta. Amino acid change: {consequence if not pd.isna(consequence) else 'ND'}\n"
+            info += f"\tb. Gnomade allele frequency: {gnomad_af if not pd.isna(gnomad_af) else 'nan'}\n"
+            info += f"\tc. Max allele frequency: {max_af}\n"
             info += f"\td. Polyphen/SIFT: {revel if not pd.isna(revel) else 'ND'}/{sift if not pd.isna(sift) else 'ND'}\n"
             info += f"\te. Effect of amino acid change: {hgvsp if not pd.isna(hgvsp) else 'unknown'}\n"
-            info += f"\te. The hgvsg information of the change: {hgvsc if not pd.isna(hgvsc) else 'unknown'}\n"
+            info += f"\tf. The hgvsg information of the change: {hgvsc if not pd.isna(hgvsc) else 'unknown'}\n"
 
 
 
