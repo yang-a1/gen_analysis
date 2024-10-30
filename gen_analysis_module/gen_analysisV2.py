@@ -6,7 +6,15 @@ import os
 import time
 from openai import AzureOpenAI
 from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR
+import json
 
+# Load prompts from the JSON config file
+def load_prompts(filepath):
+    with open(filepath, 'r') as file:
+        return json.load(file)
+
+# Load the prompts
+prompts = load_prompts('prompts.json')
 
 # Load environment variables from .env file
 # this enviroment file should be in the root of the project
@@ -41,7 +49,18 @@ def read_tsv(file_path):
     Returns:
         pd.DataFrame: A DataFrame containing the data from the TSV file.
     """
-    return pd.read_csv(file_path, sep='\t')
+    df = pd.read_csv(file_path, sep='\t')
+    assert not df.empty, f"The file {file_path} is empty."
+    assert len(df) > 0, f"The file {file_path} contains only headers."
+
+    num_headers = len(df.columns)
+    for index, row in df.iterrows():
+        non_empty_count = row.count()
+        assert non_empty_count > 0, f"The file {file_path} has more headers than data in row {index}."
+        assert non_empty_count <= num_headers, f"The file {file_path} has more data than headers in row {index}."
+
+    return df
+
 
 def generate_elaboration(prompt):
     """
@@ -108,9 +127,8 @@ def format_variant_info(row):
     gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
 
     # Prepare prompts for elaboration
-    mouse_prompt = f"Provide a detailed description of mouse phenotypes associated with {gene_symbol}."
-    omim_prompt = f"Provide a detailed description of diseases associated with {gene_symbol} as found in OMIM/GeneCards."
-
+    mouse_prompt = prompts['mouse_prompt'].format(gene_symbol=gene_symbol)
+    omim_prompt = prompts['omim_prompt'].format(gene_symbol=gene_symbol)
 
     # Get elaborations from the OpenAI API
     mouse_phenotype_description = generate_elaboration(mouse_prompt)
@@ -138,17 +156,12 @@ def format_variant_info(row):
             hgvsc = row['hgvsc'][0] if isinstance(row['hgvsc'], list) else row['hgvsc']
             hgvsp = row['hgvsp'][0] if isinstance(row['hgvsp'], list) else row['hgvsp']
 
-            # contains  ": allele frequency" where this is a value.
-
-            info += f"\tc. Amino acid change: {consequence if not pd.isna(consequence) else 'ND'}\n"
-            info += f"\ta. Gnomade allele frequency: {gnomad_af if not pd.isna(gnomad_af) else 'nan'}\n"
-            info += f"\tb. Max allele frequency: {max_af}\n"
+            info += f"\ta. Amino acid change: {consequence if not pd.isna(consequence) else 'ND'}\n"
+            info += f"\tb. Gnomad allele frequency: {gnomad_af if not pd.isna(gnomad_af) else 'nan'}\n"
+            info += f"\tc. Max allele frequency: {max_af}\n"
             info += f"\td. Polyphen/SIFT: {revel if not pd.isna(revel) else 'ND'}/{sift if not pd.isna(sift) else 'ND'}\n"
             info += f"\te. Effect of amino acid change: {hgvsp if not pd.isna(hgvsp) else 'unknown'}\n"
-            info += f"\te. The hgvsg information of the change: {hgvsc if not pd.isna(hgvsc) else 'unknown'}\n"
-
-
-
+            info += f"\tf. The hgvsg information of the change: {hgvsc if not pd.isna(hgvsc) else 'unknown'}\n"
 
     return info
 
