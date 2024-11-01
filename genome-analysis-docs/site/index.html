@@ -25,22 +25,9 @@
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href=".">Genome Analysis Documentation</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="README.md" class="nav-link">Analysis</a>
-                            </li>
-                        </ul>
 
                     <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
@@ -66,13 +53,34 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="#welcome-to-mkdocs" class="nav-link">Welcome to MkDocs</a>
+            <li class="nav-item" data-bs-level="1"><a href="#genome-analysis" class="nav-link">genome analysis</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#commands" class="nav-link">Commands</a>
+            <li class="nav-item" data-bs-level="2"><a href="#project-organization" class="nav-link">Project Organization</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="#project-layout" class="nav-link">Project layout</a>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-bs-level="1"><a href="#project-readme" class="nav-link">Project README</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#directory-structure" class="nav-link">Directory Structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#usage" class="nav-link">Usage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#slurm-job-management" class="nav-link">SLURM Job Management</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#additional-notes" class="nav-link">Additional Notes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -83,21 +91,138 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<h1 id="genome-analysis">genome analysis</h1>
+<p><a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
+    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
+</a></p>
+<p>analysis of genetic variants</p>
+<pre><code class="language-mermaid">flowchart TD
+    DATA[Variant Data] --&gt; PD[Prompt Design]
+    AC[Analysis Criteria] --&gt; PD[Prompt Design]
+    PD --&gt; GS[Gene Search]
+    PD --&gt; VI[Variant Information]
+    PD --&gt; DS[Database Search]
+    GS --&gt; R[Combined Results]
+    VI --&gt; R[Combined Results]
+    DS --&gt; R[Combined Results]
+    R --&gt; F[Final Report]
+    F --&gt; |Feedback| R
+</code></pre>
+<h2 id="project-organization">Project Organization</h2>
+<pre><code>├── LICENSE            &lt;- Open-source license if one is chosen
+├── Makefile           &lt;- Makefile with convenience commands like `make data` or `make train`
+├── README.md          &lt;- The top-level README for developers using this project.
+├── data
+│   ├── external       &lt;- Data from third party sources.
+│   ├── interim        &lt;- Intermediate data that has been transformed.
+│   ├── processed      &lt;- The final, canonical data sets for modeling.
+│   └── raw            &lt;- The original, immutable data dump.
+│
+├── docs               &lt;- A default mkdocs project; see mkdocs.org for details
+│
+├── models             &lt;- Trained and serialized models, model predictions, or model summaries
+│
+├── notebooks          &lt;- Jupyter notebooks. Naming convention is a number (for ordering),
+│                         the creator's initials, and a short `-` delimited description, e.g.
+│                         `1.0-jqp-initial-data-exploration`.
+│
+├── pyproject.toml     &lt;- Project configuration file with package metadata for gen_analysis_module
+│                         and configuration for tools like black
+│
+├── references         &lt;- Data dictionaries, manuals, and all other explanatory materials.
+│
+├── reports            &lt;- Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures        &lt;- Generated graphics and figures to be used in reporting
+│
+├── requirements.txt   &lt;- The requirements file for reproducing the analysis environment, e.g.
+│                         generated with `pip freeze &gt; requirements.txt`
+│
+├── setup.cfg          &lt;- Configuration file for flake8
+│
+└── gen_analysis_module                &lt;- Source code for use in this project.
+    │
+    ├── __init__.py    &lt;- Makes gen_analysis_module a Python module
+    │
+    ├── data           &lt;- Scripts to download or generate data
+    │   └── make_dataset.py
+    │
+    ├── features       &lt;- Scripts to turn raw data into features for modeling
+    │   └── build_features.py
+    │
+    ├── models         &lt;- Scripts to train models and then use trained models to make
+    │   │                 predictions
+    │   ├── predict_model.py
+    │   └── train_model.py
+    │
+    └── visualization  &lt;- Scripts to create exploratory and results oriented visualizations
+        └── visualize.py
+</code></pre>
+<hr />
+<h1 id="project-readme">Project README</h1>
+<h2 id="overview">Overview</h2>
+<p>This project involves a genetic analysis workflow, utilizing scripts and modules to process and analyze genetic data. The following sections detail the contents of the project, including scripts, modules, and their respective functionalities.</p>
+<h2 id="directory-structure">Directory Structure</h2>
+<h3 id="contrib"><code>contrib/</code></h3>
+<p>This folder contains utility scripts and additional resources to aid users in executing analyses.</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
+<li>
+<p><strong><code>20241004_quickrun_gen_analysisV2.sh</code></strong>: A bash script that activates a conda environment and lists files in the raw data directory. It prompts the user for confirmation before running the <code>gen_analysis.py</code> script, which processes genetic data and generates reports in Markdown and DOCX formats.</p>
+</li>
+<li>
+<p><strong><code>pandoc.sh</code></strong>: A simple script example for converting Markdown files to DOCX using Pandoc.</p>
+</li>
+<li>
+<p><strong><code>rm_request_open_terminal.sh</code></strong>: A script to submit an interactive job to a SLURM scheduler, providing access to a terminal for executing commands.</p>
+</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+<h3 id="gen_analysis_module"><code>gen_analysis_module/</code></h3>
+<p>This module includes the core functionality for data processing and analysis.</p>
+<ul>
+<li>
+<p><strong><code>config.py</code></strong>: Configures project directories and loads environment variables. Sets paths for raw, processed, and external data.</p>
+</li>
+<li>
+<p><strong><code>dataset.py</code></strong>: Contains a command-line interface for processing datasets, with customizable input and output paths.</p>
+</li>
+<li>
+<p><strong><code>features.py</code></strong>: Similar to <code>dataset.py</code>, this script generates features from processed datasets and allows for path customization.</p>
+</li>
+<li>
+<p><strong><code>gen_analysis.py</code></strong>: The main analysis script that reads TSV files, processes genetic variant information, and generates elaborated descriptions using the OpenAI API.</p>
+</li>
+<li>
+<p><strong><code>plots.py</code></strong>: A placeholder for future plotting functionalities, designed to generate visual representations of the processed data.</p>
+</li>
+</ul>
+<h3 id="tests"><code>tests/</code></h3>
+<p>This directory includes test cases to ensure the functionality of the project.</p>
+<ul>
+<li><strong><code>test_gen_analysis.py</code></strong>: Uses <code>pytest</code> to validate the existence of TSV files in the test data directory and tests the core functions for getting file paths and generating elaboration from prompts.</li>
+</ul>
+<h3 id="data"><code>data/</code></h3>
+<p>Contains various test cases in the form of TSV files used for validating the functionality of the scripts. Notable files include:</p>
+<ul>
+<li><strong><code>empty.tsv</code></strong></li>
+<li><strong><code>extracol.tsv</code></strong></li>
+<li><strong><code>header.tsv</code></strong></li>
+<li><strong><code>malformed.tsv</code></strong></li>
+<li><strong><code>missingcol.tsv</code></strong></li>
+<li><strong><code>test_file_1.tsv</code></strong></li>
+<li><strong><code>test_file_2.tsv</code></strong></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>To run the analysis, follow these steps:
+1. Navigate to the <code>contrib</code> directory.
+2. Execute the <code>20241004_quickrun_gen_analysisV2.sh</code> script.
+3. Confirm the continuation when prompted.
+4. The analysis will be executed, generating outputs in the specified formats.</p>
+<h2 id="slurm-job-management">SLURM Job Management</h2>
+<p>The project includes guidelines for submitting jobs to SLURM, with a focus on managing job numbers and ensuring the correct environment is activated for execution.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<ul>
+<li>Ensure that the necessary environment variables for the OpenAI API are set in the <code>.env</code> file.</li>
+<li>For any issues related to the SLURM job environment, refer to the provided commands and troubleshooting steps.</li>
+</ul></div>
             </div>
         </div>
 
@@ -179,5 +304,5 @@ docs/
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2024-11-01 02:30:40.493167+00:00
+Build Date UTC : 2024-11-01 15:19:18.068854+00:00
 -->
