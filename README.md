@@ -7,6 +7,8 @@
 analysis of genetic variants
 
 
+[Documentation URL](https://yang-a1.github.io/gen_analysis/)
+
 ```mermaid
 flowchart TD
     DATA[Variant Data] --> PD[Prompt Design]
