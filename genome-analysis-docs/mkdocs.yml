@@ -1,4 +1,3 @@
 site_name: Genome Analysis Documentation
 nav:
   - Home: index.md
-  - Analysis: README.md  
