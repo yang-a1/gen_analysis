@@ -23,4 +23,5 @@ dependencies:
   - pip:
     - python-dotenv
     - mkdocs
+    - mkdocs-mermaid2-plugin
     - -e .
