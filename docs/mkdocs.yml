@@ -3,5 +3,5 @@ site_name: genome analysis
 site_author: Burmeister Lab
 #
 plugins:
-    - search
-    - mermaid2
+  - search
+  - mermaid2
