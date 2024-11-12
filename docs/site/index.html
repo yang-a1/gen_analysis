@@ -1,183 +1,297 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
-        <meta name="author" content="Burmeister Lab">
-        
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>genome analysis</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/fontawesome.min.css" rel="stylesheet">
-        <link href="css/brands.min.css" rel="stylesheet">
-        <link href="css/solid.min.css" rel="stylesheet">
-        <link href="css/v4-font-face.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
-        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
 
-    <body class="homepage">
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href=".">genome analysis</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href="." class="nav-link active" aria-current="page">genome analysis documentation!</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="getting-started/" class="nav-link">Getting started</a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="None" name="description"/>
+<meta content="Burmeister Lab" name="author"/>
+<link href="img/favicon.ico" rel="shortcut icon"/>
+<title>genome analysis</title>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/fontawesome.min.css" rel="stylesheet"/>
+<link href="css/brands.min.css" rel="stylesheet"/>
+<link href="css/solid.min.css" rel="stylesheet"/>
+<link href="css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="homepage">
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href=".">genome analysis</a>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
                             </a>
-                        </li>
-                            <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a rel="next" href="getting-started/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
-
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-bs-level="1"><a href="#genome-analysis-documentation" class="nav-link">genome analysis documentation!</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="#description" class="nav-link">Description</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="#commands" class="nav-link">Commands</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#genome-analysis">genome analysis</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#project-readme">Project README</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#overview">Overview</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#directory-structure">Directory Structure</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#usage">Usage</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#slurm-job-management">SLURM Job Management</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#additional-notes">Additional Notes</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#project-organization">Project Organization</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 </div></div>
-                    <div class="col-md-9" role="main">
-
-<h1 id="genome-analysis-documentation">genome analysis documentation!</h1>
-<h2 id="description">Description</h2>
+<div class="col-md-9" role="main">
+<h1 id="genome-analysis">genome analysis</h1>
+<p><a href="https://cookiecutter-data-science.drivendata.org/" target="_blank">
+<img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter"/>
+</a></p>
 <p>analysis of genetic variants</p>
-<h2 id="commands">Commands</h2>
-<p>The Makefile contains the central entry points for common tasks related to this project.</p></div>
-            </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script>
+<p><a href="https://yang-a1.github.io/gen_analysis/">Documentation URL</a></p>
+<div class="mermaid">graph TD
+    DATA[Variant Data] --&gt; PD[Prompt Design]
+    AC[Analysis Criteria] --&gt; PD[Prompt Design]
+    PD --&gt; GS[Gene Search]
+    PD --&gt; VI[Variant Information]
+    PD --&gt; DS[Database Search]
+    GS --&gt; R[Combined Results]
+    VI --&gt; R[Combined Results]
+    DS --&gt; R[Combined Results]
+    R --&gt; F[Final Report]
+    F --&gt; |Feedback| R
+</div>
+<hr/>
+<h1 id="project-readme">Project README</h1>
+<h2 id="overview">Overview</h2>
+<p>This project involves a genetic analysis workflow, utilizing scripts and modules to process and analyze genetic data. The following sections detail the contents of the project, including scripts, modules, and their respective functionalities.</p>
+<h2 id="directory-structure">Directory Structure</h2>
+<h3 id="contrib"><code>contrib/</code></h3>
+<p>This folder contains utility scripts and additional resources to aid users in executing analyses.</p>
+<ul>
+<li>
+<p><strong><code>20241004_quickrun_gen_analysisV2.sh</code></strong>: A bash script that activates a conda environment and lists files in the raw data directory. It prompts the user for confirmation before running the <code>gen_analysis.py</code> script, which processes genetic data and generates reports in Markdown and DOCX formats.</p>
+</li>
+<li>
+<p><strong><code>pandoc.sh</code></strong>: A simple script example for converting Markdown files to DOCX using Pandoc.</p>
+</li>
+<li>
+<p><strong><code>rm_request_open_terminal.sh</code></strong>: A script to submit an interactive job to a SLURM scheduler, providing access to a terminal for executing commands.</p>
+</li>
+</ul>
+<h3 id="gen_analysis_module"><code>gen_analysis_module/</code></h3>
+<p>This module includes the core functionality for data processing and analysis.</p>
+<ul>
+<li>
+<p><strong><code>config.py</code></strong>: Configures project directories and loads environment variables. Sets paths for raw, processed, and external data.</p>
+</li>
+<li>
+<p><strong><code>dataset.py</code></strong>: Contains a command-line interface for processing datasets, with customizable input and output paths.</p>
+</li>
+<li>
+<p><strong><code>features.py</code></strong>: Similar to <code>dataset.py</code>, this script generates features from processed datasets and allows for path customization.</p>
+</li>
+<li>
+<p><strong><code>gen_analysis.py</code></strong>: The main analysis script that reads TSV files, processes genetic variant information, and generates elaborated descriptions using the OpenAI API.</p>
+</li>
+<li>
+<p><strong><code>plots.py</code></strong>: A placeholder for future plotting functionalities, designed to generate visual representations of the processed data.</p>
+</li>
+</ul>
+<h3 id="tests"><code>tests/</code></h3>
+<p>This directory includes test cases to ensure the functionality of the project.</p>
+<ul>
+<li><strong><code>test_gen_analysis.py</code></strong>: Uses <code>pytest</code> to validate the existence of TSV files in the test data directory and tests the core functions for getting file paths and generating elaboration from prompts.</li>
+</ul>
+<h3 id="data"><code>data/</code></h3>
+<p>Contains various test cases in the form of TSV files used for validating the functionality of the scripts. Notable files include:</p>
+<ul>
+<li><strong><code>empty.tsv</code></strong></li>
+<li><strong><code>extracol.tsv</code></strong></li>
+<li><strong><code>header.tsv</code></strong></li>
+<li><strong><code>malformed.tsv</code></strong></li>
+<li><strong><code>missingcol.tsv</code></strong></li>
+<li><strong><code>test_file_1.tsv</code></strong></li>
+<li><strong><code>test_file_2.tsv</code></strong></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>To run the analysis, follow these steps:
+1. Navigate to the <code>contrib</code> directory.
+2. Execute the <code>20241004_quickrun_gen_analysisV2.sh</code> script.
+3. Confirm the continuation when prompted.
+4. The analysis will be executed, generating outputs in the specified formats.</p>
+<h2 id="slurm-job-management">SLURM Job Management</h2>
+<p>The project includes guidelines for submitting jobs to SLURM, with a focus on managing job numbers and ensuring the correct environment is activated for execution.</p>
+<h2 id="additional-notes">Additional Notes</h2>
+<ul>
+<li>Ensure that the necessary environment variables for the OpenAI API are set in the <code>.env</code> file.</li>
+<li>For any issues related to the SLURM job environment, refer to the provided commands and troubleshooting steps.</li>
+</ul>
+<h2 id="project-organization">Project Organization</h2>
+<pre><code>├── LICENSE            &lt;- Open-source license if one is chosen
+├── Makefile           &lt;- Makefile with convenience commands like `make data` or `make train`
+├── README.md          &lt;- The top-level README for developers using this project.
+├── data
+│   ├── external       &lt;- Data from third party sources.
+│   ├── interim        &lt;- Intermediate data that has been transformed.
+│   ├── processed      &lt;- The final, canonical data sets for modeling.
+│   └── raw            &lt;- The original, immutable data dump.
+│
+├── docs               &lt;- A default mkdocs project; see mkdocs.org for details
+│
+├── models             &lt;- Trained and serialized models, model predictions, or model summaries
+│
+├── notebooks          &lt;- Jupyter notebooks. Naming convention is a number (for ordering),
+│                         the creator's initials, and a short `-` delimited description, e.g.
+│                         `1.0-jqp-initial-data-exploration`.
+│
+├── pyproject.toml     &lt;- Project configuration file with package metadata for gen_analysis_module
+│                         and configuration for tools like black
+│
+├── references         &lt;- Data dictionaries, manuals, and all other explanatory materials.
+│
+├── reports            &lt;- Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures        &lt;- Generated graphics and figures to be used in reporting
+│
+├── requirements.txt   &lt;- The requirements file for reproducing the analysis environment, e.g.
+│                         generated with `pip freeze &gt; requirements.txt`
+│
+├── setup.cfg          &lt;- Configuration file for flake8
+│
+└── gen_analysis_module                &lt;- Source code for use in this project.
+    │
+    ├── __init__.py    &lt;- Makes gen_analysis_module a Python module
+    │
+    ├── data           &lt;- Scripts to download or generate data
+    │   └── make_dataset.py
+    │
+    ├── features       &lt;- Scripts to turn raw data into features for modeling
+    │   └── build_features.py
+    │
+    ├── models         &lt;- Scripts to train models and then use trained models to make
+    │   │                 predictions
+    │   ├── predict_model.py
+    │   └── train_model.py
+    │
+    └── visualization  &lt;- Scripts to create exploratory and results oriented visualizations
+        └── visualize.py
+</code></pre></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script>
             var base_url = ".",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js"></script>
-        <script src="search/main.js"></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>From here you can search these documents. Enter your search terms below.</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
+<script src="js/base.js"></script>
+<script src="search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
 </div>
-
-    </body>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+mermaid.initialize({});</script></body>
 </html>
-
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2024-11-06 16:39:39.786055+00:00
+Build Date UTC : 2024-11-12 16:13:25.410425+00:00
 -->
