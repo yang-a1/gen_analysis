@@ -6,7 +6,7 @@ import os
 import time
 from openai import AzureOpenAI
 from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR
-import json4
+import json
 import re
 
 # Load prompts from the JSON configuration file
