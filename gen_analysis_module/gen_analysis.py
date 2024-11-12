@@ -6,7 +6,8 @@ import os
 import time
 from openai import AzureOpenAI
 from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR
-import json
+import json4
+import re 
 
 # Load prompts from the JSON configuration file
 def load_prompts(config_path):
@@ -116,6 +117,13 @@ def format_variant_info(row):
     # Extract gene symbol
     gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
 
+    if not re.match("^[A-Za-z0-9]+$", gene_symbol):
+        print(f"Invalid gene symbol '{gene_symbol}'. Gene symbols should contain only letters and/or numbers.")
+        user_choice = input("Would you like to continue and print the information? (yes/no): ").strip().lower()
+        if user_choice != 'yes':
+            print("Skipping this gene...")
+            return None
+
     # Prepare prompts for elaboration using the loaded configuration
     mouse_prompt = prompts['mouse_prompt'].format(gene_symbol=gene_symbol)
     omim_prompt = prompts['omim_prompt'].format(gene_symbol=gene_symbol)
@@ -167,6 +175,12 @@ def process_file(file_path):
     Args:
         file_path (str): The path to the TSV file.
     """
+    with open(file_path, 'r') as f:
+        line_count = sum(1 for _ in f)
+    if line_count > 1000:
+        print(f"Error: {file_path} is too long. Cannot exceed 1000 lines.")
+        return
+    
     df = read_tsv(file_path)
 
     # Extract necessary columns (adjust as needed based on your data)
