@@ -19,5 +19,7 @@ jobs:
           key: ${{ github.ref }}
           path: .cache
       - run: pip install mkdocs-material
-      - run: cd docs && mkdocs gh-deploy --force
+      # - run: cd docs && mkdocs gh-deploy --force
+      # - run: mkdocs build
+
 
