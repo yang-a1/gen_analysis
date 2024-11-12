@@ -189,9 +189,9 @@ def process_file(file_path):
     if  len(dfColumns) >0:
         df1 = df[dfColumns]
 
+        formatted_info += f"\{file_path}.tsv\n================="
         # Process each row and print formatted information
         for index, row in df1.iterrows():
-            formatted_info += f"\{file_path}.tsv\n================="
             formatted_info = format_variant_info(row)
             # TODO:  Have this saved to a markdown file.  After file is created, add markdown header to Gene:
             print(formatted_info)
