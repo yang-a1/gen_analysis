@@ -7,7 +7,7 @@ import time
 from openai import AzureOpenAI
 from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR
 import json4
-import re 
+import re
 
 # Load prompts from the JSON configuration file
 def load_prompts(config_path):
@@ -168,7 +168,7 @@ def format_variant_info(row):
 
     return info
 
-def process_file(file_path):
+def process_file(file_path, max_lines=1000):
     """
     Processes the TSV file and outputs formatted information.
 
@@ -177,10 +177,10 @@ def process_file(file_path):
     """
     with open(file_path, 'r') as f:
         line_count = sum(1 for _ in f)
-    if line_count > 1000:
+    if line_count > max_lines:
         print(f"Error: {file_path} is too long. Cannot exceed 1000 lines.")
         return
-    
+
     df = read_tsv(file_path)
 
     # Extract necessary columns (adjust as needed based on your data)
