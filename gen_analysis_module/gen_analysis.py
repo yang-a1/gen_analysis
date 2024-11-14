@@ -5,10 +5,11 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT
 import json
 import re
 import logging
+from collections import OrderedDict
 
 # Load prompts from the JSON configuration file
 def load_prompts(json_path):
@@ -17,13 +18,27 @@ def load_prompts(json_path):
     return prompts
 
 # Load prompts at the beginning of your script
-# TODO: Update the path to the prompts.json file as a path in the config.py file
-prompts = load_prompts('prompts.json')
-
+prompts = load_prompts(os.path.join(PROJ_ROOT, 'prompts.json'))
 # Load environment variables from .env file
 # this enviroment file should be in the root of the project
 load_dotenv(find_dotenv("gen_analysis.env"))
 # load_dotenv(find_dotenv(os.getcwd()))
+
+def create_prompts(prompts, gene_symbol):
+    """
+    Get prompts from a dictionary and replace the gene symbol placeholder with the provided gene symbol.
+
+    Args:
+        prompts (dict): The dictionary containing prompts.
+        gene_symbol (str): The gene symbol to replace the placeholder with.
+
+    Returns:
+        OrderedDict: An ordered dictionary of prompts with the gene symbol placeholder replaced.
+    """
+    ordered_prompts = OrderedDict()
+    for key, value in prompts.items():
+        ordered_prompts[key] = value.format(gene_symbol=gene_symbol)
+    return ordered_prompts
 
 def get_files_in_folder(folder_path):
     """
@@ -211,7 +226,10 @@ def process_file(file_path, max_lines=1000):
         with open(md_output_filepath, 'w') as f:
             header = f"# {os.path.basename(file_path)}\n\n"
             header += "=================\n\n"
+            # TODO: Add the json file prettified here
             f.write(header)
+            # print
+
 
             # Loop through each row in the DataFrame and write the formatted information
             for index, row in df1.iterrows():
