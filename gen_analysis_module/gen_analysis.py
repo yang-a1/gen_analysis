@@ -5,7 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR
 import json
 import re
 import logging
@@ -206,8 +206,13 @@ def process_file(file_path, max_lines=1000):
 
         header = f"# {os.path.basename(file_path)}\n\n"
         header += "=================\n\n"
-        print(header)
-
+        # create string with date and time
+        md_output_filename = f"{time.strftime('%Y-%m-%d %H:%M:%S')}_{os.path.basename(file_path)}_output.md"
+        md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
+        print(md_output_filepath)
+        # create a file at md_output_filepath and write the header to it
+        with open(md_output_filepath, 'w') as f:
+            f.write(header)
         for index, row in df1.iterrows():
             formatted_info = format_variant_info(row)
             print(formatted_info)
