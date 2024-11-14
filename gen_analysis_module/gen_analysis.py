@@ -213,10 +213,10 @@ def process_file(file_path, max_lines=1000):
             header += "=================\n\n"
             f.write(header)
 
-        # Loop through each row in the DataFrame and write the formatted information
-        for index, row in df1.iterrows():
-            formatted_info = format_variant_info(row)
-            f.write(formatted_info + "\n")  # Write the formatted info to the markdown file
+            # Loop through each row in the DataFrame and write the formatted information
+            for index, row in df1.iterrows():
+                formatted_info = format_variant_info(row)
+                f.write(formatted_info + "\n")  # Write the formatted info to the markdown file
 
     df2 = df[df.columns.difference(dfColumns)]
 
