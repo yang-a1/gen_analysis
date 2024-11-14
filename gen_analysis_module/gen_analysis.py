@@ -8,6 +8,7 @@ from openai import AzureOpenAI
 from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR
 import json
 import re
+import logging
 
 # Load prompts from the JSON configuration file
 def load_prompts(config_path):
@@ -117,12 +118,12 @@ def format_variant_info(row):
     # Extract gene symbol
     gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
 
-    if not re.match("^[A-Za-z0-9]+$", gene_symbol):
-        print(f"Invalid gene symbol '{gene_symbol}'. Gene symbols should contain only letters and/or numbers.")
-        user_choice = input("Would you like to continue and print the information? (yes/no): ").strip().lower()
-        if user_choice != 'yes':
-            print("Skipping this gene...")
-            return None
+    logging.basicConfig(filename='invalid_gene_symbols.log', level=logging.WARNING,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+    if not re.search("[A-Za-z0-9]", gene_symbol):
+        logging.warning(f"Invalid gene symbol '{gene_symbol}'. Gene symbols must contain at least one letter or number.")
+        return None
 
     # Prepare prompts for elaboration using the loaded configuration
     mouse_prompt = prompts['mouse_prompt'].format(gene_symbol=gene_symbol)
@@ -203,11 +204,12 @@ def process_file(file_path, max_lines=1000):
     if  len(dfColumns) >0:
         df1 = df[dfColumns]
 
-        formatted_info += f"\{file_path}.tsv\n================="
-        # Process each row and print formatted information
+        header = f"# {os.path.basename(file_path)}\n\n"
+        header += "=================\n\n"
+        print(header)
+
         for index, row in df1.iterrows():
             formatted_info = format_variant_info(row)
-            # TODO:  Have this saved to a markdown file.  After file is created, add markdown header to Gene:
             print(formatted_info)
 
 

@@ -19,6 +19,11 @@
         <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script> 
+
+        <script type="module">
+          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.2.3/dist/mermaid.esm.min.mjs';
+          mermaid.initialize({ startOnLoad: true });
+      </script>
     </head>
 
     <body class="homepage">
@@ -96,18 +101,19 @@
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a></p>
 <p>analysis of genetic variants</p>
-<pre><code class="language-mermaid">flowchart TD
-    DATA[Variant Data] --&gt; PD[Prompt Design]
-    AC[Analysis Criteria] --&gt; PD[Prompt Design]
-    PD --&gt; GS[Gene Search]
-    PD --&gt; VI[Variant Information]
-    PD --&gt; DS[Database Search]
-    GS --&gt; R[Combined Results]
-    VI --&gt; R[Combined Results]
-    DS --&gt; R[Combined Results]
-    R --&gt; F[Final Report]
-    F --&gt; |Feedback| R
-</code></pre>
+<div class="mermaid">
+  flowchart TD
+      DATA[Variant Data] --> PD[Prompt Design]
+      AC[Analysis Criteria] --> PD[Prompt Design]
+      PD --> GS[Gene Search]
+      PD --> VI[Variant Information]
+      PD --> DS[Database Search]
+      GS --> R[Combined Results]
+      VI --> R[Combined Results]
+      DS --> R[Combined Results]
+      R --> F[Final Report]
+      F --> |Feedback| R
+  </div>  
 <h2 id="project-organization">Project Organization</h2>
 <pre><code>├── LICENSE            &lt;- Open-source license if one is chosen
 ├── Makefile           &lt;- Makefile with convenience commands like `make data` or `make train`
