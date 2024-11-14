@@ -197,37 +197,34 @@ def process_file(file_path, max_lines=1000):
         'hgvsc', 'hgvsp', 'revel', 'sift', 'strand', 'uniparc', 'symbol_list', 'gene_list'
     ]
 
+    dfColumns = list(set(df.columns) & set(columns_of_interest))
 
-
-
-    dfColumns = list( set(df.columns) & set(columns_of_interest))
-
-    if  len(dfColumns) >0:
+    if len(dfColumns) > 0:
         df1 = df[dfColumns]
 
-        header = f"# {os.path.basename(file_path)}\n\n"
-        header += "=================\n\n"
-        # create string with date and time
-        md_output_filename = f"{time.strftime('%Y-%m-%d %H:%M:%S')}_{os.path.basename(file_path)}_output.md"
+        # Change the timestamp format to YYYYMMDDThhmm
+        md_output_filename = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output.md"
         md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
         print(md_output_filepath)
-        # create a file at md_output_filepath and write the header to it
+
+        # Create a file at md_output_filepath and write the header to it
         with open(md_output_filepath, 'w') as f:
+            header = f"# {os.path.basename(file_path)}\n\n"
+            header += "=================\n\n"
             f.write(header)
+
+        # Loop through each row in the DataFrame and write the formatted information
         for index, row in df1.iterrows():
             formatted_info = format_variant_info(row)
-            print(formatted_info)
-
+            f.write(formatted_info + "\n")  # Write the formatted info to the markdown file
 
     df2 = df[df.columns.difference(dfColumns)]
 
     # TODO: Reformat the additional information so that it is readable in markdown format
-
-    # removed this until it is reformatted to be more readable
+    # You can further process df2 as needed for additional information
     # print("Additional Information:")
     # for index, row in df2.iterrows():
     #    print(row)
-
 
 
 
