@@ -11,12 +11,13 @@ import re
 import logging
 
 # Load prompts from the JSON configuration file
-def load_prompts(config_path):
-    with open(config_path, 'r') as file:
+def load_prompts(json_path):
+    with open(json_path, 'r') as file:
         prompts = json.load(file)
     return prompts
 
 # Load prompts at the beginning of your script
+# TODO: Update the path to the prompts.json file as a path in the config.py file
 prompts = load_prompts('prompts.json')
 
 # Load environment variables from .env file
