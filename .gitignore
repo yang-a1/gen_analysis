@@ -39,6 +39,7 @@
 /data/interim/**
 /data/processed/**
 /data/raw/**
+/data/**
 
 # any cache folders named __pycache__
 **/__pycache__/

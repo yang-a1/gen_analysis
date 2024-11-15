@@ -4,8 +4,7 @@ from dotenv import load_dotenv, find_dotenv
 from loguru import logger
 import os
 
-# Load environment variables from .env file if it exists
-load_dotenv(find_dotenv())
+
 
 # Paths
 PROJ_ROOT = Path(__file__).resolve().parents[1]
@@ -21,8 +20,12 @@ MODELS_DIR = PROJ_ROOT / "models"
 
 REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
+
+ENV_FILE_PATH = PROJ_ROOT / "gen_analysis.env"
+
+load_dotenv(find_dotenv(ENV_FILE_PATH))
 PROMPTS_JSON_PATH = PROJ_ROOT / os.environ.get("prompts_json_file")
-ENV_FILE_PATH = PROJ_ROOT / os.environ.get("env_file")
+
 
 
 # add test directory and test data locations
