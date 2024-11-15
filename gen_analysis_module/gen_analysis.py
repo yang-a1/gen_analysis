@@ -5,7 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH
 import json
 import re
 import logging
@@ -18,11 +18,14 @@ def load_prompts(json_path):
     return prompts
 
 # Load prompts at the beginning of your script
-prompts = load_prompts(os.path.join(PROJ_ROOT, 'prompts.json'))
+prompts = load_prompts(os.path.join(PROMPTS_JSON_PATH))
 # Load environment variables from .env file
 # this enviroment file should be in the root of the project
-load_dotenv(find_dotenv("gen_analysis.env"))
+load_dotenv(find_dotenv(ENV_FILE_PATH))
 # load_dotenv(find_dotenv(os.getcwd()))
+# os.environ['PROMPTS_JSON'] = os.path.join(PROJ_ROOT, 'prompts.json')
+# load prompts_json from load_dotenv
+# prompts = load_prompts(prompts_json)
 
 def create_prompts(prompts, gene_symbol):
     """
