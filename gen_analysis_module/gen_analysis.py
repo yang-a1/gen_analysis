@@ -152,9 +152,18 @@ def format_variant_info(row):
     mouse_phenotype_description = generate_elaboration(mouse_prompt)
     omim_description = generate_elaboration(omim_prompt)
 
+
     info += f"# Gene: {gene_symbol}\n"
     info += f"## Mouse phenotype: \n{mouse_phenotype_description}\n"
     info += f"## OMIM/GeneCards: \n{omim_description}\n"
+    """
+    # Replacement of the mouse_prompt, omim_prompt, and elaborations with the following code
+    prompt_ordered_dict = create_prompts(prompts, gene_symbol)
+    info += f"# Gene: {gene_symbol}\n"
+    for key, value in prompt_ordered_dict.items():
+        elaboration = generate_elaboration(value)
+        info += f"## {key}: \n{elaboration}\n"
+     """
 
     # Extract alternative alleles
     if 'alternative allele' in row and pd.notna(row['alternative allele']):
