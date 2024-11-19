@@ -147,7 +147,7 @@ def generate_elaboration(prompt):
 
         response = client.chat.completions.create(
             model="gpt-35-turbo",
-            messages=[{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": prompt}],
+            messages=[{"role": "system", "content": "You are a professional and concise assistant."}, {"role": "user", "content": prompt}],
             max_tokens=150,
             temperature=0.7
         )
