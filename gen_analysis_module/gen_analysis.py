@@ -101,7 +101,7 @@ def format_variant_info(row, prompts):
     if 'alternative allele' in row and pd.notna(row['alternative allele']):
         alleles = row['alternative allele'].split(',') if isinstance(row['alternative allele'], str) else row['alternative allele']
         for i, allele in enumerate(alleles):
-            info += f"{i + 1}. Variant description for {allele} (details):\n"
+            info += f"\n{i + 1}. Variant description for {allele} (details):\n" 
             gnomad_af = row.get('gnomad genome af', 'nan')
             max_af = row.get('max_af', 'nan')
             consequence = row.get('consequence', 'ND')
