@@ -151,7 +151,14 @@ def generate_elaboration(prompt):
             max_tokens=150,
             temperature=0.7
         )
-        return response.choices[0].message.content.strip()
+
+        elaboration = response.choices[0].message.content.strip()
+
+        # Check if the elaboration starts with "I'm sorry" or is empty
+        if not elaboration or elaboration.lower().startswith("i'm sorry"):
+            elaboration = "No relevant elaboration found for this gene symbol."
+
+        return elaboration
 
     except client.error.RateLimitError:
         print("Rate limit exceeded. Retrying in 60 seconds...")
