@@ -26,6 +26,11 @@ ENV_FILE_PATH = PROJ_ROOT / "gen_analysis.env"
 load_dotenv(find_dotenv(ENV_FILE_PATH))
 PROMPTS_JSON_PATH = PROJ_ROOT / os.environ.get("prompts_json_file")
 
+PROJ_ROOT = Path(__file__).parent.parent
+prompts_json_filename = os.environ.get("prompts_json_file")
+
+# Use None or default to an empty path if the environment variable is not set
+PROMPTS_JSON_PATH = PROJ_ROOT / prompts_json_filename if prompts_json_filename else None
 
 
 # add test directory and test data locations

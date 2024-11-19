@@ -1,5 +1,5 @@
 import pandas as pd
-import  openai
+import openai
 import numpy as np
 from dotenv import load_dotenv, find_dotenv
 import os
@@ -11,198 +11,38 @@ import re
 import logging
 from collections import OrderedDict
 
-# Load prompts from the JSON configuration file
-def load_prompts(json_path):
-    with open(json_path, 'r') as file:
-        prompts = json.load(file)
-    return prompts
-
-# Load prompts at the beginning of your script
-prompts = load_prompts(os.path.join(PROMPTS_JSON_PATH))
 # Load environment variables from .env file
-# this enviroment file should be in the root of the project
 load_dotenv(find_dotenv(ENV_FILE_PATH))
-# load_dotenv(find_dotenv(os.getcwd()))
-# os.environ['PROMPTS_JSON'] = os.path.join(PROJ_ROOT, 'prompts.json')
-# load prompts_json from load_dotenv
-# prompts = load_prompts(prompts_json)
 
+# Load prompts from the JSON configuration file (with handling for missing or empty file)
+def load_prompts(json_path):
+    """
+    Loads prompts from a JSON file. Returns an empty dictionary if the file is missing or empty.
+    """
+    if not json_path or not os.path.exists(json_path):
+        return {}  # Return an empty dictionary if the file is missing or empty
+    
+    try:
+        with open(json_path, 'r') as file:
+            return json.load(file)
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"Warning: Could not load prompts from {json_path}. Error: {e}")
+        return {}
+
+# Dynamically create prompts from a dictionary and replace the gene symbol placeholder with the provided gene symbol
 def create_prompts(prompts, gene_symbol):
     """
-    Get prompts from a dictionary and replace the gene symbol placeholder with the provided gene symbol.
-
-    Args:
-        prompts (dict): The dictionary containing prompts.
-        gene_symbol (str): The gene symbol to replace the placeholder with.
-
-    Returns:
-        OrderedDict: An ordered dictionary of prompts with the gene symbol placeholder replaced.
+    Create dynamic prompts by replacing the gene symbol placeholder.
     """
-    ordered_prompts = OrderedDict()
-    for key, value in prompts.items():
-        ordered_prompts[key] = value.format(gene_symbol=gene_symbol)
-    return ordered_prompts
+    if not prompts:
+        return OrderedDict()
 
-def get_files_in_folder(folder_path):
+    return OrderedDict((key, value.format(gene_symbol=gene_symbol)) for key, value in prompts.items())
+
+# Process files and format variant information
+def process_file(file_path, prompts, max_lines=1000):
     """
-    Get all the tsv files in a specified folder and create a list of the full path.
-
-    Args:
-        folder_path (str): The path to the folder.
-
-    Returns:
-        list: A list of full paths to the files in the folder.
-    """
-    file_paths = []
-    for file in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, file)
-        if os.path.isfile(file_path) and file.endswith(".tsv"):
-            file_paths.append(file_path)
-    return file_paths
-
-
-def read_tsv(file_path):
-    """
-    Reads a TSV file into a DataFrame.
-
-    Args:
-        file_path (str): The path to the TSV file.
-
-    Returns:
-        pd.DataFrame: A DataFrame containing the data from the TSV file.
-    """
-    return pd.read_csv(file_path, sep='\t')
-
-def generate_elaboration(prompt):
-    """
-    Generates elaboration text using the OpenAI API with the gpt-3.5-turbo model.
-
-    Args:
-        prompt (str): The prompt to be sent to the OpenAI API.
-
-    Returns:
-        str: The generated elaboration text.
-
-    Raises:
-        openai.error.RateLimitError: If rate limit is exceeded, waits and retries.
-        openai.error.InvalidRequestError: If the request is invalid.
-        openai.error.OpenAIError: For general OpenAI API errors.
-        Exception: For unexpected errors.
-    """
-    try:
-        client = AzureOpenAI(
-            api_key=os.environ['OPENAI_API_KEY'],
-            api_version=os.environ['API_VERSION'],
-            azure_endpoint = os.environ['openai_api_base'],
-            organization = os.environ['OPENAI_organization'])
-
-
-        response = client.chat.completions.create(
-            model="gpt-35-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": prompt}
-            ],
-            max_tokens=150,
-            temperature=0.7
-        )
-        content = response.choices[0].message.content.strip()
-        return content
-    except client.error.RateLimitError:
-        print("Rate limit exceeded. Waiting for 60 seconds before retrying...")
-        time.sleep(60)  # Wait for 60 seconds before retrying
-        return generate_elaboration(prompt)
-    except client.error.InvalidRequestError as e:
-        print(f"Invalid request: {e}")
-        return "Error generating elaboration."
-    except client.error.OpenAIError as e:
-        print(f"OpenAI API error: {e}")
-        return "Error generating elaboration."
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        return "Error generating elaboration."
-
-def format_variant_info(row):
-    """
-    Formats the variant information from a DataFrame row into a human-readable string.
-
-    Args:
-        row (pd.Series): A row from the DataFrame containing genetic variant information.
-
-    Returns:
-        str: Formatted variant information.
-    """
-    info = ""
-
-    # Extract gene symbol
-    gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
-
-    logging.basicConfig(filename='invalid_gene_symbols.log', level=logging.WARNING,
-                    format='%(asctime)s - %(levelname)s - %(message)s')
-
-    if not re.search("[A-Za-z0-9]", gene_symbol):
-        logging.warning(f"Invalid gene symbol '{gene_symbol}'. Gene symbols must contain at least one letter or number.")
-        return None
-
-    # Prepare prompts for elaboration using the loaded configuration
-    mouse_prompt = prompts['mouse_prompt'].format(gene_symbol=gene_symbol)
-    omim_prompt = prompts['omim_prompt'].format(gene_symbol=gene_symbol)
-
-    # Get elaborations from the OpenAI API
-    mouse_phenotype_description = generate_elaboration(mouse_prompt)
-    omim_description = generate_elaboration(omim_prompt)
-
-
-    info += f"# Gene: {gene_symbol}\n"
-    info += f"## Mouse phenotype: \n{mouse_phenotype_description}\n"
-    info += f"## OMIM/GeneCards: \n{omim_description}\n"
-    """
-    # Replacement of the mouse_prompt, omim_prompt, and elaborations with the following code
-    prompt_ordered_dict = create_prompts(prompts, gene_symbol)
-    info += f"# Gene: {gene_symbol}\n"
-    for key, value in prompt_ordered_dict.items():
-        elaboration = generate_elaboration(value)
-        info += f"## {key}: \n{elaboration}\n"
-     """
-
-    # Extract alternative alleles
-    if 'alternative allele' in row and pd.notna(row['alternative allele']):
-        alleles = row['alternative allele']
-        if isinstance(alleles, str):
-            alleles = alleles.split(',')  # Assuming comma-separated
-        elif not isinstance(alleles, list):
-            alleles = [alleles]
-
-        for i, allele in enumerate(alleles):
-            info += f"{i+1}. Variant description for {allele} (details):\n"
-            gnomad_af = row['gnomad genome af'][0] if isinstance(row['gnomad genome af'], list) else row['gnomad genome af']
-            max_af = row['max_af'] if pd.notna(row['max_af']) else 'nan'
-            consequence = row['consequence'][0] if isinstance(row['consequence'], list) else row['consequence']
-            revel = row['revel'][0] if isinstance(row['revel'], list) else row['revel']
-            sift = row['sift'][0] if isinstance(row['sift'], list) else row['sift']
-            hgvsc = row['hgvsc'][0] if isinstance(row['hgvsc'], list) else row['hgvsc']
-            hgvsp = row['hgvsp'][0] if isinstance(row['hgvsp'], list) else row['hgvsp']
-
-            # contains  ": allele frequency" where this is a value.
-
-            info += f"\ta. Amino acid change: {consequence if not pd.isna(consequence) else 'ND'}\n"
-            info += f"\tb. Gnomade allele frequency: {gnomad_af if not pd.isna(gnomad_af) else 'nan'}\n"
-            info += f"\tc. Max allele frequency: {max_af}\n"
-            info += f"\td. Polyphen/SIFT: {revel if not pd.isna(revel) else 'ND'}/{sift if not pd.isna(sift) else 'ND'}\n"
-            info += f"\te. Effect of amino acid change: {hgvsp if not pd.isna(hgvsp) else 'unknown'}\n"
-            info += f"\tf. The hgvsg information of the change: {hgvsc if not pd.isna(hgvsc) else 'unknown'}\n"
-
-
-
-
-    return info
-
-def process_file(file_path, max_lines=1000):
-    """
-    Processes the TSV file and outputs formatted information.
-
-    Args:
-        file_path (str): The path to the TSV file.
+    Processes the TSV file, formats variant information, and writes to markdown.
     """
     with open(file_path, 'r') as f:
         line_count = sum(1 for _ in f)
@@ -210,9 +50,8 @@ def process_file(file_path, max_lines=1000):
         print(f"Error: {file_path} is too long. Cannot exceed 1000 lines.")
         return
 
-    df = read_tsv(file_path)
+    df = pd.read_csv(file_path, sep='\t')
 
-    # Extract necessary columns (adjust as needed based on your data)
     columns_of_interest = [
         'chromosome', 'position', 'allele', 'family', 'symbol', 'variant_class', 'impact',
         'gnomadg_af', 'max_af', 'child: allele frequency', 'father: allele frequency', 'mother: allele frequency',
@@ -224,49 +63,114 @@ def process_file(file_path, max_lines=1000):
         'hgvsc', 'hgvsp', 'revel', 'sift', 'strand', 'uniparc', 'symbol_list', 'gene_list'
     ]
 
-    dfColumns = list(set(df.columns) & set(columns_of_interest))
+    df_columns = list(set(df.columns) & set(columns_of_interest))
+    if len(df_columns) == 0:
+        print(f"Warning: No relevant columns in {file_path}")
+        return
 
-    if len(dfColumns) > 0:
-        df1 = df[dfColumns]
+    df_filtered = df[df_columns]
+    
+    md_output_filename = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output.md"
+    md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
+    print(f"Processing {file_path} -> {md_output_filepath}")
 
-        # Change the timestamp format to YYYYMMDDThhmm
-        md_output_filename = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output.md"
-        md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
-        print(md_output_filepath)
+    with open(md_output_filepath, 'w') as f:
+        f.write(f"# {os.path.basename(file_path)}\n=================\n\n")
+        for _, row in df_filtered.iterrows():
+            formatted_info = format_variant_info(row, prompts)
+            if formatted_info:
+                f.write(formatted_info + "\n")
 
-        # Create a file at md_output_filepath and write the header to it
-        with open(md_output_filepath, 'w') as f:
-            header = f"# {os.path.basename(file_path)}\n\n"
-            header += "=================\n\n"
-            # TODO: Add the json file prettified here
-            f.write(header)
-            # print
+# Extracts and formats variant information
+def format_variant_info(row, prompts):
+    """
+    Format variant information into a readable string.
+    """
+    gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
+
+    # Log any invalid gene symbols
+    if not re.search("[A-Za-z0-9]", gene_symbol):
+        logging.warning(f"Invalid gene symbol '{gene_symbol}'. Gene symbols must contain at least one letter or number.")
+        return None
+
+    # Generate elaborations dynamically for the gene symbol
+    elaborations = generate_elaborations_for_prompts(prompts, gene_symbol)
+
+    # Format additional variant details
+    info = elaborations
+    if 'alternative allele' in row and pd.notna(row['alternative allele']):
+        alleles = row['alternative allele'].split(',') if isinstance(row['alternative allele'], str) else row['alternative allele']
+        for i, allele in enumerate(alleles):
+            info += f"{i + 1}. Variant description for {allele} (details):\n"
+            gnomad_af = row.get('gnomad genome af', 'nan')
+            max_af = row.get('max_af', 'nan')
+            consequence = row.get('consequence', 'ND')
+            revel = row.get('revel', 'ND')
+            sift = row.get('sift', 'ND')
+            hgvsc = row.get('hgvsc', 'unknown')
+            hgvsp = row.get('hgvsp', 'unknown')
+
+            info += f"\ta. Amino acid change: {consequence}\n"
+            info += f"\tb. Gnomad allele frequency: {gnomad_af}\n"
+            info += f"\tc. Max allele frequency: {max_af}\n"
+            info += f"\td. Polyphen/SIFT: {revel}/{sift}\n"
+            info += f"\te. Effect of amino acid change: {hgvsp}\n"
+            info += f"\tf. The hgvsg information of the change: {hgvsc}\n"
+
+    return info
+
+# Generate elaborations for all prompts
+def generate_elaborations_for_prompts(prompts, gene_symbol):
+    """
+    Generate elaborations for all prompts dynamically.
+    """
+    elaborations = f"# Gene: {gene_symbol}\n"
+    if prompts:
+        for key, value in create_prompts(prompts, gene_symbol).items():
+            elaboration = generate_elaboration(value)
+            elaborations += f"## {key.replace('_', ' ').capitalize()}: \n{elaboration}\n"
+    # If no prompts are defined, elaborations will remain as just the gene header (nothing else added)
+    return elaborations
 
 
-            # Loop through each row in the DataFrame and write the formatted information
-            for index, row in df1.iterrows():
-                formatted_info = format_variant_info(row)
-                f.write(formatted_info + "\n")  # Write the formatted info to the markdown file
+# Generate elaboration using OpenAI API (with retry mechanism)
+def generate_elaboration(prompt):
+    """
+    Generates elaboration text using the OpenAI API with retry mechanism.
+    """
+    try:
+        client = AzureOpenAI(
+            api_key=os.environ['OPENAI_API_KEY'],
+            api_version=os.environ['API_VERSION'],
+            azure_endpoint=os.environ['openai_api_base'],
+            organization=os.environ['OPENAI_organization'])
 
-    df2 = df[df.columns.difference(dfColumns)]
+        response = client.chat.completions.create(
+            model="gpt-35-turbo",
+            messages=[{"role": "system", "content": "You are a helpful assistant."}, {"role": "user", "content": prompt}],
+            max_tokens=150,
+            temperature=0.7
+        )
+        return response.choices[0].message.content.strip()
 
-    # TODO: Reformat the additional information so that it is readable in markdown format
-    # You can further process df2 as needed for additional information
-    # print("Additional Information:")
-    # for index, row in df2.iterrows():
-    #    print(row)
+    except client.error.RateLimitError:
+        print("Rate limit exceeded. Retrying in 60 seconds...")
+        time.sleep(60)
+        return generate_elaboration(prompt)
+    except client.error.OpenAIError as e:
+        print(f"OpenAI API error: {e}")
+        return "Error generating elaboration."
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return "Error generating elaboration."
 
-
-
+# Main function to process all files in the raw data directory
 def main():
-    # Get all .tsv files from RAW_DATA_DIR
-    tsv_files = get_files_in_folder(RAW_DATA_DIR)
-
+    prompts = load_prompts(PROMPTS_JSON_PATH)
+    tsv_files = [os.path.join(RAW_DATA_DIR, file) for file in os.listdir(RAW_DATA_DIR) if file.endswith(".tsv")]
 
     for file_path in tsv_files:
-        process_file(file_path)
+        process_file(file_path, prompts)
 
 if __name__ == "__main__":
     main()
-
-

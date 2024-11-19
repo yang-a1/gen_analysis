@@ -97,9 +97,6 @@ def format_output(variants):
 
         print()
 
-
-
-
 # Main function (assuming it's defined elsewhere)
 def main():
     tsv_file = '20240701_example_file_v2.xlsx - Sheet1.tsv'
