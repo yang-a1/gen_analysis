@@ -33,6 +33,19 @@ prompts_json_filename = os.environ.get("prompts_json_file")
 PROMPTS_JSON_PATH = PROJ_ROOT / prompts_json_filename if prompts_json_filename else None
 
 
+if os.environ['max_tokens'] > 1000:
+    print("Max tokens in the env file is {os.environ['max_tokens']}.")
+    user_confirmation = input(f"The max_tokens value is greater than 1000. Do you want to proceed? (yes/no): ")
+    if user_confirmation.lower() != 'yes':
+        raise ValueError("Operation aborted by the user due to max_tokens exceeding 1000.")
+
+
+
+
+
+
+
+
 # add test directory and test data locations
 TEST_DIR = PROJ_ROOT / "tests"
 TEST_DATA_DIR = TEST_DIR / "data"

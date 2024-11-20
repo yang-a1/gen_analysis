@@ -21,7 +21,7 @@ def load_prompts(json_path):
     """
     if not json_path or not os.path.exists(json_path):
         return {}  # Return an empty dictionary if the file is missing or empty
-    
+
     try:
         with open(json_path, 'r') as file:
             return json.load(file)
@@ -69,7 +69,7 @@ def process_file(file_path, prompts, max_lines=1000):
         return
 
     df_filtered = df[df_columns]
-    
+
     md_output_filename = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output.md"
     md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
     print(f"Processing {file_path} -> {md_output_filepath}")
@@ -146,10 +146,10 @@ def generate_elaboration(prompt):
             organization=os.environ['OPENAI_organization'])
 
         response = client.chat.completions.create(
-            model="gpt-35-turbo",
+            model=os.environ['model'],
             messages=[{"role": "system", "content": "You are a professional and concise assistant."}, {"role": "user", "content": prompt}],
-            max_tokens=150,
-            temperature=0.7
+            max_tokens=os.environ['max_tokens'] ,
+            temperature=os.environ['temperature']
         )
 
         elaboration = response.choices[0].message.content.strip()
