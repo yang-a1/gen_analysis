@@ -5,7 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE , TEMPERATURE_VALUE
 import json
 import re
 import logging
@@ -101,7 +101,7 @@ def format_variant_info(row, prompts):
     if 'alternative allele' in row and pd.notna(row['alternative allele']):
         alleles = row['alternative allele'].split(',') if isinstance(row['alternative allele'], str) else row['alternative allele']
         for i, allele in enumerate(alleles):
-            info += f"\n{i + 1}. Variant description for {allele} (details):\n" 
+            info += f"\n{i + 1}. Variant description for {allele} (details):\n"
             gnomad_af = row.get('gnomad genome af', 'nan')
             max_af = row.get('max_af', 'nan')
             consequence = row.get('consequence', 'ND')
@@ -148,8 +148,8 @@ def generate_elaboration(prompt):
         response = client.chat.completions.create(
             model=os.environ['model'],
             messages=[{"role": "system", "content": "You are a professional and concise assistant."}, {"role": "user", "content": prompt}],
-            max_tokens=os.environ['max_tokens'] ,
-            temperature=os.environ['temperature']
+            max_tokens=MAX_TOKENS_VALUE,
+            temperature=TEMPERATURE_VALUE
         )
 
         elaboration = response.choices[0].message.content.strip()
