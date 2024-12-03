@@ -1,11 +1,24 @@
-# genome analysis
+I apologize for that oversight. Here is the content in Markdown format:
 
-<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
-    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
-</a>
+---
 
-analysis of genetic variants
+# Genome Analysis
 
+[![CCDS-Project Template](https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter)](https://cookiecutter-data-science.drivendata.org/)
+
+**Analysis of Genetic Variants**
+
+---
+
+## Overview
+
+This project involves a genetic analysis workflow designed to process and analyze genetic data. It utilizes a set of scripts and modules to analyze genetic information, producing reports in multiple formats (including Markdown and DOCX). The project is highly extensible and customizable for various datasets.
+
+---
+
+## Project Organization
+
+The project is organized into several key components, each serving a specific role in the analysis workflow.
 
 ```mermaid
 flowchart TD
@@ -21,19 +34,19 @@ flowchart TD
     F --> |Feedback| R
 ```
 
+---
 
-
-## Project Organization
+## Project Structure
 
 ```
 ├── LICENSE            <- Open-source license if one is chosen
 ├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+│   ├── external       <- Data from third party sources
+│   ├── interim        <- Intermediate data that has been transformed
+│   ├── processed      <- The final, canonical data sets for modeling
+│   └── raw            <- The original, immutable data dump
 │
 ├── docs               <- A default mkdocs project; see mkdocs.org for details
 │
@@ -41,12 +54,12 @@ flowchart TD
 │
 ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
 │                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
+│                         `1.0-jqp-initial-data-exploration`
 │
 ├── pyproject.toml     <- Project configuration file with package metadata for gen_analysis_module
 │                         and configuration for tools like black
 │
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
+├── references         <- Data dictionaries, manuals, and all other explanatory materials
 │
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
 │   └── figures        <- Generated graphics and figures to be used in reporting
@@ -56,84 +69,76 @@ flowchart TD
 │
 ├── setup.cfg          <- Configuration file for flake8
 │
-└── gen_analysis_module                <- Source code for use in this project.
-    │
+└── gen_analysis_module <- Source code for use in this project
     ├── __init__.py    <- Makes gen_analysis_module a Python module
-    │
     ├── data           <- Scripts to download or generate data
     │   └── make_dataset.py
-    │
     ├── features       <- Scripts to turn raw data into features for modeling
     │   └── build_features.py
-    │
-    ├── models         <- Scripts to train models and then use trained models to make
-    │   │                 predictions
+    ├── models         <- Scripts to train models and then use trained models to make predictions
     │   ├── predict_model.py
     │   └── train_model.py
-    │
-    └── visualization  <- Scripts to create exploratory and results oriented visualizations
+    └── visualization  <- Scripts to create exploratory and results-oriented visualizations
         └── visualize.py
 ```
 
---------
+---
 
-# Project README
+## Execution Instructions
 
-## Overview
-This project involves a genetic analysis workflow, utilizing scripts and modules to process and analyze genetic data. The following sections detail the contents of the project, including scripts, modules, and their respective functionalities.
+### Quick-Run Script
 
-## Directory Structure
+Execute the quick-run script by running the following command in your terminal:
 
-### `contrib/`
-This folder contains utility scripts and additional resources to aid users in executing analyses.
+```bash
+./20241004_quickrun_gen_analysisV2.sh
+```
 
-- **`20241004_quickrun_gen_analysisV2.sh`**: A bash script that activates a conda environment and lists files in the raw data directory. It prompts the user for confirmation before running the `gen_analysis.py` script, which processes genetic data and generates reports in Markdown and DOCX formats.
+Confirm the continuation when prompted. The script will activate the necessary environment and start processing the genetic data. The output will be generated in various formats, including Markdown and DOCX reports.
 
-- **`pandoc.sh`**: A simple script example for converting Markdown files to DOCX using Pandoc.
+---
 
-- **`rm_request_open_terminal.sh`**: A script to submit an interactive job to a SLURM scheduler, providing access to a terminal for executing commands.
+### SLURM Job Management
 
-### `gen_analysis_module/`
-This module includes the core functionality for data processing and analysis.
+To submit SLURM jobs for the analysis, ensure that you have the correct environment set up by using the provided shell scripts. Submit jobs with the SLURM job scheduler for parallel processing or computational-heavy tasks. You can do this by using the provided `rm_request_open_terminal.sh` script.
 
-- **`config.py`**: Configures project directories and loads environment variables. Sets paths for raw, processed, and external data.
+---
 
-- **`dataset.py`**: Contains a command-line interface for processing datasets, with customizable input and output paths.
+## Directory Structure Details
 
-- **`features.py`**: Similar to `dataset.py`, this script generates features from processed datasets and allows for path customization.
+### data/
 
-- **`gen_analysis.py`**: The main analysis script that reads TSV files, processes genetic variant information, and generates elaborated descriptions using the OpenAI API.
+Contains several test datasets in TSV format to validate the functionality of the scripts. Notable files include:
 
-- **`plots.py`**: A placeholder for future plotting functionalities, designed to generate visual representations of the processed data.
+- `empty.tsv`: An empty test file.
+- `extracol.tsv`: A test file with extra columns.
+- `header.tsv`: A file with malformed headers.
+- `malformed.tsv`: A file with incorrect data formatting.
+- `missingcol.tsv`: A file with missing columns.
+- `test_file_1.tsv` and `test_file_2.tsv`: Example test datasets.
 
-### `tests/`
-This directory includes test cases to ensure the functionality of the project.
+### gen_analysis_module/
 
-- **`test_gen_analysis.py`**: Uses `pytest` to validate the existence of TSV files in the test data directory and tests the core functions for getting file paths and generating elaboration from prompts.
+Core source code for data processing and analysis.
 
-### `data/`
-Contains various test cases in the form of TSV files used for validating the functionality of the scripts. Notable files include:
+- `config.py`: Configures project directories and loads environment variables.
+- `dataset.py`: Command-line interface for processing datasets.
+- `features.py`: Generates features from datasets.
+- `gen_analysis.py`: Main script for genetic analysis.
+- `plots.py`: Placeholder for future plotting functions.
 
-- **`empty.tsv`**
-- **`extracol.tsv`**
-- **`header.tsv`**
-- **`malformed.tsv`**
-- **`missingcol.tsv`**
-- **`test_file_1.tsv`**
-- **`test_file_2.tsv`**
-
-## Usage
-To run the analysis, follow these steps:
-1. Navigate to the `contrib` directory.
-2. Execute the `20241004_quickrun_gen_analysisV2.sh` script.
-3. Confirm the continuation when prompted.
-4. The analysis will be executed, generating outputs in the specified formats.
-
-## SLURM Job Management
-The project includes guidelines for submitting jobs to SLURM, with a focus on managing job numbers and ensuring the correct environment is activated for execution.
+---
 
 ## Additional Notes
-- Ensure that the necessary environment variables for the OpenAI API are set in the `.env` file.
-- For any issues related to the SLURM job environment, refer to the provided commands and troubleshooting steps.
 
+- Ensure that the necessary environment variables are set in the `.env` file before running any scripts.
+- The project assumes the use of a Conda environment for dependencies. Make sure that the environment is activated before running the scripts.
+- Troubleshooting for SLURM jobs can be found in the `rm_request_open_terminal.sh` script and its documentation.
 
+---
+
+## License
+
+This project is open-source and licensed under the MIT License. See the LICENSE file for more details.
+
+---
