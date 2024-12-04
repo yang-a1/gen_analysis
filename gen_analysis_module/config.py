@@ -1,8 +1,9 @@
 from pathlib import Path
-
+import json
 from dotenv import load_dotenv, find_dotenv
 from loguru import logger
 import os
+import re
 
 
 
@@ -44,10 +45,51 @@ if MAX_TOKENS_VALUE  > 1000:
 
 
 
+# Read the CSS file
+CSS_PATH = PROJ_ROOT / 'gen_analysis.css'
 
 
 
 
+
+def prompts_color_configuration(prompts_json_path, CSS_PATH, replacement_string="reassign_me_"):
+    """
+    Loads prompts from a JSON file.  Check if any prompt keys are in the CSS file.
+    If not, then add the key to the CSS file as one of the replacement_string values.
+    This function assumes that all prompt keys are h2 headers in the CSS file.
+    Args:
+        prompts_json_path (str): The path to the JSON file containing prompts.
+        CSS_CONTENT (str): The content of the CSS file.
+        replacement_string (str): The string to be replaced in the CSS content. Default is "reassign_me".
+    Returns:
+        dict: A dictionary containing the prompts.
+    Example:
+        prompts = load_prompts('prompts.json')
+    """
+    with open(prompts_json_path, 'r') as file:
+        prompts = json.load(file)
+
+    # create a list of keys from the prompts dictionary and add "h2." to each key
+    keys = prompts.keys()
+
+    with open(CSS_PATH, 'r') as css_file:
+        CSS_CONTENT = css_file.read()
+
+    # get all the words in the CSS_CONTENT file that have the replacement_string in them
+    words = re.findall(r'\b' + re.escape(replacement_string) + r'\w+', CSS_CONTENT)
+
+    # check to see if the key is in the CSS_CONTENT file.  If it is not, then add the key to the CSS_CONTENT file by replacing the first word that has the replacement_string with the key
+    for key in keys:
+        if key not in CSS_CONTENT:
+            # replace word[0] with the key and then remove word[0] from the list of words
+            CSS_CONTENT = re.sub(r'\b' + re.escape(replacement_string) + r'\w+', key, CSS_CONTENT, 1)
+            words.remove(words[0])
+
+    with open(CSS_PATH, 'w') as css_file:
+        css_file.write(CSS_CONTENT)
+    return CSS_CONTENT
+
+CSS_CONTENT = prompts_color_configuration(PROMPTS_JSON_PATH, CSS_PATH)
 
 # add test directory and test data locations
 TEST_DIR = PROJ_ROOT / "tests"
@@ -60,5 +102,7 @@ try:
 
     logger.remove(0)
     logger.add(lambda msg: tqdm.write(msg, end=""), colorize=True)
+
+
 except ModuleNotFoundError:
     pass
