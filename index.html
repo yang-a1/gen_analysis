@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="None" name="description"/>
+<meta content="Burmeister Lab" name="author"/>
+<link href="img/favicon.ico" rel="shortcut icon"/>
+<title>genome analysis</title>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/fontawesome.min.css" rel="stylesheet"/>
+<link href="css/brands.min.css" rel="stylesheet"/>
+<link href="css/solid.min.css" rel="stylesheet"/>
+<link href="css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="homepage">
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href=".">genome analysis</a>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#genome-analysis">Genome Analysis</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#overview">Overview</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#project-organization">Project Organization</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#project-structure">Project Structure</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#execution-instructions">Execution Instructions</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#directory-structure-details">Directory Structure Details</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#additional-notes">Additional Notes</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#license">License</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<p>I apologize for that oversight. Here is the content in Markdown format:</p>
+<hr/>
+<h1 id="genome-analysis">Genome Analysis</h1>
+<p><a href="https://cookiecutter-data-science.drivendata.org/"><img alt="CCDS-Project Template" src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter"/></a></p>
+<p><strong>Analysis of Genetic Variants</strong></p>
+<hr/>
+<h2 id="overview">Overview</h2>
+<p>This project involves a genetic analysis workflow designed to process and analyze genetic data. It utilizes a set of scripts and modules to analyze genetic information, producing reports in multiple formats (including Markdown and DOCX). The project is highly extensible and customizable for various datasets.</p>
+<hr/>
+<h2 id="project-organization">Project Organization</h2>
+<p>The project is organized into several key components, each serving a specific role in the analysis workflow.</p>
+<div class="mermaid">flowchart TD
+    DATA[Variant Data] --&gt; PD[Prompt Design]
+    AC[Analysis Criteria] --&gt; PD[Prompt Design]
+    PD --&gt; GS[Gene Search]
+    PD --&gt; VI[Variant Information]
+    PD --&gt; DS[Database Search]
+    GS --&gt; R[Combined Results]
+    VI --&gt; R[Combined Results]
+    DS --&gt; R[Combined Results]
+    R --&gt; F[Final Report]
+    F --&gt; |Feedback| R
+</div>
+<hr/>
+<h2 id="project-structure">Project Structure</h2>
+<pre><code>├── LICENSE            &lt;- Open-source license if one is chosen
+├── Makefile           &lt;- Makefile with convenience commands like `make data` or `make train`
+├── README.md          &lt;- The top-level README for developers using this project.
+├── data
+│   ├── external       &lt;- Data from third party sources
+│   ├── interim        &lt;- Intermediate data that has been transformed
+│   ├── processed      &lt;- The final, canonical data sets for modeling
+│   └── raw            &lt;- The original, immutable data dump
+│
+├── docs               &lt;- A default mkdocs project; see mkdocs.org for details
+│
+├── models             &lt;- Trained and serialized models, model predictions, or model summaries
+│
+├── notebooks          &lt;- Jupyter notebooks. Naming convention is a number (for ordering),
+│                         the creator's initials, and a short `-` delimited description, e.g.
+│                         `1.0-jqp-initial-data-exploration`
+│
+├── pyproject.toml     &lt;- Project configuration file with package metadata for gen_analysis_module
+│                         and configuration for tools like black
+│
+├── references         &lt;- Data dictionaries, manuals, and all other explanatory materials
+│
+├── reports            &lt;- Generated analysis as HTML, PDF, LaTeX, etc.
+│   └── figures        &lt;- Generated graphics and figures to be used in reporting
+│
+├── requirements.txt   &lt;- The requirements file for reproducing the analysis environment, e.g.
+│                         generated with `pip freeze &gt; requirements.txt`
+│
+├── setup.cfg          &lt;- Configuration file for flake8
+│
+└── gen_analysis_module &lt;- Source code for use in this project
+    ├── __init__.py    &lt;- Makes gen_analysis_module a Python module
+    ├── data           &lt;- Scripts to download or generate data
+    │   └── make_dataset.py
+    ├── features       &lt;- Scripts to turn raw data into features for modeling
+    │   └── build_features.py
+    ├── models         &lt;- Scripts to train models and then use trained models to make predictions
+    │   ├── predict_model.py
+    │   └── train_model.py
+    └── visualization  &lt;- Scripts to create exploratory and results-oriented visualizations
+        └── visualize.py
+</code></pre>
+<hr/>
+<h2 id="execution-instructions">Execution Instructions</h2>
+<h3 id="quick-run-script">Quick-Run Script</h3>
+<p>Execute the quick-run script by running the following command in your terminal:</p>
+<pre><code class="language-bash">./20241004_quickrun_gen_analysisV2.sh
+</code></pre>
+<p>Confirm the continuation when prompted. The script will activate the necessary environment and start processing the genetic data. The output will be generated in various formats, including Markdown and DOCX reports.</p>
+<hr/>
+<h3 id="slurm-job-management">SLURM Job Management</h3>
+<p>To submit SLURM jobs for the analysis, ensure that you have the correct environment set up by using the provided shell scripts. Submit jobs with the SLURM job scheduler for parallel processing or computational-heavy tasks. You can do this by using the provided <code>rm_request_open_terminal.sh</code> script.</p>
+<hr/>
+<h2 id="directory-structure-details">Directory Structure Details</h2>
+<h3 id="data">data/</h3>
+<p>Contains several test datasets in TSV format to validate the functionality of the scripts. Notable files include:</p>
+<ul>
+<li><code>empty.tsv</code>: An empty test file.</li>
+<li><code>extracol.tsv</code>: A test file with extra columns.</li>
+<li><code>header.tsv</code>: A file with malformed headers.</li>
+<li><code>malformed.tsv</code>: A file with incorrect data formatting.</li>
+<li><code>missingcol.tsv</code>: A file with missing columns.</li>
+<li><code>test_file_1.tsv</code> and <code>test_file_2.tsv</code>: Example test datasets.</li>
+</ul>
+<h3 id="gen_analysis_module">gen_analysis_module/</h3>
+<p>Core source code for data processing and analysis.</p>
+<ul>
+<li><code>config.py</code>: Configures project directories and loads environment variables.</li>
+<li><code>dataset.py</code>: Command-line interface for processing datasets.</li>
+<li><code>features.py</code>: Generates features from datasets.</li>
+<li><code>gen_analysis.py</code>: Main script for genetic analysis.</li>
+<li><code>plots.py</code>: Placeholder for future plotting functions.</li>
+</ul>
+<hr/>
+<h2 id="additional-notes">Additional Notes</h2>
+<ul>
+<li>Ensure that the necessary environment variables are set in the <code>.env</code> file before running any scripts.</li>
+<li>The project assumes the use of a Conda environment for dependencies. Make sure that the environment is activated before running the scripts.</li>
+<li>Troubleshooting for SLURM jobs can be found in the <code>rm_request_open_terminal.sh</code> script and its documentation.</li>
+</ul>
+<hr/>
+<h2 id="license">License</h2>
+<p>This project is open-source and licensed under the MIT License. See the LICENSE file for more details.</p>
+<hr/></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="js/base.js"></script>
+<script src="search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+mermaid.initialize({});</script></body>
+</html>
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2024-12-05 18:08:26.457419+00:00
+-->
