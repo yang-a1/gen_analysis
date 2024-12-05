@@ -5,7 +5,8 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE , TEMPERATURE_VALUE
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE , TEMPERATURE_VALUE, CSS_CONTENT
+from gen_analysis_module.conversion import complete_html_pdf
 import json
 import re
 import logging
@@ -80,6 +81,7 @@ def process_file(file_path, prompts, max_lines=1000):
             formatted_info = format_variant_info(row, prompts)
             if formatted_info:
                 f.write(formatted_info + "\n")
+    return md_output_filepath
 
 # Extracts and formats variant information
 def format_variant_info(row, prompts):
@@ -184,7 +186,8 @@ def main():
     tsv_files = [os.path.join(RAW_DATA_DIR, file) for file in os.listdir(RAW_DATA_DIR) if file.endswith(".tsv")]
 
     for file_path in tsv_files:
-        process_file(file_path, prompts)
+        md_file_path = process_file(file_path, prompts)
+        complete_html_pdf(md_file_path, CSS_CONTENT, PROMPTS_JSON_PATH)
 
 if __name__ == "__main__":
     main()

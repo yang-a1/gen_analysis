@@ -49,6 +49,17 @@ if MAX_TOKENS_VALUE  > 1000:
 CSS_PATH = PROJ_ROOT / 'gen_analysis.css'
 
 
+def sanitize_string(input_string):
+    """
+    Replaces any non-alphanumeric character in the input string with an underscore.
+
+    Args:
+        input_string (str): The string to be sanitized.
+
+    Returns:
+        str: The sanitized string.
+    """
+    return re.sub(r'\W+', '_', input_string)
 
 
 
@@ -72,6 +83,8 @@ def prompts_color_configuration(prompts_json_path, CSS_PATH, replacement_string=
     # create a list of keys from the prompts dictionary and add "h2." to each key
     keys = prompts.keys()
 
+
+
     with open(CSS_PATH, 'r') as css_file:
         CSS_CONTENT = css_file.read()
 
@@ -80,9 +93,10 @@ def prompts_color_configuration(prompts_json_path, CSS_PATH, replacement_string=
 
     # check to see if the key is in the CSS_CONTENT file.  If it is not, then add the key to the CSS_CONTENT file by replacing the first word that has the replacement_string with the key
     for key in keys:
-        if key not in CSS_CONTENT:
+        sanitize_string_key = sanitize_string(key)
+        if sanitize_string_key not in CSS_CONTENT:
             # replace word[0] with the key and then remove word[0] from the list of words
-            CSS_CONTENT = re.sub(r'\b' + re.escape(replacement_string) + r'\w+', key, CSS_CONTENT, 1)
+            CSS_CONTENT = re.sub(r'\b' + re.escape(replacement_string) + r'\w+', sanitize_string_key, CSS_CONTENT, 1)
             words.remove(words[0])
 
     with open(CSS_PATH, 'w') as css_file:

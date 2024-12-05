@@ -2,29 +2,30 @@ import markdown
 from markdown.extensions.codehilite import CodeHiliteExtension
 import argparse
 import weasyprint
-from gen_analysis_module.config import CSS_CONTENT, PROMPTS_JSON_PATH
+from gen_analysis_module.config import CSS_CONTENT, PROMPTS_JSON_PATH, sanitize_string
 import os
 import json
 
 
 
-def html_class_assignment(prompts_json_path, CSS_CONTENT, full_html_content):
+
+
+def html_class_assignment(prompts_json_path, full_html_content):
 
     with open(prompts_json_path, 'r') as file:
         prompts = json.load(file)
 
     # create a key value pair where the key is the prompt and the value is <h2 class="omim_prompt">
-    html_update_dictionary = {key: f'<h2 class="{key}">' for key in prompts.keys()}
-    # html_update_dictionary = {prompt_reformat(key): f'<h2 class="{prompt_reformat(key)}">' for key in prompts.keys()}
-    # html_update_dictionary = {key: f"<h2 class={key}>{prompt_reformat(key)}</h2>" for key in prompts.keys()}
-    # html_update_dictionary = {prompt_reformat(key): f'<h2 class="{prompt_reformat(key)}">' for key in prompts.keys()}
+    html_update_dictionary = {key: f'<h2 class="{sanitize_string(key)}">' for key in prompts.keys()}
+
     # open the full_html_content and replace all lines that have <h2> {key} </h2> with  <h2 class="{key}"> {key} </h2>
     for key, value in html_update_dictionary.items():
-        full_html_content = full_html_content.replace(f'<h2>*{key}*</h2>', value)
-
-    # save html_update_dictionary to  a word file
-    with open('html_update_dictionary.txt', 'w') as file:
-        file.write(str(html_update_dictionary))
+        # find all the lines that have <h2> {key} </h2>.
+        lines = full_html_content.split('\n')
+        for i, line in enumerate(lines):
+            if f'<h2>{key}</h2>' in line:
+                lines[i] = line.replace('<h2>', value)
+        full_html_content = '\n'.join(lines)
 
     return full_html_content
 
@@ -64,7 +65,7 @@ def markdown_to_html(markdown_file, CSS_CONTENT, prompts_json_path):
     </html>
     '''
 
-    return html_class_assignment(prompts_json_path, CSS_CONTENT, full_html_content)
+    return html_class_assignment(prompts_json_path, full_html_content)
 
 def save_html(full_html_content, output_file_html):
     with open(output_file_html, 'w') as html_file:
