@@ -119,11 +119,11 @@ def format_variant_info(row, prompts):
 
     return info
 
-def prompt_reformat(prompt_string):
-    """
-    Reformat the prompt string by replacing underscores with spaces and capitalizing the first letter and adding : to the end.
-    """
-    return prompt_string.replace('_', ' ').capitalize() + ':'
+#def prompt_reformat(prompt_string):
+#    """
+#    Reformat the prompt string by replacing underscores with spaces and capitalizing the first letter and adding : to the end.
+#    """
+#    return prompt_string.replace('_', ' ').capitalize() + ':'
 
 
 # Generate elaborations for all prompts
@@ -135,7 +135,7 @@ def generate_elaborations_for_prompts(prompts, gene_symbol):
     if prompts:
         for key, value in create_prompts(prompts, gene_symbol).items():
             elaboration = generate_elaboration(value)
-            elaborations += f"## {prompt_reformat(key)} \n{elaboration}\n"
+            elaborations += f"## {key} \n{elaboration}\n"
     # If no prompts are defined, elaborations will remain as just the gene header (nothing else added)
     return elaborations
 

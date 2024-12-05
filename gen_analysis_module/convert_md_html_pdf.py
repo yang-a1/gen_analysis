@@ -5,7 +5,7 @@ import weasyprint
 from gen_analysis_module.config import CSS_CONTENT, PROMPTS_JSON_PATH
 import os
 import json
-from gen_analysis_module.gen_analysis import prompt_reformat
+
 
 
 def html_class_assignment(prompts_json_path, CSS_CONTENT, full_html_content):
@@ -14,14 +14,17 @@ def html_class_assignment(prompts_json_path, CSS_CONTENT, full_html_content):
         prompts = json.load(file)
 
     # create a key value pair where the key is the prompt and the value is <h2 class="omim_prompt">
-    # html_update_dictionary = {key: f'<h2 class="{key}">' for key in prompts.keys()}
-    # html_update_dictionary = {prompt_reformat(key): f'<h2 class="{prompt_reformat(key)}">' for key in prompts.keys()}
     html_update_dictionary = {key: f'<h2 class="{key}">' for key in prompts.keys()}
+    # html_update_dictionary = {prompt_reformat(key): f'<h2 class="{prompt_reformat(key)}">' for key in prompts.keys()}
+    # html_update_dictionary = {key: f"<h2 class={key}>{prompt_reformat(key)}</h2>" for key in prompts.keys()}
     # html_update_dictionary = {prompt_reformat(key): f'<h2 class="{prompt_reformat(key)}">' for key in prompts.keys()}
     # open the full_html_content and replace all lines that have <h2> {key} </h2> with  <h2 class="{key}"> {key} </h2>
     for key, value in html_update_dictionary.items():
-        full_html_content = full_html_content.replace(f'<h2>*{prompt_reformat(key)}*</h2>', value)
+        full_html_content = full_html_content.replace(f'<h2>*{key}*</h2>', value)
 
+    # save html_update_dictionary to  a word file
+    with open('html_update_dictionary.txt', 'w') as file:
+        file.write(str(html_update_dictionary))
 
     return full_html_content
 
