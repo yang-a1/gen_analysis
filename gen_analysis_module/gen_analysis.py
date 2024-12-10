@@ -21,7 +21,7 @@ def load_prompts(json_path):
     Loads prompts from a JSON file. Returns an empty dictionary if the file is missing or empty.
     """
     if not json_path or not os.path.exists(json_path):
-        return {}  # Return an empty dictionary if the file is missing or empty
+        return {}
 
     try:
         with open(json_path, 'r') as file:
