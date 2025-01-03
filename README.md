@@ -29,8 +29,6 @@ flowchart TD
 
 # Project README
 
-# Gene Analysis Module
-
 This project provides a tool for processing gene variant data, generating informative summaries for each variant, and formatting the results in both Markdown and PDF formats. The tool integrates with OpenAI's API to generate detailed elaborations for gene symbols based on predefined prompts.
 
 ---
@@ -126,6 +124,7 @@ python gen_analysis.py
 ```
 This will process the data files, generate Markdown outputs, and convert them to PDFs.
 
+---
 
 ## Usage
 
