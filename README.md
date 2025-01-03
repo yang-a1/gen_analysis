@@ -126,15 +126,17 @@ python gen_analysis.py
 ```
 This will process the data files, generate Markdown outputs, and convert them to PDFs.
 
+
 ## Usage
-- **Prompts**: 
-    The module uses a prompts.json file to define the prompts for generating elaborations on gene symbols. You can modify this file to suit your needs.
 
-- **Error Handling**: 
-    The tool includes error handling for cases such as missing or empty input files and rate-limiting from the OpenAI API. If the rate limit is exceeded, the module will automatically retry after 60 seconds.
+- **Prompts**:  
+  The module uses a `prompts.json` file to define the prompts for generating elaborations on gene symbols. You can modify this file to suit your needs.
 
-- **Output**:
-    The processed data is output in both Markdown (.md) and PDF formats. The output Markdown files are saved in the PROCESSED_DATA_DIR, while the PDFs are generated using custom CSS for formatting.
+- **Error Handling**:  
+  The tool includes error handling for cases such as missing or empty input files and rate-limiting from the OpenAI API. If the rate limit is exceeded, the module will automatically retry after 60 seconds.
+
+- **Output**:  
+  The processed data is output in both Markdown (.md) and PDF formats. The output Markdown files are saved in the `PROCESSED_DATA_DIR`, while the PDFs are generated using custom CSS for formatting.
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
