@@ -5,16 +5,17 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE , TEMPERATURE_VALUE
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE, TEMPERATURE_VALUE
 import json
 import re
 import logging
 from collections import OrderedDict
+from prettytable import PrettyTable
 
 # Load environment variables from .env file
 load_dotenv(find_dotenv(ENV_FILE_PATH))
 
-# Load prompts from the JSON configuration file (with handling for missing or empty file)
+# Load prompts from the JSON configuration file
 def load_prompts(json_path):
     """
     Loads prompts from a JSON file. Returns an empty dictionary if the file is missing or empty.
@@ -29,7 +30,7 @@ def load_prompts(json_path):
         print(f"Warning: Could not load prompts from {json_path}. Error: {e}")
         return {}
 
-# Dynamically create prompts from a dictionary and replace the gene symbol placeholder with the provided gene symbol
+# Dynamically create prompts from a dictionary and replace the gene symbol placeholder
 def create_prompts(prompts, gene_symbol):
     """
     Create dynamic prompts by replacing the gene symbol placeholder.
@@ -81,10 +82,11 @@ def process_file(file_path, prompts, max_lines=1000):
             if formatted_info:
                 f.write(formatted_info + "\n")
 
-# Extracts and formats variant information
+# Extracts and formats variant information with PrettyTable integration
+# Extracts and formats variant information with PrettyTable integration
 def format_variant_info(row, prompts):
     """
-    Format variant information into a readable string.
+    Format variant information into a markdown table, separating list-based attributes from others.
     """
     gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
 
@@ -96,28 +98,29 @@ def format_variant_info(row, prompts):
     # Generate elaborations dynamically for the gene symbol
     elaborations = generate_elaborations_for_prompts(prompts, gene_symbol)
 
-    # Format additional variant details
-    info = elaborations
-    if 'alternative allele' in row and pd.notna(row['alternative allele']):
-        alleles = row['alternative allele'].split(',') if isinstance(row['alternative allele'], str) else row['alternative allele']
-        for i, allele in enumerate(alleles):
-            info += f"\n{i + 1}. Variant description for {allele} (details):\n"
-            gnomad_af = row.get('gnomad genome af', 'nan')
-            max_af = row.get('max_af', 'nan')
-            consequence = row.get('consequence', 'ND')
-            revel = row.get('revel', 'ND')
-            sift = row.get('sift', 'ND')
-            hgvsc = row.get('hgvsc', 'unknown')
-            hgvsp = row.get('hgvsp', 'unknown')
+    # Create the Variant description section with list-based attributes
+    variant_description = f"1. Variant description for {row['allele']} (details):\n"
+    variant_description += f"\ta. Amino acid change: {row.get('impact', 'ND')}\n"
+    variant_description += f"\tb. Gnomad allele frequency: {row.get('gnomadg_af', 'nan')}\n"
+    variant_description += f"\tc. Max allele frequency: {row.get('max_af', 'nan')}\n"
+    variant_description += f"\td. Polyphen/SIFT: {row.get('revel', 'ND')} / {row.get('sift', 'ND')}\n"
 
-            info += f"\ta. Amino acid change: {consequence}\n"
-            info += f"\tb. Gnomad allele frequency: {gnomad_af}\n"
-            info += f"\tc. Max allele frequency: {max_af}\n"
-            info += f"\td. Polyphen/SIFT: {revel}/{sift}\n"
-            info += f"\te. Effect of amino acid change: {hgvsp}\n"
-            info += f"\tf. The hgvsg information of the change: {hgvsc}\n"
+    table = "Additional Variant Information"
+    # Start creating the markdown table for other attributes that aren't in the description above
+    table = "| Additional Attribute              | Value                          |\n"
+    table += "|------------------------|--------------------------------|\n"
 
-    return info
+    # Attributes to exclude from the table (because they are in the variant description above)
+    exclude_attributes = ['impact', 'gnomadg_af', 'max_af', 'revel', 'sift']
+
+    # Loop through all columns and include the ones not excluded
+    for attribute, value in row.items():
+        # Check if the attribute is not in the exclude list and is not a list itself
+        if attribute not in exclude_attributes and not isinstance(value, list):
+            table += f"| {attribute:<22} | {value:<30} |\n"
+
+    # Make sure to add a newline at the end of the variant description and the table for formatting
+    return elaborations + variant_description + "\n" + table + "\n"
 
 # Generate elaborations for all prompts
 def generate_elaborations_for_prompts(prompts, gene_symbol):
@@ -129,9 +132,7 @@ def generate_elaborations_for_prompts(prompts, gene_symbol):
         for key, value in create_prompts(prompts, gene_symbol).items():
             elaboration = generate_elaboration(value)
             elaborations += f"## {key.replace('_', ' ').capitalize()}: \n{elaboration}\n"
-    # If no prompts are defined, elaborations will remain as just the gene header (nothing else added)
     return elaborations
-
 
 # Generate elaboration using OpenAI API (with retry mechanism)
 def generate_elaboration(prompt):
@@ -154,7 +155,6 @@ def generate_elaboration(prompt):
 
         elaboration = response.choices[0].message.content.strip()
 
-        # Check if the elaboration starts with "I'm sorry" or is empty
         if not elaboration or elaboration.lower().startswith("i'm sorry"):
             elaboration = "No relevant elaboration found for this gene symbol."
 
