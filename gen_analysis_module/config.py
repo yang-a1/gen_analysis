@@ -89,8 +89,11 @@ def prompts_color_configuration(prompts_json_path, CSS_PATH, replacement_string=
         css_file.write(CSS_CONTENT)
     return CSS_CONTENT
 
-# Comment out on 1/10/25 until this can be fixed
-# CSS_CONTENT = prompts_color_configuration(PROMPTS_JSON_PATH, CSS_PATH)
+
+try:
+    CSS_CONTENT = prompts_color_configuration(PROMPTS_JSON_PATH, CSS_PATH)
+except Exception as e:
+    logger.error(f"Failed to configure prompts color: {e}")
 
 # add test directory and test data locations
 TEST_DIR = PROJ_ROOT / "tests"

@@ -1,8 +1,8 @@
 h1 { color: #1E90FF; } /* DodgerBlue */
 h2 { color: #32CD32; } /* LimeGreen */
 h2.mouse-phenotype { color: #FFA500; } /* Orange */
-h2.mouse_prompt { color: #FF6347; } /* Tomato */
-h2.omim_prompt { color: #4682B4; } /* SteelBlue */
+h2.reassign_me_1 { color: #FF6347; } /* Tomato */
+h2.reassign_me_2 { color: #4682B4; } /* SteelBlue */
 h2.reassign_me_3 { color: #8A2BE2; } /* BlueViolet */
 h2.reassign_me_4 { color: #5F9EA0; } /* CadetBlue */
 h2.reassign_me_5 { color: #D2691E; } /* Chocolate */
