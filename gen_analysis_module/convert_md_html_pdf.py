@@ -77,7 +77,7 @@ def save_pdf(full_html_content, output_file_pdf):
     weasyprint.HTML(string=full_html_content).write_pdf(output_file_pdf)
 
 
-def complete_html_pdf(markdown_file, CSS_CONTENT):
+def complete_html_pdf(markdown_file, CSS_CONTENT, prompts_json_path):
     """
     Combines all functions to convert markdown to html and pdf and save the files.
     Args:
@@ -99,7 +99,7 @@ def complete_html_pdf(markdown_file, CSS_CONTENT):
             output_file_pdf = base_filename + '.pdf'
 
         # Convert Markdown to HTML with Syntax Highlighting
-        full_html_content = markdown_to_html(markdown_file, CSS_CONTENT)
+        full_html_content = markdown_to_html(markdown_file, CSS_CONTENT, prompts_json_path)
 
         save_html(full_html_content, output_file_html)
         save_pdf(full_html_content, output_file_pdf)

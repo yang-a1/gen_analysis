@@ -5,12 +5,12 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE, TEMPERATURE_VALUE
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE, TEMPERATURE_VALUE, CSS_CONTENT, PROMPTS_JSON_PATH
 import json
 import re
 import logging
 from collections import OrderedDict
-from prettytable import PrettyTable
+from gen_analysis_module.convert_md_html_pdf import markdown_to_html, complete_html_pdf
 
 # Load environment variables from .env file
 load_dotenv(find_dotenv(ENV_FILE_PATH))
@@ -39,6 +39,17 @@ def create_prompts(prompts, gene_symbol):
         return OrderedDict()
 
     return OrderedDict((key, value.format(gene_symbol=gene_symbol)) for key, value in prompts.items())
+
+# TODO: add this function to process_file to define the name outside of the function
+def md_name_creator(file_path):
+    """
+    Create a markdown file name from the file path.
+    """
+    md_output_filename = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output.md"
+    md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
+    return md_output_filepath
+
+
 
 # Process files and format variant information
 def process_file(file_path, prompts, max_lines=1000):
@@ -81,6 +92,9 @@ def process_file(file_path, prompts, max_lines=1000):
             formatted_info = format_variant_info(row, prompts)
             if formatted_info:
                 f.write(formatted_info + "\n")
+
+    return md_output_filepath
+
 
 # Extracts and formats variant information with PrettyTable integration
 # Extracts and formats variant information with PrettyTable integration
@@ -177,7 +191,10 @@ def main():
     tsv_files = [os.path.join(RAW_DATA_DIR, file) for file in os.listdir(RAW_DATA_DIR) if file.endswith(".tsv")]
 
     for file_path in tsv_files:
-        process_file(file_path, prompts)
+        md_file_path = process_file(file_path, prompts)
+        print(md_file_path)
+        complete_html_pdf(md_file_path, CSS_CONTENT, PROMPTS_JSON_PATH)
+
 
 if __name__ == "__main__":
     main()
