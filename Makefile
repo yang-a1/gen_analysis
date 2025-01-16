@@ -78,6 +78,15 @@ export PRINT_HELP_PYSCRIPT
 help:
 	@$(PYTHON_INTERPRETER) -c "${PRINT_HELP_PYSCRIPT}" < $(MAKEFILE_LIST)
 
+.PHONY: run
+run:
+	@echo "Current conda environment: $(shell basename $(CONDA_PREFIX))"
+	@if [ "$(shell basename $(CONDA_PREFIX))" != "$(PROJECT_NAME)" ]; then \
+		echo "Please activate the $(PROJECT_NAME) conda environment."; \
+	else \
+		$(PYTHON_INTERPRETER) gen_analysis_module/gen_analysis.py; \
+	fi
+
 
 ## Checks for updates and reloads gen_analysis module if there are changes. Runs pytest
 .PHONY: test
