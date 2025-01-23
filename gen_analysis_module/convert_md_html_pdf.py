@@ -1,5 +1,6 @@
 import markdown
 from markdown.extensions.codehilite import CodeHiliteExtension
+from markdown.extensions.tables import TableExtension
 import argparse
 import weasyprint
 from gen_analysis_module.config import CSS_CONTENT, PROMPTS_JSON_PATH
@@ -43,7 +44,8 @@ def markdown_to_html(markdown_file, CSS_CONTENT, prompts_json_path):
         md_content = md_file.read()
 
     extensions = [
-        CodeHiliteExtension(linenums=False, guess_lang=False)
+        CodeHiliteExtension(linenums=False, guess_lang=False),
+        TableExtension()
     ]
     md = markdown.Markdown(extensions=extensions)
     html_content = md.convert(md_content)
