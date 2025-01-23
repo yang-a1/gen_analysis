@@ -139,7 +139,7 @@ if __name__ == "__main__":
 
 
 
-    if complete_html_pdf(markdown_file, CSS_CONTENT):
+    if complete_html_pdf(markdown_file, CSS_CONTENT, PROMPTS_JSON_PATH):
         print("HTML and PDF files generated successfully with syntax highlighting.")
     else:
         print("An error occurred during file conversion.")
