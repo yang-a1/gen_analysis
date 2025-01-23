@@ -1,0 +1,411 @@
+chromosome	position	allele	family	symbol	variant_class	impact	max_af	gnomadg_af	variant_occurance_between_families_count	unique_alternative_allele_count	location_occurance_across_families	child: allele frequency	father: allele frequency	mother: allele frequency	brother: allele frequency	sister: allele frequency	nephew: allele frequency	probandF: allele frequency	child: short alt observations	child: short ref observations	father: short alt observations	father: short ref observations	mother: short alt observations	mother: short ref observations	remove2	brother: short alt observations	brother: short ref observations	sister: short alt observations	sister: short ref observations	nephew: short alt observations	nephew: short ref observations	probandF: short alt observations	probandF: short ref observations	child: read depth	father: read depth	mother: read depth	prob: absent	prob: artifact	prob: denovo_child	prob: inherited	brother: read depth	sister: read depth	prob: shared	prob: denovo	prob: inherit	nephew: read depth	probandF: read depth	prob: EP888_denovo	prob: EP888_inherit	abs_ref_alt_diff	alternative allele	chr_pos_alt_allele	clinical significance	existing_variation	hgvsg	var_type	consequence	exon	feature	feature_type	gene	gene_pheno	gnomad genome af	gnomade_af	hgvsc	hgvsp	high_inf_pos	id	loftool	mane_plus_clinical	mane_select	pheno	polyphen	protein alteration (short)	protein position	reference allele	revel	sift	somatic	strand	uniparc	symbol_list	gene_list	gene_count	symbol_count	compound_heterozygous_unique_positions	repeat_expansion_list	repeat_expansion_max_count	repeat_expansion	neurological_genes	bed_file
+17	4790057	A	EP999	['GLTPD2']	SNV	['MODERATE']	0	[nan]	1	1	1				0.5	0.5										20V1S	15V	10V	11V								[0.]	[0.]			36	21	[1.]							0	A	17_4790057_A	[]	"['rs749220416', 'COSV58702250']"	17:g.4790057C>A	exon	['missense_variant']	['number / total: 4 / 4']	['ENST00000331264']	['Transcript']	['ENSG00000182327']	['[]']	[nan]	[0.]	['ENST00000331264.8:c.637C>A']	['ENSP00000328070.7:p.Gln213Lys']	[nan]	['rs749220416']	[nan]	['']	['NM_001014985.3']	"[""['0', '1']""]"	"[""{'possibly_damaging': 0.45500001311302185}""]"	"[""['Q', 'K']""]"	['213']	['C']	[0.059]	"[""{'deleterious': 0.019999999552965164}""]"	"[""['0', '1']""]"	[1.]	['UPI0000EE6359']	['GLTPD2']	['ENSG00000182327']	1	1	1	[]	0	FALSE	TRUE	FALSE
+15	50492749	C	EP999	['USP8']	SNV	['MODERATE']	8.803000127954874e-06	[nan]	1	1	1				0.5	0.5										21V1P	21V2v	24V1S	13V								[0.]	[0.]			44	38	[1.]							0	C	15_50492749_C	[]	['rs1355220072']	15:g.50492749G>C	exon	['missense_variant']	['number / total: 15 / 20' 'number / total: 12 / 17']	['ENST00000307179' 'ENST00000396444' 'ENST00000425032']	['Transcript']	['ENSG00000138592']	"[""['1']""]"	[nan]	[3.97900021e-06]	"['ENST00000307179.9:c.2283G>C' 'ENST00000396444.7:c.2283G>C'
+ 'ENST00000425032.7:c.1965G>C']"	"['ENSP00000302239.4:p.Gln761His' 'ENSP00000379721.3:p.Gln761His'
+ 'ENSP00000412682.3:p.Gln655His']"	[nan]	['rs1355220072']	[0.37900001]	['']	['NM_005154.5' '']	['[]']	['{}']	"[""['Q', 'H']""]"	['761' '655']	['G']	[0.066]	"[""{'deleterious': 0.0}""]"	['[]']	[1.]	['UPI0000030306' 'UPI00017A75E8']	['USP8']	['ENSG00000138592']	1	1	1	[]	0	FALSE	TRUE	FALSE
+10	97001297	G	EP999	['SLIT1']	SNV	['MODERATE']	8.883000191417523e-06	[nan]	1	1	1				0.5	0.5										13V	15V1S	19V	14V1B								[0.]	[0.]			29	34	[1.]							0	G	10_97001297_G	[]	['rs768629100']	10:g.97001297A>G	exon	['missense_variant']	['number / total: 37 / 37']	['ENST00000266058']	['Transcript']	['ENSG00000187122']	['[]']	[nan]	[3.99999999e-06]	['ENST00000266058.9:c.4420T>C']	['ENSP00000266058.4:p.Tyr1474His']	[nan]	['rs768629100']	[0.13]	['']	['NM_003061.3']	['[]']	"[""{'possibly_damaging': 0.5669999718666077}""]"	"[""['Y', 'H']""]"	['1474']	['A']	[0.597]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[-1.]	['UPI00001F9491']	['SLIT1']	['ENSG00000187122']	1	1	1	[]	0	FALSE	TRUE	FALSE
+2	53700511	G	EP999	['ASB3']	SNV	['MODERATE']	9.159000001091044e-06	[nan]	1	1	1				0.5	0.5										27V1S	24V	16V2P	12V1S								[0.]	[0.]			52	31	[1.]							0	G	2_53700511_G	[]	['rs1454588279']	2:g.53700511A>G	exon	['missense_variant']	['number / total: 8 / 10' 'number / total: 7 / 9' 'number / total: 7 / 10']	"['ENST00000263634' 'ENST00000394717' 'ENST00000406053' 'ENST00000406625'
+ 'ENST00000406687']"	['Transcript']	['ENSG00000115239']	['[]']	[nan]	[4.10800021e-06]	"['ENST00000263634.8:c.998T>C' 'ENST00000394717.3:c.779T>C'
+ 'ENST00000406053.5:c.977T>C' 'ENST00000406625.6:c.998T>C'
+ 'ENST00000406687.5:c.779T>C']"	"['ENSP00000263634.2:p.Ile333Thr' 'ENSP00000378206.2:p.Ile260Thr'
+ 'ENSP00000385137.1:p.Ile326Thr' 'ENSP00000385085.4:p.Ile333Thr'
+ 'ENSP00000384728.1:p.Ile260Thr']"	[nan]	['rs1454588279']	[0.75400001]	['']	['NM_016115.5' '']	['[]']	"[""{'benign': 0.12200000137090683}"" ""{'benign': 0.04399999976158142}""]"	"[""['I', 'T']""]"	['333' '260' '326']	['A']	[0.31999999        nan]	"[""{'deleterious': 0.029999999329447746}""
+ ""{'deleterious': 0.019999999552965164}""
+ ""{'tolerated': 0.07000000029802322}""]"	['[]']	[-1.]	['UPI00001260E7' 'UPI0000141350' '']	['ASB3']	['ENSG00000115239']	1	1	1	[]	0	FALSE	TRUE	FALSE
+17	13017719	C	EP999	['ELAC2']	SNV	['MODERATE']	1.4700000065204222e-05	[6.56900011e-06]	1	1	1				0.5	0.5										1V	18V3S	10V7S	7V2S								[1.18822662e-35]	[1.04452814e-10]			22	26	[1.]							0	C	17_13017719_C	[]	['rs1353105793']	17:g.13017719A>C	exon	['missense_variant']	['number / total: 1 / 24' 'number / total: 1 / 23' 'number / total: 1 / 6']	['ENST00000338034' 'ENST00000426905' 'ENST00000578071']	['Transcript']	['ENSG00000006744']	"[""['1']""]"	[6.56900011e-06]	[nan]	"['ENST00000338034.9:c.229T>G' 'ENST00000426905.7:c.229T>G'
+ 'ENST00000578071.1:c.229T>G']"	"['ENSP00000337445.4:p.Phe77Val' 'ENSP00000405223.3:p.Phe77Val'
+ 'ENSP00000477482.1:p.Phe77Val']"	[nan]	['rs1353105793']	[0.92900002]	['']	['NM_018127.7' '']	['[]']	"[""{'probably_damaging': 1.0}"" ""{'probably_damaging': 0.9990000128746033}""
+ ""{'benign': 0.3490000069141388}""]"	"[""['F', 'V']""]"	['77']	['A']	[0.46900001        nan]	"[""{'deleterious': 0.009999999776482582}"" ""{'deleterious': 0.0}""]"	['[]']	[-1.]	['UPI000004A07E' 'UPI00017A79E7' 'UPI000268AF6F']	['ELAC2']	['ENSG00000006744']	1	1	1	[]	0	FALSE	TRUE	FALSE
+7	140850122	C	EP999	['BRAF']	SNV	['MODERATE']	2.4130000383593145e-05	[6.57300006e-06]	1	1	1				0.5	0.5										29V1P	21V	14V1P	15V								[0.]	[0.]			51	30	[1.]							0	C	7_140850122_C	['uncertain_significance']	['rs764408896']	7:g.140850122T>C	exon	['missense_variant' 'missense_variant&NMD_transcript_variant']	"['number / total: 2 / 19' 'number / total: 2 / 3' 'number / total: 2 / 18'
+ 'number / total: 2 / 20' 'number / total: 2 / 21']"	"['ENST00000288602' 'ENST00000469930' 'ENST00000496384' 'ENST00000497784'
+ 'ENST00000642228' 'ENST00000644969' 'ENST00000646730' 'ENST00000646891']"	['Transcript']	['ENSG00000157764']	"[""['1']""]"	[6.57300006e-06]	[3.98400016e-06]	"['ENST00000288602.11:c.229A>G' 'ENST00000469930.2:c.229A>G'
+ 'ENST00000496384.7:c.229A>G' 'ENST00000497784.2:c.229A>G'
+ 'ENST00000642228.1:c.229A>G' 'ENST00000644969.2:c.229A>G'
+ 'ENST00000646730.1:c.229A>G' 'ENST00000646891.2:c.229A>G']"	"['ENSP00000288602.7:p.Ile77Val' 'ENSP00000495858.1:p.Ile77Val'
+ 'ENSP00000419060.2:p.Ile77Val' 'ENSP00000420119.2:p.Ile77Val'
+ 'ENSP00000493678.1:p.Ile77Val' 'ENSP00000496776.1:p.Ile77Val'
+ 'ENSP00000494784.1:p.Ile77Val' 'ENSP00000493543.1:p.Ile77Val']"	[nan]	['rs764408896']	[0.0212]	['' 'NM_001374258.1']	['' 'NM_004333.6']	"[""['1']""]"	"[""{'benign': 0.328000009059906}""
+ ""{'possibly_damaging': 0.7269999980926514}""
+ ""{'benign': 0.3779999911785126}""
+ ""{'possibly_damaging': 0.8379999995231628}""
+ ""{'possibly_damaging': 0.7910000085830688}""
+ ""{'possibly_damaging': 0.6800000071525574}""
+ ""{'benign': 0.3610000014305115}""
+ ""{'possibly_damaging': 0.5099999904632568}""]"	"[""['I', 'V']""]"	['77']	['T']	[0.454   nan]	"[""{'deleterious_low_confidence': 0.009999999776482582}""
+ ""{'deleterious_low_confidence': 0.03999999910593033}""
+ ""{'deleterious_low_confidence': 0.0}""
+ ""{'deleterious_low_confidence': 0.019999999552965164}""]"	['[]']	[-1.]	"['UPI000D18C53F' 'UPI0000579E83' 'UPI0000E217DC' 'UPI000D18DACE'
+ 'UPI000D1961A6' 'UPI0007DC793A' 'UPI000D18E258' 'UPI000013DF26']"	['BRAF']	['ENSG00000157764']	1	1	1	[]	0	FALSE	TRUE	FALSE
+6	132552885	T	EP999	['TAAR8']	SNV	['MODERATE']	2.4130000383593145e-05	[6.57100009e-06]	1	1	1				0.5	0.5										18V	15V1S	14V	15V1S								[0.]	[0.]			34	30	[1.]							0	T	6_132552885_T	[]	"['rs1293534323', 'COSV51586525']"	6:g.132552885C>T	exon	['missense_variant']	['number / total: 1 / 1']	['ENST00000275200']	['Transcript']	['ENSG00000146385']	['[]']	[6.57100009e-06]	[nan]	['ENST00000275200.2:c.193C>T']	['ENSP00000275200.1:p.Pro65Ser']	[nan]	['rs1293534323']	[0.71799999]	['']	['NM_053278.3']	"[""['0', '1']""]"	"[""{'possibly_damaging': 0.5770000219345093}""]"	"[""['P', 'S']""]"	['65']	['C']	[0.31999999]	"[""{'deleterious': 0.029999999329447746}""]"	"[""['0', '1']""]"	[1.]	['UPI000000D87F']	['TAAR8']	['ENSG00000146385']	1	1	1	[]	0	FALSE	TRUE	FALSE
+5	140438577	G	EP999	['ANKHD1']	SNV	['MODERATE']	2.9400000130408444e-05	[1.31400002e-05]	1	1	1				0.5	0.5										12V1S	20V	11V	21V2S								[0.]	[9.6493959e-25]			33	34	[1.]							0	G	5_140438577_G	[]	['rs1451809422']	5:g.140438577A>G	exon	['missense_variant']	"['number / total: 3 / 34' 'number / total: 3 / 11'
+ 'number / total: 3 / 27' 'number / total: 3 / 6' 'number / total: 3 / 10']"	"['ENST00000360839' 'ENST00000394722' 'ENST00000394723' 'ENST00000421134'
+ 'ENST00000511151' 'ENST00000616482']"	['Transcript']	['ENSG00000131503']	['[]']	[1.31400002e-05]	[nan]	"['ENST00000360839.7:c.577A>G' 'ENST00000394722.7:c.544A>G'
+ 'ENST00000394723.7:c.577A>G' 'ENST00000421134.5:c.577A>G'
+ 'ENST00000511151.5:c.535A>G' 'ENST00000616482.4:c.577A>G']"	"['ENSP00000354085.2:p.Met193Val' 'ENSP00000378211.3:p.Met182Val'
+ 'ENSP00000378212.3:p.Met193Val' 'ENSP00000394489.1:p.Met193Val'
+ 'ENSP00000421069.1:p.Met179Val' 'ENSP00000478529.1:p.Met193Val']"	[nan]	['rs1451809422']	[0.40700001]	['']	['NM_017747.3' '']	['[]']	"[""{'benign': 0.0}"" ""{'benign': 0.03500000014901161}""
+ ""{'benign': 0.08900000154972076}""
+ ""{'possibly_damaging': 0.8970000147819519}""
+ ""{'benign': 0.05400000140070915}"" ""{'benign': 0.07599999755620956}""]"	"[""['M', 'V']""]"	['193' '182' '179']	['A']	[0.46000001        nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	"['UPI0000074447' 'UPI000006FE3F' 'UPI0000073249' 'UPI0000E5AC89'
+ 'UPI0001D3B868' 'UPI0000DA6CAF']"	['ANKHD1']	['ENSG00000131503']	1	1	1	[]	0	FALSE	TRUE	FALSE
+11	1445319	C	EP999	['BRSK2']	SNV	['MODERATE']	3.307999941171147e-05	[nan]	1	1	1				0.5	0.5										17V	10V1S	12V	12V								[0.]	[0.]			28	24	[1.]							0	C	11_1445319_C	[]	['rs1339067979']	11:g.1445319G>C	exon	['missense_variant' 'missense_variant&NMD_transcript_variant']	['number / total: 10 / 20' 'number / total: 10 / 21']	"['ENST00000308219' 'ENST00000382179' 'ENST00000526678' 'ENST00000528710'
+ 'ENST00000528841' 'ENST00000529433' 'ENST00000531197']"	['Transcript']	['ENSG00000174672']	"[""['1']""]"	[nan]	[4.09499989e-06]	"['ENST00000308219.13:c.838G>C' 'ENST00000382179.5:c.976G>C'
+ 'ENST00000526678.5:c.838G>C' 'ENST00000528710.5:c.658G>C'
+ 'ENST00000528841.6:c.838G>C' 'ENST00000529433.5:c.838G>C'
+ 'ENST00000531197.5:c.838G>C']"	"['ENSP00000310697.9:p.Glu280Gln' 'ENSP00000371614.1:p.Glu326Gln'
+ 'ENSP00000433370.1:p.Glu280Gln' 'ENSP00000433235.1:p.Glu220Gln'
+ 'ENSP00000432000.1:p.Glu280Gln' 'ENSP00000433684.1:p.Glu280Gln'
+ 'ENSP00000431152.1:p.Glu280Gln']"	[nan]	['rs1339067979']	[0.28600001]	['']	['' 'NM_001256627.2']	['[]']	['{}']	"[""['E', 'Q']""]"	['280' '326' '220']	['G']	[0.33700001        nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	"['UPI0000155270' 'UPI000035E827' 'UPI00004A06B2' 'UPI0001F7832C'
+ 'UPI00001F9A8E' 'UPI00001F9A8A']"	['BRSK2']	['ENSG00000174672']	1	1	1	[]	0	FALSE	TRUE	FALSE
+5	157106756	C	EP999	['HAVCR2']	SNV	['MODERATE']	4.410000110510737e-05	[1.97200006e-05]	1	1	1				0.5	0.5										13V9S	9S5V	9S5V	9V7S2P								[0.]	[0.]			36	32	[1.]							0	C	5_157106756_C	[]	"['rs372946929', 'COSV57154069']"	5:g.157106756G>C	exon	['missense_variant' 'missense_variant&NMD_transcript_variant']	"['number / total: 2 / 7' 'number / total: 2 / 6' 'number / total: 3 / 8'
+ 'number / total: 2 / 5']"	"['ENST00000307851' 'ENST00000522593' 'ENST00000696897' 'ENST00000696899'
+ 'ENST00000696901' 'ENST00000696902']"	['Transcript']	['ENSG00000135077']	"[""['1']""]"	[1.97200006e-05]	[7.95399956e-06]	"['ENST00000307851.9:c.265C>G' 'ENST00000522593.6:c.265C>G'
+ 'ENST00000696897.1:c.265C>G' 'ENST00000696899.1:c.265C>G'
+ 'ENST00000696901.1:c.265C>G' 'ENST00000696902.1:c.265C>G']"	"['ENSP00000312002.4:p.Arg89Gly' 'ENSP00000430873.1:p.Arg89Gly'
+ 'ENSP00000512959.1:p.Arg89Gly' 'ENSP00000512960.1:p.Arg89Gly'
+ 'ENSP00000512962.1:p.Arg89Gly' 'ENSP00000512963.1:p.Arg89Gly']"	[nan]	['rs372946929']	[0.713]	['']	['NM_032782.5' '']	"[""['0', '1']""]"	"[""{'benign': 0.020999999716877937}"" ""{'benign': 0.014000000432133675}""
+ ""{'benign': 0.16699999570846558}"" ""{'benign': 0.0430000014603138}""
+ ""{'benign': 0.035999998450279236}""]"	"[""['R', 'G']""]"	['89']	['G']	[0.032   nan]	"[""{'tolerated': 0.17000000178813934}"" ""{'tolerated': 0.09000000357627869}""
+ ""{'deleterious': 0.03999999910593033}""
+ ""{'tolerated': 0.14000000059604645}"" ""{'tolerated': 0.11999999731779099}""]"	"[""['0', '1']""]"	[-1.]	"['UPI000011AAFA' 'UPI0001E8F547' 'UPI001FC217A9' 'UPI001FC2E3A8'
+ 'UPI001FC2BABE']"	['HAVCR2']	['ENSG00000135077']	1	1	1	[]	0	FALSE	TRUE	FALSE
+16	72957843	C	EP999	['ZFHX3']	SNV	['MODERATE']	4.647999958251603e-05	[6.57300006e-06]	1	1	1				0.5	0.5										7V6S1B	20V	8V7S1P	16V2S								[0.]	[0.]			34	34	[1.]							0	C	16_72957843_C	[]	['rs762801000']	16:g.72957843T>C	exon	['missense_variant']	['number / total: 2 / 10' 'number / total: 10 / 18']	['ENST00000268489' 'ENST00000641206']	['Transcript']	['ENSG00000140836']	"[""['1']""]"	[6.57300006e-06]	[4.04699995e-06]	['ENST00000268489.10:c.2303A>G' 'ENST00000641206.2:c.2303A>G']	['ENSP00000268489.5:p.His768Arg' 'ENSP00000493252.1:p.His768Arg']	[nan]	['rs762801000']	[0.086]	['']	['NM_006885.4' '']	['[]']	"[""{'probably_damaging': 0.9779999852180481}""]"	"[""['H', 'R']""]"	['768']	['T']	[0.51700002        nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[-1.]	['UPI00001AE937']	['ZFHX3']	['ENSG00000140836']	1	1	1	[]	0	FALSE	TRUE	FALSE
+1	152156639	C	EP999	['RPTN']	SNV	['MODERATE']	5.720999979530461e-05	[1.00999996e-05]	1	1	1				0.5	0.5										7V2S1v	12V	3V1S	19V1S								[1.71988568e-15]	[9.210641e-07]			21	24	[0.99999911]							0	C	1_152156639_C	[]	"['rs113327860', 'COSV60166534']"	1:g.152156639T>C	exon	['missense_variant']	['number / total: 3 / 3']	['ENST00000316073']	['Transcript']	['ENSG00000215853']	['[]']	[1.00999996e-05]	[6.60400019e-06]	['ENST00000316073.3:c.460A>G']	['ENSP00000317895.3:p.Arg154Gly']	[nan]	['rs113327860']	[0.95599997]	['']	['NM_001122965.1']	"[""['0', '1']""]"	"[""{'benign': 0.2840000092983246}""]"	"[""['R', 'G']""]"	['154']	['T']	[0.044]	"[""{'deleterious': 0.05000000074505806}""]"	"[""['0', '1']""]"	[-1.]	['UPI00002371E2']	['RPTN']	['ENSG00000215853']	1	1	2	[]	0	FALSE	TRUE	FALSE
+1	159918883	T	EP999	['TAGLN2']	SNV	['MODERATE']	6.151999696157873e-05	[nan]	1	1	1				0.5	0.5										15V	13S13V	15V	7V6S1P								[0.]	[5.78095414e-28]			41	29	[1.]							0	T	1_159918883_T	[]	['rs374231815']	1:g.159918883C>T	exon	['missense_variant']	['number / total: 5 / 5']	['ENST00000320307' 'ENST00000368096' 'ENST00000368097' 'ENST00000397334']	['Transcript']	['ENSG00000158710']	['[]']	[nan]	[1.19899996e-05]	"['ENST00000320307.8:c.517G>A' 'ENST00000368096.5:c.580G>A'
+ 'ENST00000368097.9:c.517G>A' 'ENST00000397334.2:c.517G>A']"	"['ENSP00000357075.1:p.Val173Met' 'ENSP00000357076.1:p.Val194Met'
+ 'ENSP00000357077.5:p.Val173Met' 'ENSP00000412429.1:p.Val173Met']"	[nan]	['rs374231815']	[0.43399999]	['']	['' 'NM_003564.3']	['[]']	"['{}' ""{'benign': 0.35499998927116394}""]"	"[""['V', 'M']""]"	['173' '194']	['C']	[0.22]	"[""{'deleterious_low_confidence': 0.0}"" ""{'deleterious': 0.0}""]"	['[]']	[-1.]	['UPI000013687B' 'UPI000013D3E3' 'UPI000047013B']	['TAGLN2']	['ENSG00000158710']	1	1	1	[]	0	FALSE	TRUE	FALSE
+10	120575218	A	EP999	['PLPP4']	SNV	['MODERATE']	0.0001206	[3.28599999e-05]	1	1	1				0.5	0.5										15V	9V8S1P	19V	11V4S1P								[0.]	[0.]			33	35	[1.]							0	A	10_120575218_A	[]	"['rs766256076', 'COSV64830002']"	10:g.120575218G>A	exon	['missense_variant']	['number / total: 6 / 7']	['ENST00000398250']	['Transcript']	['ENSG00000203805']	['[]']	[3.28599999e-05]	[8.01900023e-06]	['ENST00000398250.6:c.533G>A']	['ENSP00000381302.1:p.Arg178Gln']	[nan]	['rs766256076']	[nan]	['']	['NM_001030059.3']	"[""['0', '1']""]"	"[""{'possibly_damaging': 0.6740000247955322}""]"	"[""['R', 'Q']""]"	['178']	['G']	[0.78899997]	"[""{'deleterious': 0.019999999552965164}""]"	"[""['0', '1']""]"	[1.]	['UPI00001619F5']	['PLPP4']	['ENSG00000203805']	1	1	1	[]	0	FALSE	TRUE	FALSE
+1	162566126	T	EP999	['UAP1']	SNV	['MODERATE']	0.0002068	[2.62800004e-05]	1	1	1				0.5	0.5										19V	9V7S2P	12V2S	10V8S1P								[0.]	[0.]			37	33	[1.]							0	T	1_162566126_T	[]	['rs779250018']	1:g.162566126C>T	exon	['missense_variant']	['number / total: 2 / 11' 'number / total: 2 / 10']	['ENST00000367925' 'ENST00000367926']	['Transcript']	['ENSG00000117143']	['[]']	[2.62800004e-05]	[2.78400003e-05]	['ENST00000367925.6:c.58C>T' 'ENST00000367926.9:c.58C>T']	['ENSP00000356902.1:p.Arg20Cys' 'ENSP00000356903.4:p.Arg20Cys']	[nan]	['rs779250018']	[0.528]	['']	['NM_001324116.5' '']	['[]']	"[""{'possibly_damaging': 0.5509999990463257}""
+ ""{'probably_damaging': 0.9800000190734863}""]"	"[""['R', 'C']""]"	['20']	['C']	[0.054]	"[""{'deleterious': 0.0}"" ""{'tolerated': 0.05999999865889549}""]"	['[]']	[1.]	['UPI0000112073' 'UPI0000112070']	['UAP1']	['ENSG00000117143']	1	1	1	[]	0	FALSE	TRUE	FALSE
+19	33207118	A	EP999	['LRP3']	SNV	['MODERATE']	0.0002071	[6.57400005e-06]	1	1	1				0.5	0.5										16V1S	8S7V3B	11V2S	8V5S1B								[0.]	[0.]			35	27	[1.]							0	A	19_33207118_A	[]	['rs982125646']	19:g.33207118G>A	exon	['missense_variant']	['number / total: 7 / 7']	['ENST00000253193']	['Transcript']	['ENSG00000130881']	['[]']	[6.57400005e-06]	[1.62399992e-05]	['ENST00000253193.9:c.1856G>A']	['ENSP00000253193.6:p.Arg619Gln']	[nan]	['rs982125646']	[nan]	['']	['NM_002333.4']	['[]']	"[""{'probably_damaging': 0.9520000219345093}""]"	"[""['R', 'Q']""]"	['619']	['G']	[0.366]	"[""{'deleterious': 0.009999999776482582}""]"	['[]']	[1.]	['UPI0000047A9C']	['LRP3']	['ENSG00000130881']	1	1	1	[]	0	FALSE	TRUE	FALSE
+6	158506609	T	EP999	['TULP4']	SNV	['MODERATE']	0.0003822	[0.0002234]	1	1	1				0.5	0.5										17V	11V10S	14V	9S7V								[0.]	[0.]			38	30	[1.]							0	T	6_158506609_T	[]	['rs138246958']	6:g.158506609C>T	exon	['missense_variant']	['number / total: 14 / 14']	['ENST00000367097']	['Transcript']	['ENSG00000130338']	['[]']	[0.0002234]	[0.0002188]	['ENST00000367097.8:c.4547C>T']	['ENSP00000356064.3:p.Ala1516Val']	[nan]	['rs138246958']	[0.11]	['']	['NM_020245.5']	['[]']	"[""{'probably_damaging': 0.9890000224113464}""]"	"[""['A', 'V']""]"	['1516']	['C']	[0.676]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	['UPI000013CD76']	['TULP4']	['ENSG00000130338']	1	1	1	[]	0	FALSE	TRUE	FALSE
+7	83155056	T	EP999	['PCLO']	SNV	['MODERATE']	0.0003941	[3.956e-05]	1	1	1				0.5	0.5										6V2v	8V	14V1S	10V1S								[0.]	[0.]			15	26	[1.]							0	T	7_83155056_T	['uncertain_significance']	['rs895119524']	7:g.83155056G>T	exon	['missense_variant']	['number / total: 2 / 25' 'number / total: 2 / 20']	['ENST00000333891' 'ENST00000423517']	['Transcript']	['ENSG00000186472']	"[""['1']""]"	[3.956e-05]	[5.21600014e-05]	['ENST00000333891.14:c.1585C>A' 'ENST00000423517.6:c.1585C>A']	['ENSP00000334319.8:p.Pro529Thr' 'ENSP00000388393.2:p.Pro529Thr']	[nan]	['rs895119524']	[nan]	['']	['NM_033026.6' '']	"[""['1']""]"	['{}']	"[""['P', 'T']""]"	['529']	['G']	[0.038]	"['{}' ""{'deleterious_low_confidence': 0.029999999329447746}""]"	['[]']	[-1.]	['UPI0001573469' 'UPI000156FA8C']	['PCLO']	['ENSG00000186472']	1	1	2	[]	0	FALSE	TRUE	FALSE
+2	48755625	T	EP999	['LHCGR']	SNV	['MODERATE']	0.000445	[7.88299985e-06]	1	1	1				0.5	0.5										10B2V1S	8V1S	2V1B	17V2S1B								[3.33111675e-05]	[1.51366599e-08]			22	23	[0.99996668]							0	T	2_48755625_T	['uncertain_significance']	"['rs4539842', 'COSV54292001']"	2:g.48755625A>T	exon	['missense_variant']	['number / total: 1 / 11' 'number / total: 1 / 10']	['ENST00000294954' 'ENST00000401907' 'ENST00000403273' 'ENST00000405626']	['Transcript']	['ENSG00000138039']	"[""['1']""]"	[7.88299985e-06]	[0.0001055]	"['ENST00000294954.12:c.47T>A' 'ENST00000401907.5:c.47T>A'
+ 'ENST00000403273.5:c.47T>A' 'ENST00000405626.5:c.47T>A']"	"['ENSP00000294954.6:p.Leu16Gln' 'ENSP00000385406.1:p.Leu16Gln'
+ 'ENSP00000385847.1:p.Leu16Gln' 'ENSP00000386033.1:p.Leu16Gln']"	[nan]	['rs4539842']	[0.28299999]	['']	['NM_000233.4' '']	"[""['1', '1']""]"	"[""{'unknown': 0.0}""]"	"[""['L', 'Q']""]"	['16']	['A']	[0.44800001]	"[""{'deleterious': 0.009999999776482582}""
+ ""{'tolerated': 0.10000000149011612}"" ""{'tolerated': 0.15000000596046448}""
+ ""{'tolerated_low_confidence': 0.15000000596046448}""]"	"[""['0', '1']""]"	[-1.]	['UPI000013E1E1' 'UPI000173A4E5' 'UPI000173A4E4' 'UPI000173A4E3']	['LHCGR']	['ENSG00000138039']	1	1	2	[]	0	FALSE	TRUE	FALSE
+4	125446405	T	EP999	['FAT4']	SNV	['MODERATE']	0.000478	[7.89400001e-05]	1	1	1				0.5	0.5										10V	15V	15V1S	14V								[0.]	[6.75929054e-35]			25	30	[1.]							0	T	4_125446405_T	['uncertain_significance']	['rs376545643']	4:g.125446405G>T	exon	['missense_variant']	"['number / total: 8 / 15' 'number / total: 9 / 18'
+ 'number / total: 8 / 17']"	['ENST00000335110' 'ENST00000394329' 'ENST00000674496']	['Transcript']	['ENSG00000196159']	"[""['1']""]"	[7.89400001e-05]	[5.18599991e-05]	"['ENST00000335110.5:c.2200G>T' 'ENST00000394329.9:c.7312G>T'
+ 'ENST00000674496.2:c.2083G>T']"	"['ENSP00000335169.5:p.Val734Phe' 'ENSP00000377862.4:p.Val2438Phe'
+ 'ENSP00000501473.2:p.Val695Phe']"	[nan]	['rs376545643']	[0.32300001]	['']	['' 'NM_001291303.3']	"[""['1']""]"	"[""{'possibly_damaging': 0.5210000276565552}""
+ ""{'probably_damaging': 0.9259999990463257}""
+ ""{'probably_damaging': 0.984000027179718}""]"	"[""['V', 'F']""]"	['734' '2438' '695']	['G']	[0.296   nan]	"[""{'deleterious': 0.019999999552965164}""
+ ""{'deleterious': 0.009999999776482582}""]"	['[]']	[1.]	['UPI000035B01A' 'UPI000387DB11' 'UPI0005D0066E']	['FAT4']	['ENSG00000196159']	1	1	1	[]	0	FALSE	TRUE	FALSE
+19	422268	C	EP999	['SHC2']	SNV	['MODERATE']	0.0004998	[0.0002694]	1	1	1				0.5	0.5										16V	13V1S	19V	21V1S								[0.]	[6.591736e-40]			30	41	[1.]							0	C	19_422268_C	[]	"['rs369081529', 'COSV52743696']"	19:g.422268T>C	exon	['missense_variant']	['number / total: 11 / 13']	['ENST00000264554']	['Transcript']	['ENSG00000129946']	['[]']	[0.0002694]	[0.0001995]	['ENST00000264554.11:c.1498A>G']	['ENSP00000264554.4:p.Met500Val']	[nan]	['rs369081529']	[nan]	['']	['NM_012435.3']	"[""['0', '1']""]"	['{}']	"[""['M', 'V']""]"	['500']	['T']	[0.073]	"[""{'deleterious_low_confidence': 0.009999999776482582}""]"	"[""['0', '1']""]"	[-1.]	['UPI0000DD84C2']	['SHC2']	['ENSG00000129946']	1	1	1	[]	0	FALSE	TRUE	FALSE
+10	46550409	A	EP999	['GPRIN2']	SNV	['MODERATE']	0.0009604	[0.0001182]	1	1	1				0.5	0.5										9V2S1B	24S15V2P1B	12V	33S11V1P								[0.]	[0.]			54	57	[1.]							0	A	10_46550409_A	[]	['rs201151081']	10:g.46550409G>A	exon	['missense_variant']	['number / total: 3 / 3']	['ENST00000374314' 'ENST00000374317']	['Transcript']	['ENSG00000204175']	['[]']	[0.0001182]	[8.14399973e-05]	['ENST00000374314.6:c.328C>T' 'ENST00000374317.2:c.328C>T']	['ENSP00000363433.4:p.Arg110Trp' 'ENSP00000363436.1:p.Arg110Trp']	[nan]	['rs201151081']	[nan]	['']	['NM_001385282.1' '']	['[]']	"[""{'benign': 0.003000000026077032}""]"	"[""['R', 'W']""]"	['110']	['G']	[nan]	"[""{'deleterious': 0.03999999910593033}""]"	['[]']	[-1.]	['UPI000013ECB4']	['GPRIN2']	['ENSG00000204175']	1	1	3	[]	0	FALSE	TRUE	FALSE
+16	1198689	A	EP999	['CACNA1H']	SNV	['MODERATE']	0.001	[7.88800025e-05]	1	1	1				0.5	0.5										15V1S	8V8S	17V3S	11S6V								[0.]	[0.]			32	37	[1.]							0	A	16_1198689_A	['uncertain_significance']	"['rs369630836', 'COSV61987479']"	16:g.1198689G>A	exon	['missense_variant' 'missense_variant&NMD_transcript_variant']	"['number / total: 6 / 35' 'number / total: 6 / 34'
+ 'number / total: 5 / 33']"	"['ENST00000348261' 'ENST00000358590' 'ENST00000565831' 'ENST00000638323'
+ 'ENST00000639478' 'ENST00000640028']"	['Transcript']	['ENSG00000196557']	"[""['1']""]"	[7.88800025e-05]	[9.2369999e-05]	"['ENST00000348261.11:c.718G>A' 'ENST00000358590.8:c.718G>A'
+ 'ENST00000565831.6:c.718G>A' 'ENST00000638323.1:c.679G>A'
+ 'ENST00000639478.1:c.718G>A' 'ENST00000640028.1:c.718G>A']"	"['ENSP00000334198.7:p.Val240Ile' 'ENSP00000351401.4:p.Val240Ile'
+ 'ENSP00000455840.1:p.Val240Ile' 'ENSP00000492267.1:p.Val227Ile'
+ 'ENSP00000491945.1:p.Val240Ile' 'ENSP00000491488.1:p.Val240Ile']"	[nan]	['rs369630836']	[0.0051]	['']	['NM_021098.3' '']	"[""['1', '1']""]"	"[""{'probably_damaging': 0.9580000042915344}""
+ ""{'probably_damaging': 0.9909999966621399}""
+ ""{'possibly_damaging': 0.8820000290870667}""
+ ""{'probably_damaging': 0.9980000257492065}""
+ ""{'benign': 0.2150000035762787}""]"	"[""['V', 'I']""]"	['240' '227']	['G']	[0.648   nan]	"[""{'deleterious_low_confidence': 0.0}""]"	"[""['0', '1']""]"	[1.]	"['UPI000012727B' 'UPI00001FF9BA' 'UPI00097BA595' 'UPI000387B25D'
+ 'UPI00097BA746']"	['CACNA1H']	['ENSG00000196557']	1	1	1	[]	0	FALSE	TRUE	FALSE
+2	53831151	A	EP999	['ERLEC1']	SNV	['MODERATE']	0.001	[6.59099987e-06]	1	1	1				0.5	0.5										14V	16V	17V3S	17V1S								[0.]	[0.]			30	38	[1.]							0	A	2_53831151_A	[]	['rs547600876']	2:g.53831151G>A	exon	['missense_variant&splice_region_variant']	['number / total: 12 / 12' 'number / total: 13 / 13']	['ENST00000688464' 'ENST00000692350']	['Transcript']	['ENSG00000068912']	['[]']	[6.59099987e-06]	[nan]	['ENST00000688464.1:c.1228G>A' 'ENST00000692350.1:c.1220G>A']	['ENSP00000510214.1:p.Val410Ile' 'ENSP00000508966.1:p.Gly407Asp']	[nan]	['rs547600876']	[0.509]	['']	['']	['[]']	"[""{'benign': 0.08699999749660492}"" ""{'benign': 0.0}""]"	"[""['V', 'I']"" ""['G', 'D']""]"	['410' '407']	['G']	[nan]	"[""{'deleterious_low_confidence': 0.009999999776482582}""
+ ""{'deleterious_low_confidence': 0.019999999552965164}""]"	['[]']	[1.]	['UPI001E2421EA' 'UPI000D0C8060']	['ERLEC1']	['ENSG00000068912']	1	1	1	[]	0	FALSE	TRUE	FALSE
+2	241816187	T	EP999	['NEU4']	SNV	['MODERATE']	0.001	[5.255e-05]	1	1	1				0.5	0.5										13V1v	13S11V	14V	11V10S								[0.]	[0.]			37	35	[1.]							0	T	2_241816187_T	[]	"['rs200996368', 'COSV57990043']"	2:g.241816187C>T	exon	['missense_variant']	['number / total: 3 / 3']	['ENST00000415936' 'ENST00000426032']	['Transcript']	['ENSG00000204099']	['[]']	[5.255e-05]	[0.0001047]	['ENST00000415936.5:c.338C>T' 'ENST00000426032.5:c.374C>T']	['ENSP00000397167.1:p.Ser113Leu' 'ENSP00000406678.1:p.Ser125Leu']	[nan]	['rs200996368']	[nan]	['']	['']	"[""['0', '1']""]"	"[""{'unknown': 0.0}""]"	"[""['S', 'L']""]"	['113' '125']	['C']	[0.054]	"[""{'deleterious_low_confidence': 0.0}""]"	"[""['0', '1']""]"	[1.]	['UPI00053BD5C1' 'UPI0004620A9B']	['NEU4']	['ENSG00000204099']	1	1	1	[]	0	FALSE	TRUE	FALSE
+9	101594533	G	EP999	['PPP3R2']	SNV	['MODERATE']	0.001111	[0.0001643]	1	1	1				0.5	0.5										9V7S	17V1S	9V2S1B	15V								[0.]	[0.]			34	27	[1.]							0	G	9_101594533_G	[]	['rs771888538']	9:g.101594533T>G	exon	['missense_variant']	['number / total: 1 / 1' 'number / total: 2 / 2']	['ENST00000374806' 'ENST00000636434']	['Transcript']	['ENSG00000188386']	['[]']	[0.0001643]	[0.0002704]	['ENST00000374806.2:c.389A>C' 'ENST00000636434.1:c.89A>C']	['ENSP00000363939.2:p.Gln130Pro' 'ENSP00000490051.1:p.Gln30Pro']	[nan]	['rs771888538']	[0.68800002]	['']	['NM_147180.4' '']	['[]']	"[""{'probably_damaging': 1.0}""]"	"[""['Q', 'P']""]"	['130' '30']	['T']	[0.528   nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[-1.]	['UPI00000433EF' 'UPI0000E0BE75']	['PPP3R2']	['ENSG00000188386']	1	1	1	[]	0	FALSE	TRUE	FALSE
+12	2937716	G	EP999	['TULP3']	SNV	['MODERATE']	0.001543	[0.0001513]	1	1	1				0.5	0.5										14V	13V2P1S	15V1S	27V2S								[0.]	[0.]			30	45	[1.]							0	G	12_2937716_G	[]	['rs200713391']	12:g.2937716A>G	exon	['missense_variant']	"['number / total: 9 / 12' 'number / total: 9 / 11' 'number / total: 1 / 4'
+ 'number / total: 1 / 5' 'number / total: 4 / 6']"	"['ENST00000397132' 'ENST00000448120' 'ENST00000538704' 'ENST00000541678'
+ 'ENST00000544943']"	['Transcript']	['ENSG00000078246']	"[""['1']""]"	[0.0001513]	[0.0001602]	"['ENST00000397132.6:c.1010A>G' 'ENST00000448120.7:c.1010A>G'
+ 'ENST00000538704.1:c.8A>G' 'ENST00000541678.5:c.41A>G'
+ 'ENST00000544943.5:c.191A>G']"	"['ENSP00000380321.2:p.Tyr337Cys' 'ENSP00000410051.2:p.Tyr337Cys'
+ 'ENSP00000440364.1:p.Tyr3Cys' 'ENSP00000441319.1:p.Tyr14Cys'
+ 'ENSP00000442631.1:p.Tyr64Cys']"	[nan]	['rs200713391']	[0.0909]	['']	['' 'NM_003324.5']	['[]']	"[""{'possibly_damaging': 0.703000009059906}"" ""{'benign': 0.0}""
+ ""{'benign': 0.20100000500679016}"" ""{'benign': 0.007000000216066837}""]"	"[""['Y', 'C']""]"	['337' '3' '14' '64']	['A']	[0.43399999        nan]	"[""{'deleterious_low_confidence': 0.019999999552965164}""
+ ""{'deleterious_low_confidence': 0.009999999776482582}""
+ ""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	['UPI00001FBDC0' 'UPI000013C8C7' '' 'UPI000204A98D']	['TULP3']	['ENSG00000078246']	1	1	1	[]	0	FALSE	TRUE	FALSE
+6	89269147	T	EP999	['GABRR2']	SNV	['MODERATE']	0.002	[0.0007752]	1	1	1				0.5	0.5										20V1S	7S5V	13V	11V8S								[0.]	[0.]			33	32	[1.]							0	T	6_89269147_T	[]	"['rs74923708', 'COSV101298962', 'COSV68764345']"	6:g.89269147C>T	exon	['missense_variant']	['number / total: 4 / 9']	['ENST00000402938']	['Transcript']	['ENSG00000111886']	['[]']	[0.0007752]	[0.0008162]	['ENST00000402938.4:c.376G>A']	['ENSP00000386029.4:p.Asp126Asn']	[nan]	['rs74923708']	[nan]	['']	['NM_002043.5']	"[""['0', '1', '1']""]"	"[""{'probably_damaging': 0.9869999885559082}""]"	"[""['D', 'N']""]"	['126']	['C']	[0.579]	"[""{'deleterious_low_confidence': 0.0}""]"	"[""['0', '1', '1']""]"	[-1.]	['UPI000012B0DB']	['GABRR2']	['ENSG00000111886']	1	1	1	[]	0	FALSE	TRUE	FALSE
+10	1184884	A	EP999	['ADARB2']	SNV	['MODERATE']	0.003165	[9.85299994e-05]	1	1	1				0.5	0.5										18V2S	6V6S	14V	11S5V								[0.]	[0.]			32	30	[1.]							0	A	10_1184884_A	[]	['rs137892593']	10:g.1184884G>A	exon	['missense_variant']	['number / total: 3 / 4' 'number / total: 2 / 3' 'number / total: 9 / 10']	['ENST00000381305' 'ENST00000381310' 'ENST00000381312']	['Transcript']	['ENSG00000185736']	['[]']	[9.85299994e-05]	[0.0001603]	"['ENST00000381305.1:c.226C>T' 'ENST00000381310.7:c.547C>T'
+ 'ENST00000381312.6:c.2020C>T']"	"['ENSP00000370706.1:p.Arg76Trp' 'ENSP00000370711.3:p.Arg183Trp'
+ 'ENSP00000370713.1:p.Arg674Trp']"	[nan]	['rs137892593']	[0.0446]	['']	['' 'NM_018702.4']	['[]']	"[""{'benign': 0.4399999976158142}"" ""{'benign': 0.41499999165534973}"" '{}']"	"[""['R', 'W']""]"	['76' '183' '674']	['G']	[0.639]	"[""{'deleterious': 0.009999999776482582}""]"	['[]']	[-1.]	['UPI00004589DF' 'UPI00001A81F9' 'UPI0000071776']	['ADARB2']	['ENSG00000185736']	1	1	2	[]	0	FALSE	TRUE	FALSE
+7	2216258	G	EP999	['MAD1L1']	SNV	['MODERATE']	0.0045	[0.002456]	1	1	1				0.5	0.5										12V	11V	20V	17V								[0.]	[0.]			23	37	[1.]							0	G	7_2216258_G	[]	"['rs61751746', 'COSV56246410']"	7:g.2216258C>G	exon	['missense_variant']	['number / total: 8 / 19' 'number / total: 6 / 17']	['ENST00000265854' 'ENST00000399654' 'ENST00000402746' 'ENST00000406869']	['Transcript']	['ENSG00000002822']	"[""['1']""]"	[0.002456]	[0.002744]	"['ENST00000265854.12:c.708G>C' 'ENST00000399654.6:c.708G>C'
+ 'ENST00000402746.5:c.432G>C' 'ENST00000406869.5:c.708G>C']"	"['ENSP00000265854.7:p.Glu236Asp' 'ENSP00000382562.2:p.Glu236Asp'
+ 'ENSP00000384155.1:p.Glu144Asp' 'ENSP00000385334.1:p.Glu236Asp']"	[nan]	['rs61751746']	[0.92400002]	['']	['NM_001013836.2' '']	"[""['0', '1']""]"	"[""{'probably_damaging': 0.9660000205039978}""]"	"[""['E', 'D']""]"	['236' '144']	['C']	[0.285]	"[""{'deleterious': 0.0}"" ""{'deleterious': 0.019999999552965164}""]"	"[""['0', '1']""]"	[-1.]	['UPI0000072C4D' 'UPI00003E282E']	['MAD1L1']	['ENSG00000002822']	1	1	1	[]	0	FALSE	TRUE	FALSE
+7	143330817	A	EP999	['CLCN1']	SNV	['MODERATE']	0.007855	[0.004587]	1	1	1				0.5	0.5										24V	11V5S	21V1P	7V6S								[0.]	[0.]			40	35	[1.]							0	A	7_143330817_A	"['benign', 'uncertain_significance', 'benign/likely_benign']"	"['rs118066140', 'CM940284', 'COSV58368687']"	7:g.143330817G>A	exon	['missense_variant']	['number / total: 8 / 23']	['ENST00000343257' 'ENST00000650516']	['Transcript']	['ENSG00000188037']	"[""['1']""]"	[0.004587]	[0.004753]	['ENST00000343257.7:c.899G>A' 'ENST00000650516.2:c.899G>A']	['ENSP00000339867.2:p.Arg300Gln' 'ENSP00000498052.2:p.Arg300Gln']	[nan]	['rs118066140']	[0.0794]	['']	['NM_000083.3' '']	"[""['1', '1', '1']""]"	"[""{'possibly_damaging': 0.8740000128746033}""
+ ""{'benign': 0.03700000047683716}""]"	"[""['R', 'Q']""]"	['300']	['G']	[0.85600001        nan]	"[""{'deleterious_low_confidence': 0.0}""]"	"[""['0', '0', '1']""]"	[1.]	['UPI000020F1EC' 'UPI001E24404D']	['CLCN1']	['ENSG00000188037']	1	1	1	[]	0	FALSE	TRUE	FALSE
+15	78533483	T	EP999	['HYKK']	SNV	['MODERATE']	0.009494	[0.001656]	1	1	1				0.5	0.5										21V	13V8S1P	9V1S	13V12S								[0.]	[0.]			43	35	[1.]							0	T	15_78533483_T	[]	"['rs61741253', 'CM173669']"	15:g.78533483G>T	exon	['missense_variant']	['number / total: 5 / 5' 'number / total: 4 / 4']	['ENST00000388988' 'ENST00000569878']	['Transcript']	['ENSG00000188266']	['[]']	[0.001656]	[0.002304]	['ENST00000388988.9:c.935G>T' 'ENST00000569878.5:c.935G>T']	['ENSP00000373640.4:p.Arg312Leu' 'ENSP00000455459.1:p.Arg312Leu']	[nan]	['rs61741253']	[nan]	['']	['NM_001013619.4' '']	"[""['0', '1']""]"	"[""{'probably_damaging': 0.9980000257492065}""]"	"[""['R', 'L']""]"	['312']	['G']	[0.76499999        nan]	"[""{'deleterious': 0.0}""]"	['[]']	[1.]	['UPI0000366A7F']	['HYKK']	['ENSG00000188266']	1	1	2	[]	0	FALSE	TRUE	FALSE
+5	151568190	A	EP999	['FAT2']	SNV	['MODERATE']	0.009555	[0.005849]	1	1	1				0.5	0.5										10V	15V1S	13V	9V								[0.]	[0.]			26	22	[1.]							0	A	5_151568190_A	['likely_benign']	"['rs3734061', 'COSV99941827']"	5:g.151568190G>A	exon	['missense_variant']	['number / total: 2 / 24']	['ENST00000261800']	['Transcript']	['ENSG00000086570']	"[""['1']""]"	[0.005849]	[0.005873]	['ENST00000261800.6:c.742C>T']	['ENSP00000261800.5:p.Pro248Ser']	[nan]	['rs3734061']	[0.64200002]	['']	['NM_001447.3']	"[""['1', '1']""]"	"[""{'benign': 0.26100000739097595}""]"	"[""['P', 'S']""]"	['248']	['G']	[0.082]	"[""{'deleterious': 0.03999999910593033}""]"	"[""['0', '1']""]"	[-1.]	['UPI0000055B22']	['FAT2']	['ENSG00000086570']	1	1	2	[]	0	FALSE	TRUE	FALSE
+17	60600671	A	EP999	['PPM1D']	SNV	['MODERATE']	0.009615	[0.0003942]	1	1	1				0.5	0.5										10V	4S2V1B	4V1S	5S2V								[5.04661171e-17]	[1.92353606e-13]			17	12	[1.]							0	A	17_60600671_A	['benign']	"['rs201612900', 'COSV105899636']"	17:g.60600671C>A	exon	['missense_variant' 'missense_variant&NMD_transcript_variant']	"['number / total: 1 / 6' 'number / total: 1 / 7' 'number / total: 1 / 5'
+ 'number / total: 1 / 4']"	"['ENST00000305921' 'ENST00000392995' 'ENST00000629650' 'ENST00000685212'
+ 'ENST00000686064' 'ENST00000687355' 'ENST00000688505' 'ENST00000689445'
+ 'ENST00000693102' 'ENST00000693196']"	['Transcript']	['ENSG00000170836']	"[""['1']""]"	[0.0003942]	[0.00053]	"['ENST00000305921.8:c.257C>A' 'ENST00000392995.7:c.257C>A'
+ 'ENST00000629650.3:c.257C>A' 'ENST00000685212.1:c.257C>A'
+ 'ENST00000686064.1:c.146C>A' 'ENST00000687355.1:c.227C>A'
+ 'ENST00000688505.1:c.257C>A' 'ENST00000689445.1:c.14C>A'
+ 'ENST00000693102.1:c.257C>A' 'ENST00000693196.1:c.257C>A']"	"['ENSP00000306682.2:p.Pro86Gln' 'ENSP00000376720.3:p.Pro86Gln'
+ 'ENSP00000486573.2:p.Pro86Gln' 'ENSP00000509022.1:p.Pro86Gln'
+ 'ENSP00000508480.1:p.Pro49Gln' 'ENSP00000509296.1:p.Pro76Gln'
+ 'ENSP00000510754.1:p.Pro86Gln' 'ENSP00000509769.1:p.Pro5Gln'
+ 'ENSP00000509183.1:p.Pro86Gln' 'ENSP00000510177.1:p.Pro86Gln']"	[nan]	['rs201612900']	[0.83499998]	['']	['NM_003620.4' '']	"[""['1', '1']""]"	"[""{'benign': 0.15800000727176666}"" ""{'benign': 0.10400000214576721}""
+ ""{'benign': 0.13099999725818634}"" ""{'benign': 0.34599998593330383}""
+ ""{'benign': 0.4390000104904175}"" ""{'benign': 0.35100001096725464}""
+ ""{'benign': 0.12099999934434891}"" ""{'unknown': 0.0}""
+ ""{'benign': 0.0010000000474974513}"" ""{'benign': 0.10700000077486038}""]"	"[""['P', 'Q']""]"	['86' '49' '76' '5']	['C']	[0.03  nan]	"[""{'tolerated': 0.11999999731779099}"" ""{'tolerated': 0.12999999523162842}""
+ ""{'tolerated': 0.14000000059604645}""
+ ""{'deleterious': 0.03999999910593033}""
+ ""{'deleterious': 0.05000000074505806}""
+ ""{'deleterious_low_confidence': 0.03999999910593033}""
+ ""{'tolerated': 0.07999999821186066}""
+ ""{'deleterious_low_confidence': 0.019999999552965164}""
+ ""{'tolerated': 0.07000000029802322}""
+ ""{'tolerated_low_confidence': 0.10000000149011612}""]"	"[""['0', '1']""]"	[1.]	"['UPI0000130FE8' 'UPI00000745DC' 'UPI001E24193C' 'UPI001E24A7C5' ''
+ 'UPI001E24AF7C' 'UPI001E2415E0' 'UPI000722CE60' 'UPI001E2416C7']"	['PPM1D']	['ENSG00000170836']	1	1	1	[]	0	FALSE	TRUE	FALSE
+6	151351507	T	EP999	['AKAP12']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										15V	9V	16V	13V2S								[0.]	[0.]			24	31	[1.]							0	T	6_151351507_T	[]	['COSV53585205']	6:g.151351507C>T	exon	['missense_variant']	['number / total: 3 / 4' 'number / total: 2 / 3' 'number / total: 4 / 5']	['ENST00000253332' 'ENST00000354675' 'ENST00000359755' 'ENST00000402676']	['Transcript']	['ENSG00000131016']	['[]']	[nan]	[nan]	"['ENST00000253332.5:c.3116C>T' 'ENST00000354675.10:c.2822C>T'
+ 'ENST00000359755.5:c.2801C>T' 'ENST00000402676.7:c.3116C>T']"	"['ENSP00000253332.1:p.Thr1039Ile' 'ENSP00000346702.6:p.Thr941Ile'
+ 'ENSP00000352794.5:p.Thr934Ile' 'ENSP00000384537.2:p.Thr1039Ile']"	[nan]	['']	[0.53600001]	['']	['' 'NM_005100.4']	"[""['1']""]"	"[""{'probably_damaging': 0.9909999966621399}""
+ ""{'probably_damaging': 0.9959999918937683}""
+ ""{'probably_damaging': 0.9980000257492065}""]"	"[""['T', 'I']""]"	['1039' '941' '934']	['C']	[0.125]	"[""{'deleterious': 0.0}""]"	"[""['1']""]"	[1.]	['UPI000013CDC7' 'UPI00001606EE' 'UPI000020D0B0']	['AKAP12']	['ENSG00000131016']	1	1	3	[]	0	FALSE	TRUE	FALSE
+4	113341777	T	EP999	['ANK2']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										22V1S	19V1B1S	18V	13V								[0.]	[0.]			44	31	[1.]							0	T	4_113341777_T	[]	[]	4:g.113341777C>T	exon	['missense_variant' 'missense_variant&NMD_transcript_variant']	"['number / total: 32 / 45' 'number / total: 33 / 46'
+ 'number / total: 33 / 45' 'number / total: 1 / 6'
+ 'number / total: 34 / 39' 'number / total: 12 / 25'
+ 'number / total: 35 / 51' 'number / total: 35 / 47'
+ 'number / total: 12 / 24' 'number / total: 5 / 15'
+ 'number / total: 7 / 20' 'number / total: 32 / 44'
+ 'number / total: 32 / 46' 'number / total: 33 / 44'
+ 'number / total: 34 / 47' 'number / total: 34 / 48'
+ 'number / total: 34 / 46' 'number / total: 31 / 43'
+ 'number / total: 30 / 41' 'number / total: 33 / 47'
+ 'number / total: 33 / 48' 'number / total: 31 / 44'
+ 'number / total: 34 / 44' 'number / total: 35 / 48'
+ 'number / total: 13 / 24' 'number / total: 32 / 43'
+ 'number / total: 29 / 42' 'number / total: 13 / 25'
+ 'number / total: 12 / 23']"	"['ENST00000264366' 'ENST00000357077' 'ENST00000394537' 'ENST00000503423'
+ 'ENST00000504415' 'ENST00000504454' 'ENST00000505342' 'ENST00000506344'
+ 'ENST00000506722' 'ENST00000509550' 'ENST00000510275' 'ENST00000514960'
+ 'ENST00000671704' 'ENST00000671727' 'ENST00000671756' 'ENST00000671762'
+ 'ENST00000671793' 'ENST00000671809' 'ENST00000671825' 'ENST00000671854'
+ 'ENST00000671863' 'ENST00000671882' 'ENST00000671893' 'ENST00000671906'
+ 'ENST00000671951' 'ENST00000671971' 'ENST00000672045' 'ENST00000672068'
+ 'ENST00000672088' 'ENST00000672090' 'ENST00000672177' 'ENST00000672209'
+ 'ENST00000672221' 'ENST00000672240' 'ENST00000672246' 'ENST00000672251'
+ 'ENST00000672312' 'ENST00000672315' 'ENST00000672350' 'ENST00000672356'
+ 'ENST00000672362' 'ENST00000672366' 'ENST00000672402' 'ENST00000672411'
+ 'ENST00000672502' 'ENST00000672684' 'ENST00000672696' 'ENST00000672731'
+ 'ENST00000672759' 'ENST00000672779' 'ENST00000672793' 'ENST00000672830'
+ 'ENST00000672854' 'ENST00000672880' 'ENST00000672915' 'ENST00000672930'
+ 'ENST00000672934' 'ENST00000672955' 'ENST00000672965' 'ENST00000672986'
+ 'ENST00000672990' 'ENST00000673044' 'ENST00000673048' 'ENST00000673109'
+ 'ENST00000673231' 'ENST00000673240' 'ENST00000673255' 'ENST00000673298'
+ 'ENST00000673334' 'ENST00000673353' 'ENST00000673363' 'ENST00000673430'
+ 'ENST00000673453' 'ENST00000673536' 'ENST00000673538' 'ENST00000673546'
+ 'ENST00000673555' 'ENST00000673573' 'ENST00000705785']"	['Transcript']	['ENSG00000145362']	"[""['1']""]"	[nan]	[nan]	"['ENST00000264366.10:c.3884C>T' 'ENST00000357077.9:c.3983C>T'
+ 'ENST00000394537.7:c.3983C>T' 'ENST00000503423.6:c.3821C>T'
+ 'ENST00000504415.5:c.68C>T' 'ENST00000504454.5:c.4028C>T'
+ 'ENST00000505342.6:c.1370C>T' 'ENST00000506344.6:c.4124C>T'
+ 'ENST00000506722.5:c.3956C>T' 'ENST00000509550.5:c.1511C>T'
+ 'ENST00000510275.8:c.665C>T' 'ENST00000514960.5:c.1022C>T'
+ 'ENST00000671704.1:c.3797C>T' 'ENST00000671727.1:c.3884C>T'
+ 'ENST00000671756.1:c.3821C>T' 'ENST00000671762.1:c.4019C>T'
+ 'ENST00000671793.1:c.3920C>T' 'ENST00000671809.1:c.3857C>T'
+ 'ENST00000671825.1:c.3920C>T' 'ENST00000671854.1:c.3722C>T'
+ 'ENST00000671863.1:c.3821C>T' 'ENST00000671882.1:c.3800C>T'
+ 'ENST00000671893.1:c.3599C>T' 'ENST00000671906.1:c.3797C>T'
+ 'ENST00000671951.1:c.3698C>T' 'ENST00000671971.1:c.4028C>T'
+ 'ENST00000672045.1:c.3821C>T' 'ENST00000672068.1:c.3821C>T'
+ 'ENST00000672088.1:c.3797C>T' 'ENST00000672090.1:c.3821C>T'
+ 'ENST00000672177.1:c.3833C>T' 'ENST00000672209.1:c.3821C>T'
+ 'ENST00000672221.1:c.3818C>T' 'ENST00000672240.1:c.4064C>T'
+ 'ENST00000672246.1:c.3806C>T' 'ENST00000672251.1:c.3785C>T'
+ 'ENST00000672312.1:c.3821C>T' 'ENST00000672315.1:c.3920C>T'
+ 'ENST00000672350.1:c.3758C>T' 'ENST00000672356.1:c.3698C>T'
+ 'ENST00000672362.1:c.3956C>T' 'ENST00000672366.1:c.3884C>T'
+ 'ENST00000672402.1:c.3920C>T' 'ENST00000672411.1:c.1547C>T'
+ 'ENST00000672502.1:c.3884C>T' 'ENST00000672684.1:c.3722C>T'
+ 'ENST00000672696.1:c.3920C>T' 'ENST00000672731.1:c.3797C>T'
+ 'ENST00000672759.1:c.3698C>T' 'ENST00000672779.1:c.4028C>T'
+ 'ENST00000672793.1:c.3821C>T' 'ENST00000672830.1:c.3920C>T'
+ 'ENST00000672854.1:c.3785C>T' 'ENST00000672880.1:c.3821C>T'
+ 'ENST00000672915.1:c.1370C>T' 'ENST00000672930.1:c.3821C>T'
+ 'ENST00000672934.1:c.3722C>T' 'ENST00000672955.1:c.3797C>T'
+ 'ENST00000672965.1:c.3857C>T' 'ENST00000672986.1:c.3401C>T'
+ 'ENST00000672990.1:c.3857C>T' 'ENST00000673044.1:c.3920C>T'
+ 'ENST00000673048.1:c.1532C>T' 'ENST00000673109.1:c.3698C>T'
+ 'ENST00000673231.1:c.1547C>T' 'ENST00000673240.1:c.4028C>T'
+ 'ENST00000673255.1:c.3821C>T' 'ENST00000673298.1:c.3821C>T'
+ 'ENST00000673334.1:c.3821C>T' 'ENST00000673353.1:c.1511C>T'
+ 'ENST00000673363.1:c.3929C>T' 'ENST00000673430.1:c.3821C>T'
+ 'ENST00000673453.1:c.3782C>T' 'ENST00000673536.1:c.3491C>T'
+ 'ENST00000673538.1:c.1511C>T' 'ENST00000673546.1:c.3758C>T'
+ 'ENST00000673555.1:c.3821C>T' 'ENST00000673573.1:c.3758C>T'
+ 'ENST00000705785.1:c.4064C>T']"	"['ENSP00000264366.6:p.Ala1295Val' 'ENSP00000349588.4:p.Ala1328Val'
+ 'ENSP00000378044.3:p.Ala1328Val' 'ENSP00000421011.2:p.Ala1274Val'
+ 'ENSP00000426994.1:p.Ala23Val' 'ENSP00000424722.1:p.Ala1343Val'
+ 'ENSP00000422498.2:p.Ala457Val' 'ENSP00000422888.2:p.Ala1375Val'
+ 'ENSP00000421067.1:p.Ala1319Val' 'ENSP00000426944.1:p.Ala504Val'
+ 'ENSP00000421023.4:p.Ala222Val' 'ENSP00000422853.1:p.Ala341Val'
+ 'ENSP00000500926.1:p.Ala1266Val' 'ENSP00000500102.1:p.Ala1295Val'
+ 'ENSP00000500712.1:p.Ala1274Val' 'ENSP00000500954.1:p.Ala1340Val'
+ 'ENSP00000499928.1:p.Ala1307Val' 'ENSP00000500872.1:p.Ala1286Val'
+ 'ENSP00000500459.1:p.Ala1307Val' 'ENSP00000500833.1:p.Ala1241Val'
+ 'ENSP00000500855.1:p.Ala1274Val' 'ENSP00000499887.1:p.Ala1267Val'
+ 'ENSP00000499986.1:p.Ala1200Val' 'ENSP00000499953.1:p.Ala1266Val'
+ 'ENSP00000500528.1:p.Ala1233Val' 'ENSP00000499832.1:p.Ala1343Val'
+ 'ENSP00000499959.1:p.Ala1274Val' 'ENSP00000499902.1:p.Ala1274Val'
+ 'ENSP00000499837.1:p.Ala1266Val' 'ENSP00000500540.1:p.Ala1274Val'
+ 'ENSP00000500918.1:p.Ala1278Val' 'ENSP00000499982.1:p.Ala1274Val'
+ 'ENSP00000500473.1:p.Ala1273Val' 'ENSP00000500548.1:p.Ala1355Val'
+ 'ENSP00000499990.1:p.Ala1269Val' 'ENSP00000500580.1:p.Ala1262Val'
+ 'ENSP00000500378.1:p.Ala1274Val' 'ENSP00000500780.1:p.Ala1307Val'
+ 'ENSP00000500420.1:p.Ala1253Val' 'ENSP00000500544.1:p.Ala1233Val'
+ 'ENSP00000500522.1:p.Ala1319Val' 'ENSP00000500937.1:p.Ala1295Val'
+ 'ENSP00000500881.1:p.Ala1307Val' 'ENSP00000499979.1:p.Ala516Val'
+ 'ENSP00000499870.1:p.Ala1295Val' 'ENSP00000499943.1:p.Ala1241Val'
+ 'ENSP00000499828.1:p.Ala1307Val' 'ENSP00000500908.1:p.Ala1266Val'
+ 'ENSP00000499881.1:p.Ala1233Val' 'ENSP00000499869.1:p.Ala1343Val'
+ 'ENSP00000500150.1:p.Ala1274Val' 'ENSP00000500222.1:p.Ala1307Val'
+ 'ENSP00000500311.1:p.Ala1262Val' 'ENSP00000500866.1:p.Ala1274Val'
+ 'ENSP00000500622.1:p.Ala457Val' 'ENSP00000499913.1:p.Ala1274Val'
+ 'ENSP00000500645.1:p.Ala1241Val' 'ENSP00000500527.1:p.Ala1266Val'
+ 'ENSP00000499891.1:p.Ala1286Val' 'ENSP00000499967.1:p.Ala1134Val'
+ 'ENSP00000500275.1:p.Ala1286Val' 'ENSP00000500933.1:p.Ala1307Val'
+ 'ENSP00000500832.1:p.Ala511Val' 'ENSP00000500265.1:p.Ala1233Val'
+ 'ENSP00000500111.1:p.Ala516Val' 'ENSP00000499996.1:p.Ala1343Val'
+ 'ENSP00000500423.1:p.Ala1274Val' 'ENSP00000500245.1:p.Ala1274Val'
+ 'ENSP00000500854.1:p.Ala1274Val' 'ENSP00000500007.1:p.Ala504Val'
+ 'ENSP00000500539.1:p.Ala1310Val' 'ENSP00000500269.1:p.Ala1274Val'
+ 'ENSP00000500112.1:p.Ala1261Val' 'ENSP00000500524.1:p.Ala1164Val'
+ 'ENSP00000500842.1:p.Ala504Val' 'ENSP00000500843.1:p.Ala1253Val'
+ 'ENSP00000500947.1:p.Ala1274Val' 'ENSP00000500883.1:p.Ala1253Val'
+ 'ENSP00000516169.1:p.Ala1355Val']"	[nan]	['']	[0.36300001]	['']	['' 'NM_001148.6']	['[]']	"[""{'probably_damaging': 0.996999979019165}""
+ ""{'probably_damaging': 0.9990000128746033}""
+ ""{'probably_damaging': 0.9470000267028809}""
+ ""{'possibly_damaging': 0.8899999856948853}""
+ ""{'probably_damaging': 0.984000027179718}""
+ ""{'possibly_damaging': 0.8769999742507935}""
+ ""{'possibly_damaging': 0.578000009059906}""
+ ""{'probably_damaging': 0.9440000057220459}""
+ ""{'probably_damaging': 0.9869999885559082}""
+ ""{'possibly_damaging': 0.5770000219345093}""
+ ""{'benign': 0.2280000001192093}""
+ ""{'possibly_damaging': 0.4950000047683716}""
+ ""{'benign': 0.07400000095367432}"" ""{'benign': 0.07599999755620956}""
+ ""{'probably_damaging': 0.9100000262260437}""
+ ""{'probably_damaging': 0.9610000252723694}""
+ ""{'possibly_damaging': 0.8270000219345093}""
+ ""{'possibly_damaging': 0.656000018119812}""
+ ""{'possibly_damaging': 0.5059999823570251}""
+ ""{'benign': 0.23100000619888306}""
+ ""{'possibly_damaging': 0.7429999709129333}""
+ ""{'possibly_damaging': 0.546999990940094}""
+ ""{'probably_damaging': 0.9620000123977661}""
+ ""{'benign': 0.12999999523162842}""
+ ""{'possibly_damaging': 0.6039999723434448}""
+ ""{'benign': 0.3930000066757202}""
+ ""{'possibly_damaging': 0.8109999895095825}""
+ ""{'benign': 0.3529999852180481}""
+ ""{'possibly_damaging': 0.5320000052452087}""
+ ""{'benign': 0.2759999930858612}""
+ ""{'possibly_damaging': 0.8650000095367432}""
+ ""{'possibly_damaging': 0.8939999938011169}""
+ ""{'benign': 0.03099999949336052}"" ""{'benign': 0.3779999911785126}""
+ ""{'possibly_damaging': 0.7559999823570251}""
+ ""{'possibly_damaging': 0.7549999952316284}""
+ ""{'possibly_damaging': 0.8870000243186951}""
+ ""{'benign': 0.14800000190734863}""
+ ""{'possibly_damaging': 0.5049999952316284}""
+ ""{'possibly_damaging': 0.4490000009536743}""
+ ""{'probably_damaging': 0.9480000138282776}""
+ ""{'benign': 0.02800000086426735}""
+ ""{'possibly_damaging': 0.7739999890327454}""
+ ""{'possibly_damaging': 0.8889999985694885}""
+ ""{'possibly_damaging': 0.6240000128746033}""
+ ""{'possibly_damaging': 0.6150000095367432}""
+ ""{'possibly_damaging': 0.5360000133514404}""
+ ""{'possibly_damaging': 0.8389999866485596}""
+ ""{'possibly_damaging': 0.7620000243186951}""
+ ""{'probably_damaging': 0.9179999828338623}""]"	"[""['A', 'V']""]"	"['1295' '1328' '1274' '23' '1343' '457' '1375' '1319' '504' '222' '341'
+ '1266' '1340' '1307' '1286' '1241' '1267' '1200' '1233' '1278' '1273'
+ '1355' '1269' '1262' '1253' '516' '1134' '511' '1310' '1261' '1164']"	['C']	[0.46200001        nan]	"[""{'deleterious_low_confidence': 0.0}"" '{}']"	['[]']	[1.]	"['UPI0000457265' 'UPI0000441EF3' 'UPI0000441EF4' 'UPI001234236D'
+ 'UPI000CB0A62F' 'UPI0001D3B738' 'UPI0012357788' 'UPI0007DC799B'
+ 'UPI0000E5AC38' 'UPI0001D3B746' 'UPI001B88F85F' '' 'UPI0007DC6722'
+ 'UPI0007DC5121' 'UPI0007DC6D9E' 'UPI0007DC70B3' 'UPI001236A1BE'
+ 'UPI001235900C' 'UPI0000EE2DE4' 'UPI0007DC59A6' 'UPI001235473C'
+ 'UPI00123565E6' 'UPI0007DC6D1A' 'UPI0012360075' 'UPI000B9178A0'
+ 'UPI00123544F8' 'UPI0007DC7D27' 'UPI001235558E' 'UPI0007DC5905'
+ 'UPI0012345C59' 'UPI001235370F' 'UPI001234994A' 'UPI000B916209'
+ 'UPI0012359271' 'UPI0012345F74' 'UPI001235A114' 'UPI0007DC5616'
+ 'UPI001235260B' 'UPI0007DC7CC3' 'UPI0007DC549D' 'UPI001235FC97'
+ 'UPI00018387FC' 'UPI0007DC80AC' 'UPI000BA82EC7' 'UPI001236413B'
+ 'UPI0012364CAD' 'UPI0007DC69AB' 'UPI000B91B693' 'UPI0012357806'
+ 'UPI0000EE2DE3' 'UPI0007DC6AD2' 'UPI001234B3D6' 'UPI001235F477'
+ 'UPI0012352BFD' 'UPI0012342EF3' 'UPI001235EB5C' 'UPI0012340C7C'
+ 'UPI001235C0FC' 'UPI000BA806D9' 'UPI0012346253' 'UPI000BA7FBF6'
+ 'UPI0007DC5794' 'UPI001235661A' 'UPI00123511DC' 'UPI001236E547'
+ 'UPI000BA341EE' 'UPI001236B663' 'UPI001235DD72' 'UPI0007DC74F5'
+ 'UPI001234AF2F' 'UPI001234D7B3' 'UPI0007DC6120' 'UPI001236FFC1'
+ 'UPI0012361153']"	['ANK2']	['ENSG00000145362']	1	1	2	[]	0	FALSE	TRUE	FALSE
+6	157184280	A	EP999	['ARID1B']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										14V	17V	11V	16V								[0.]	[0.]			31	27	[1.]							0	A	6_157184280_A	[]	[]	6:g.157184280G>A	exon	['missense_variant']	"['number / total: 11 / 12' 'number / total: 14 / 21'
+ 'number / total: 12 / 19' 'number / total: 5 / 5'
+ 'number / total: 10 / 17' 'number / total: 6 / 13'
+ 'number / total: 13 / 20' 'number / total: 8 / 15'
+ 'number / total: 11 / 18']"	"['ENST00000319584' 'ENST00000346085' 'ENST00000350026' 'ENST00000400790'
+ 'ENST00000414678' 'ENST00000635849' 'ENST00000635957' 'ENST00000636930'
+ 'ENST00000637015' 'ENST00000637810' 'ENST00000637904']"	['Transcript']	['ENSG00000049618']	"[""['1']""]"	[nan]	[nan]	"['ENST00000319584.11:c.1778G>A' 'ENST00000346085.10:c.3644G>A'
+ 'ENST00000350026.10:c.3356G>A' 'ENST00000400790.3:c.557G>A'
+ 'ENST00000414678.7:c.1922G>A' 'ENST00000635849.1:c.1085G>A'
+ 'ENST00000635957.1:c.719G>A' 'ENST00000636930.2:c.3764G>A'
+ 'ENST00000637015.2:c.3893G>A' 'ENST00000637810.1:c.1106G>A'
+ 'ENST00000637904.1:c.1265G>A']"	"['ENSP00000313006.7:p.Gly593Asp' 'ENSP00000344546.5:p.Gly1215Asp'
+ 'ENSP00000055163.7:p.Gly1119Asp' 'ENSP00000383596.3:p.Gly186Asp'
+ 'ENSP00000412835.2:p.Gly641Asp' 'ENSP00000490948.1:p.Gly362Asp'
+ 'ENSP00000490385.1:p.Gly240Asp' 'ENSP00000490491.2:p.Gly1255Asp'
+ 'ENSP00000489729.2:p.Gly1298Asp' 'ENSP00000489636.1:p.Gly369Asp'
+ 'ENSP00000490550.1:p.Gly422Asp']"	[nan]	['']	[0.34299999]	['']	['' 'NM_001374828.1']	['[]']	"[""{'benign': 0.11299999803304672}""
+ ""{'possibly_damaging': 0.6079999804496765}"" '{}'
+ ""{'benign': 0.10300000011920929}"" ""{'probably_damaging': 1.0}""
+ ""{'benign': 0.2329999953508377}""
+ ""{'probably_damaging': 0.9580000042915344}""
+ ""{'possibly_damaging': 0.7149999737739563}""
+ ""{'benign': 0.3409999907016754}""]"	"[""['G', 'D']""]"	['593' '1215' '1119' '186' '641' '362' '240' '1255' '1298' '369' '422']	['G']	[0.49000001        nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	"['UPI000014064F' 'UPI000E6F3DF6' 'UPI000058E2EA' 'UPI00015D398A'
+ 'UPI0001D3BCFD' 'UPI0007E52C90' 'UPI0007E52CE9' 'UPI00125CB504'
+ 'UPI001FB122BD' 'UPI0001FDB7F9' 'UPI0007DC59B6']"	['ARID1B']	['ENSG00000049618']	1	1	1	[]	0	FALSE	TRUE	FALSE
+6	116729627	G	EP999	['KPNA5']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										28V2S	22V	20V1S	19V								[0.]	[0.]			52	40	[1.]							0	G	6_116729627_G	[]	[]	6:g.116729627A>G	exon	['missense_variant']	"['number / total: 13 / 15' 'number / total: 13 / 14'
+ 'number / total: 12 / 13' 'number / total: 14 / 15']"	"['ENST00000356348' 'ENST00000368564' 'ENST00000697696' 'ENST00000697697'
+ 'ENST00000697699']"	['Transcript']	['ENSG00000196911']	['[]']	[nan]	[nan]	"['ENST00000356348.6:c.1318A>G' 'ENST00000368564.7:c.1318A>G'
+ 'ENST00000697696.1:c.1216A>G' 'ENST00000697697.1:c.1378A>G'
+ 'ENST00000697699.1:c.1309A>G']"	"['ENSP00000348704.1:p.Ile440Val' 'ENSP00000357552.1:p.Ile440Val'
+ 'ENSP00000513403.1:p.Ile406Val' 'ENSP00000513404.1:p.Ile460Val'
+ 'ENSP00000513406.1:p.Ile437Val']"	[nan]	['']	[0.85399997]	['']	['' 'NM_001366306.2']	['[]']	"[""{'benign': 0.008999999612569809}"" ""{'benign': 0.31299999356269836}""]"	"[""['I', 'V']""]"	['440' '406' '460' '437']	['A']	[0.17900001        nan]	"[""{'deleterious_low_confidence': 0.03999999910593033}""]"	['[]']	[1.]	['UPI000000DBE6' 'UPI000C2E73B1' 'UPI0005D01706' 'UPI000006FD8E']	['KPNA5']	['ENSG00000196911']	1	1	1	[]	0	FALSE	TRUE	FALSE
+16	79671	T	EP999	['MPG']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										11V2S	15V	20V	15V1B								[0.]	[6.07015927e-35]			28	36	[1.]							0	T	16_79671_T	[]	[]	16:g.79671G>T	exon	['missense_variant']	['number / total: 3 / 5' 'number / total: 2 / 4']	['ENST00000219431' 'ENST00000356432' 'ENST00000397817' 'ENST00000436333']	['Transcript']	['ENSG00000103152']	['[]']	[nan]	[nan]	"['ENST00000219431.4:c.286G>T' 'ENST00000356432.8:c.271G>T'
+ 'ENST00000397817.5:c.235G>T' 'ENST00000436333.5:c.235G>T']"	"['ENSP00000219431.4:p.Val96Phe' 'ENSP00000348809.4:p.Val91Phe'
+ 'ENSP00000380918.1:p.Val79Phe' 'ENSP00000388097.1:p.Val79Phe']"	[nan]	['']	[0.93300003]	['']	['' 'NM_001015052.3']	['[]']	"[""{'possibly_damaging': 0.7450000047683716}""]"	"[""['V', 'F']""]"	['96' '91' '79']	['G']	[0.17900001]	"[""{'deleterious': 0.009999999776482582}"" ""{'deleterious': 0.0}""]"	['[]']	[1.]	['UPI000002A2C0' 'UPI0000169F5F' 'UPI00001FF954' 'UPI0000EE0938']	['MPG']	['ENSG00000103152']	1	1	1	[]	0	FALSE	TRUE	FALSE
+1	201808752	T	EP999	['NAV1']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										22V	12V	9V1S	11V1P								[0.]	[8.4449899e-30]			34	22	[1.]							0	T	1_201808752_T	[]	[]	1:g.201808752C>T	exon	['missense_variant']	"['number / total: 17 / 27' 'number / total: 20 / 30'
+ 'number / total: 24 / 34']"	['ENST00000367295' 'ENST00000367296' 'ENST00000367302' 'ENST00000685211']	['Transcript']	['ENSG00000134369']	['[]']	[nan]	[nan]	"['ENST00000367295.5:c.2906C>T' 'ENST00000367296.8:c.4088C>T'
+ 'ENST00000367302.5:c.3947C>T' 'ENST00000685211.1:c.4949C>T']"	"['ENSP00000356264.1:p.Pro969Leu' 'ENSP00000356265.4:p.Pro1363Leu'
+ 'ENSP00000356271.1:p.Pro1316Leu' 'ENSP00000510803.1:p.Pro1650Leu']"	[nan]	['']	[0.00138]	['']	['' 'NM_001389617.1']	['[]']	"[""{'benign': 0.2770000100135803}"" ""{'benign': 0.3619999885559082}""
+ ""{'possibly_damaging': 0.5699999928474426}""
+ ""{'benign': 0.0560000017285347}""]"	"[""['P', 'L']""]"	['969' '1363' '1316' '1650']	['C']	[0.13500001        nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	['UPI0000470252' 'UPI00004562D4' 'UPI0000458A36' 'UPI000387BCB3']	['NAV1']	['ENSG00000134369']	1	1	1	[]	0	FALSE	TRUE	FALSE
+3	98087756	A	EP999	['OR5AC2']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										28V1P	20V	1S	27V2S1P								[0.]	[1.48047183e-40]			49	31	[1.]							0	A	3_98087756_A	[]	"['COSV62279828', 'COSV62280302']"	3:g.98087756C>A	exon	['missense_variant']	['number / total: 1 / 1']	['ENST00000358642']	['Transcript']	['ENSG00000196578']	['[]']	[nan]	[nan]	['ENST00000358642.2:c.584C>A']	['ENSP00000351466.2:p.Ser195Tyr']	[nan]	['']	[0.69999999]	['']	['NM_054106.1']	"[""['1', '1']""]"	"[""{'possibly_damaging': 0.7879999876022339}""]"	"[""['S', 'Y']""]"	['195']	['C']	[0.104]	"[""{'deleterious_low_confidence': 0.009999999776482582}""]"	"[""['1', '1']""]"	[1.]	['UPI0000441EFD']	['OR5AC2']	['ENSG00000196578']	1	1	1	[]	0	FALSE	TRUE	FALSE
+11	124265427	T	EP999	['OR8G5']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										16V1v1S	20V	17V	20V								[0.]	[0.]			38	37	[1.]							0	T	11_124265427_T	[]	[]	11:g.124265427G>T	exon	['missense_variant']	['number / total: 1 / 1' 'number / total: 2 / 2']	['ENST00000641707' 'ENST00000641992']	['Transcript']	['ENSG00000255298']	['[]']	[nan]	[nan]	['ENST00000641707.1:c.496G>T' 'ENST00000641992.2:c.496G>T']	['ENSP00000493069.1:p.Val166Phe' 'ENSP00000493127.1:p.Val166Phe']	[nan]	['']	[nan]	['']	['' 'NM_001005198.2']	['[]']	"[""{'possibly_damaging': 0.8420000076293945}""]"	"[""['V', 'F']""]"	['166']	['G']	[nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	['UPI000004B239']	['OR8G5']	['ENSG00000255298']	1	1	1	[]	0	FALSE	TRUE	FALSE
+8	17966382	C	EP999	['PCM1']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										8V7S	20V	11V8S1B	13V								[0.]	[0.]			35	33	[1.]							0	C	8_17966382_C	[]	[]	8:g.17966382A>C	exon	['missense_variant']	"['number / total: 20 / 39' 'number / total: 20 / 40'
+ 'number / total: 19 / 35']"	['ENST00000325083' 'ENST00000519253' 'ENST00000522275' 'ENST00000524226']	['Transcript']	['ENSG00000078674']	"[""['1']""]"	[nan]	[nan]	"['ENST00000325083.13:c.3130A>C' 'ENST00000519253.5:c.3130A>C'
+ 'ENST00000522275.6:c.3130A>C' 'ENST00000524226.5:c.3133A>C']"	"['ENSP00000327077.8:p.Ser1044Arg' 'ENSP00000431099.1:p.Ser1044Arg'
+ 'ENSP00000429054.2:p.Ser1044Arg' 'ENSP00000430521.1:p.Ser1045Arg']"	[nan]	['']	[0.81900001]	['']	['NM_006197.4' '']	['[]']	"[""{'possibly_damaging': 0.7639999985694885}""
+ ""{'probably_damaging': 0.9890000224113464}""
+ ""{'possibly_damaging': 0.8159999847412109}""
+ ""{'benign': 0.1589999943971634}""]"	"[""['S', 'R']""]"	['1044' '1045']	['A']	[0.23800001        nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	['UPI0000210A25' 'UPI0001E8EF89' '' 'UPI0001E8EFB3']	['PCM1']	['ENSG00000078674']	1	1	3	[]	0	FALSE	TRUE	FALSE
+1	223795900	TT	EP999	['TP53BP2']	substitution	['MODERATE']		[nan]	1	1	1				0.5	0.5										6S1P	14V5S3P	6S	11V5S								[0.01081932]	[4.78850764e-14]			29	22	[0.98918056]							0	TT	1_223795900_TT	[]	[]	1:g.223795901A>T	exon	['missense_variant']	"['number / total: 13 / 18' 'number / total: 14 / 19'
+ 'number / total: 5 / 5']"	['ENST00000343537' 'ENST00000391878' 'ENST00000494100']	['Transcript']	['ENSG00000143514']	['[]']	[nan]	[nan]	"['ENST00000343537.12:c.2638T>A' 'ENST00000391878.6:c.2251T>A'
+ 'ENST00000494100.1:c.638T>A']"	"['ENSP00000341957.7:p.Tyr880Asn' 'ENSP00000375750.2:p.Tyr751Asn'
+ 'ENSP00000420225.1:p.Tyr214Asn']"	[nan]	['']	[0.75800002]	['']	['NM_001031685.3' '']	['[]']	"[""{'probably_damaging': 0.9959999918937683}""
+ ""{'probably_damaging': 0.9940000176429749}""
+ ""{'possibly_damaging': 0.7620000243186951}""]"	"[""['Y', 'N']""]"	['880' '751' '214']	['TA']	[0.38  nan]	"[""{'deleterious': 0.0}"" ""{'deleterious_low_confidence': 0.0}""]"	['[]']	[-1.]	['UPI0000D4B5F2' 'UPI0000131032' '']	['TP53BP2']	['ENSG00000143514']	1	1	1	[]	0	FALSE	TRUE	FALSE
+10	50068195	C	EP999	['WASHC2A']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										6s6V4v4S	6V1v1s	4V4v4s1S	7V4v								[3.00954157e-11]	[9.76989554e-07]			22	18	[0.99999905]							0	C	10_50068195_C	[]	[]	10:g.50068195A>C	exon	['missense_variant' 'missense_variant&NMD_transcript_variant']	"['number / total: 2 / 31' 'number / total: 2 / 29'
+ 'number / total: 2 / 30' 'number / total: 2 / 28']"	"['ENST00000282633' 'ENST00000314664' 'ENST00000351071' 'ENST00000434114'
+ 'ENST00000611324']"	['Transcript']	['ENSG00000099290']	['[]']	[nan]	[nan]	"['ENST00000282633.10:c.94A>C' 'ENST00000314664.12:c.94A>C'
+ 'ENST00000351071.11:c.94A>C' 'ENST00000434114.6:c.94A>C'
+ 'ENST00000611324.4:c.94A>C']"	"['ENSP00000282633.5:p.Ser32Arg' 'ENSP00000314417.7:p.Ser32Arg'
+ 'ENSP00000344037.6:p.Ser32Arg' 'ENSP00000403781.2:p.Ser32Arg'
+ 'ENSP00000481763.1:p.Ser32Arg']"	[nan]	['']	[nan]	['']	['NM_001005751.3' '']	['[]']	"[""{'probably_damaging': 0.9940000176429749}""
+ ""{'probably_damaging': 0.9959999918937683}""
+ ""{'possibly_damaging': 0.765999972820282}""
+ ""{'benign': 0.12700000405311584}""
+ ""{'possibly_damaging': 0.6290000081062317}""]"	"[""['S', 'R']""]"	['32']	['A']	[0.197   nan]	"[""{'deleterious_low_confidence': 0.0}""]"	['[]']	[1.]	"['UPI000044FEAB' 'UPI00020658FD' 'UPI00001C1ED7' 'UPI0002B8336F'
+ 'UPI0004E4C948']"	['WASHC2A']	['ENSG00000099290']	1	1	2	[]	0	FALSE	TRUE	FALSE
+10	48957255	G	EP999	['WDFY4']	SNV	['MODERATE']		[nan]	1	1	1				0.5	0.5										6S4V	14V	17V10S	13V								[0.]	[4.87416021e-19]			24	40	[1.]							0	G	10_48957255_G	[]	['rs1455496199']	10:g.48957255T>G	exon	['missense_variant']	['number / total: 52 / 62']	['ENST00000325239']	['Transcript']	['ENSG00000128815']	['[]']	[nan]	[nan]	['ENST00000325239.12:c.8104T>G']	['ENSP00000320563.5:p.Leu2702Val']	[nan]	['rs1455496199']	[nan]	['']	['NM_001394531.1']	['[]']	"[""{'probably_damaging': 0.996999979019165}""]"	"[""['L', 'V']""]"	['2702']	['T']	[0.65899998]	"[""{'deleterious': 0.0}""]"	['[]']	[1.]	['UPI000176ADB8']	['WDFY4']	['ENSG00000128815']	1	1	2	[]	0	FALSE	TRUE	FALSE
