@@ -49,18 +49,18 @@ def md_name_creator(file_path):
     md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
     return md_output_filepath
 
-
-
 # Process files and format variant information
 def process_file(file_path, prompts, max_lines=1000):
     """
-    Processes the TSV file, formats variant information, and writes to markdown.
+    Processes the TSV file, formats variant information, and writes two markdown files:
+    1. One with family tables.
+    2. One without family tables (if applicable).
     """
     with open(file_path, 'r') as f:
         line_count = sum(1 for _ in f)
     if line_count > max_lines:
         print(f"Error: {file_path} is too long. Cannot exceed 1000 lines.")
-        return
+        return None, None
 
     df = pd.read_csv(file_path, sep='\t')
 
@@ -78,63 +78,101 @@ def process_file(file_path, prompts, max_lines=1000):
     df_columns = list(set(df.columns) & set(columns_of_interest))
     if len(df_columns) == 0:
         print(f"Warning: No relevant columns in {file_path}")
-        return
+        return None, None
 
     df_filtered = df[df_columns]
 
+    members = [
+        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2", 
+        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias", 
+        "childAF1", "childAF2", "childF", "childM", "childUF1", "father", 
+        "individualM", "unaffectedF"
+    ]
+
+    family_related_columns = [col for col in df_filtered.columns if any(family_member in col.lower() for family_member in members)]
+    has_family_info = bool(family_related_columns)
+
     md_output_filename = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output.md"
     md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
+
+    md_output_filename_no_family = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output_no_family.md"
+    md_output_filepath_no_family = os.path.join(PROCESSED_DATA_DIR, md_output_filename_no_family)
+
     print(f"Processing {file_path} -> {md_output_filepath}")
 
     with open(md_output_filepath, 'w') as f:
         f.write(f"# {os.path.basename(file_path)}\n=================\n\n")
         for _, row in df_filtered.iterrows():
-            formatted_info = format_variant_info(row, prompts)
+            formatted_info = format_variant_info(row, prompts, include_family=True)
             if formatted_info:
                 f.write(formatted_info + "\n")
 
-    return md_output_filepath
+    if has_family_info:
+        print(f"Processing without family tables -> {md_output_filepath_no_family}")
+        with open(md_output_filepath_no_family, 'w') as f:
+            f.write(f"# {os.path.basename(file_path)} (No Family Info)\n=================\n\n")
+            for _, row in df_filtered.iterrows():
+                formatted_info = format_variant_info(row, prompts, include_family=False)
+                if formatted_info:
+                    f.write(formatted_info + "\n")
+    else:
+        md_output_filepath_no_family = None
 
+    return md_output_filepath, md_output_filepath_no_family
 
 # Extracts and formats variant information with PrettyTable integration
-# Extracts and formats variant information with PrettyTable integration
-def format_variant_info(row, prompts):
+def format_variant_info(row, prompts, include_family=True):
     """
-    Format variant information into a markdown table, separating list-based attributes from others.
+    Format variant information into a markdown table, with an option to exclude family tables.
     """
     gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
 
-    # Log any invalid gene symbols
     if not re.search("[A-Za-z0-9]", gene_symbol):
-        logging.warning(f"Invalid gene symbol '{gene_symbol}'. Gene symbols must contain at least one letter or number.")
+        logging.warning(f"Invalid gene symbol '{gene_symbol}'.")
         return None
 
-    # Generate elaborations dynamically for the gene symbol
     elaborations = generate_elaborations_for_prompts(prompts, gene_symbol)
 
-    # Create the Variant description section with list-based attributes
-    variant_description = f"1. Variant description for {row['allele']} (details):\n"
+    variant_description = f"1. Variant description for {row['allele']}:\n"
     variant_description += f"\ta. Amino acid change: {row.get('impact', 'ND')}\n"
     variant_description += f"\tb. Gnomad allele frequency: {row.get('gnomadg_af', 'nan')}\n"
     variant_description += f"\tc. Max allele frequency: {row.get('max_af', 'nan')}\n"
     variant_description += f"\td. Polyphen/SIFT: {row.get('revel', 'ND')} / {row.get('sift', 'ND')}\n"
 
-    table = "Additional Variant Information"
-    # Start creating the markdown table for other attributes that aren't in the description above
-    table = "| Additional Attribute              | Value                          |\n"
-    table += "|------------------------|--------------------------------|\n"
+    if include_family:
+        family_table_section = create_family_tables(row)
+        return elaborations + variant_description + "\n" + family_table_section + "\n"
+    else:
+        return elaborations + variant_description + "\n"
 
-    # Attributes to exclude from the table (because they are in the variant description above)
-    exclude_attributes = ['impact', 'gnomadg_af', 'max_af', 'revel', 'sift']
+def create_family_tables(row):
+    """
+    Create separate tables for family members (e.g., child, father, mother).
+    This function dynamically builds tables based on available columns.
+    """
+    family_members = [
+        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2", 
+        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias", 
+        "childAF1", "childAF2", "childF", "childM", "childUF1", "father", 
+        "individualM", "unaffectedF"
+    ]
 
-    # Loop through all columns and include the ones not excluded
-    for attribute, value in row.items():
-        # Check if the attribute is not in the exclude list and is not a list itself
-        if attribute not in exclude_attributes and not isinstance(value, list):
-            table += f"| {attribute:<22} | {value:<30} |\n"
-
-    # Make sure to add a newline at the end of the variant description and the table for formatting
-    return elaborations + variant_description + "\n" + table + "\n"
+    tables = []
+    
+    for family_member in family_members:
+        family_columns = [col for col in row.index if col.lower().startswith(family_member.lower())]
+        
+        if family_columns:
+            table_header = f"### {family_member.capitalize()} Information"
+            table = "| Attribute                          | Value                          |\n"
+            table += "|------------------------------------|--------------------------------|\n"
+            
+            for column in family_columns:
+                table += f"| {column:<34} | {row[column]:<30} |\n"
+            
+            tables.append(table_header + "\n" + table)
+    
+    return "\n\n".join(tables)
 
 # Generate elaborations for all prompts
 def generate_elaborations_for_prompts(prompts, gene_symbol):
@@ -191,10 +229,14 @@ def main():
     tsv_files = [os.path.join(RAW_DATA_DIR, file) for file in os.listdir(RAW_DATA_DIR) if file.endswith(".tsv")]
 
     for file_path in tsv_files:
-        md_file_path = process_file(file_path, prompts)
+        md_file_path, md_file_path_no_family = process_file(file_path, prompts)
+        
         print(md_file_path)
         complete_html_pdf(md_file_path, CSS_CONTENT, PROMPTS_JSON_PATH)
 
+        if md_file_path_no_family:
+            print(md_file_path_no_family)
+            complete_html_pdf(md_file_path_no_family, CSS_CONTENT, PROMPTS_JSON_PATH)
 
 if __name__ == "__main__":
     main()
