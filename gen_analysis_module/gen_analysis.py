@@ -75,6 +75,8 @@ def process_file(file_path, prompts, max_lines=1000):
         'hgvsc', 'hgvsp', 'revel', 'sift', 'strand', 'uniparc', 'symbol_list', 'gene_list'
     ]
 
+
+
     df_columns = list(set(df.columns) & set(columns_of_interest))
     if len(df_columns) == 0:
         print(f"Warning: No relevant columns in {file_path}")
@@ -83,11 +85,20 @@ def process_file(file_path, prompts, max_lines=1000):
     df_filtered = df[df_columns]
 
     members = [
-        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2", 
-        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias", 
-        "childAF1", "childAF2", "childF", "childM", "childUF1", "father", 
+        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2",
+        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias",
+        "childAF1", "childAF2", "childF", "childM", "childUF1", "father",
         "individualM", "unaffectedF"
     ]
+    family_related_strings = ["short alt observations", "read depth", "allele frequency"]
+
+    # get all column names with the string in family_related_strings in them
+    column_members = [col for col in df_filtered.columns if any(family_member in col.lower() for family_member in family_related_strings)]
+    # split the string by : and get the first element
+    family_members = [col.split(":")[0] for col in column_members]
+    # add family members to the members list
+    members += family_members
+
 
     family_related_columns = [col for col in df_filtered.columns if any(family_member in col.lower() for family_member in members)]
     has_family_info = bool(family_related_columns)
@@ -151,27 +162,27 @@ def create_family_tables(row):
     This function dynamically builds tables based on available columns.
     """
     family_members = [
-        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2", 
-        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias", 
-        "childAF1", "childAF2", "childF", "childM", "childUF1", "father", 
+        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2",
+        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias",
+        "childAF1", "childAF2", "childF", "childM", "childUF1", "father",
         "individualM", "unaffectedF"
     ]
 
     tables = []
-    
+
     for family_member in family_members:
         family_columns = [col for col in row.index if col.lower().startswith(family_member.lower())]
-        
+
         if family_columns:
             table_header = f"### {family_member.capitalize()} Information"
             table = "| Attribute                          | Value                          |\n"
             table += "|------------------------------------|--------------------------------|\n"
-            
+
             for column in family_columns:
                 table += f"| {column:<34} | {row[column]:<30} |\n"
-            
+
             tables.append(table_header + "\n" + table)
-    
+
     return "\n\n".join(tables)
 
 # Generate elaborations for all prompts
@@ -230,7 +241,7 @@ def main():
 
     for file_path in tsv_files:
         md_file_path, md_file_path_no_family = process_file(file_path, prompts)
-        
+
         print(md_file_path)
         complete_html_pdf(md_file_path, CSS_CONTENT, PROMPTS_JSON_PATH)
 
