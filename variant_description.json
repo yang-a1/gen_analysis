@@ -1,0 +1,11 @@
+
+
+{
+    "symbol": "The gene symbol associated with the variant.",
+    "allele": "The variant allele observed in the sample.",
+    "impact": "The predicted impact of the variant on the gene or protein function.",
+    "gnomadg_af": "The allele frequency of the variant in the gnomAD genome dataset.",
+    "max_af": "The maximum allele frequency observed in any population dataset.",
+    "revel": "The REVEL score predicting the pathogenicity of missense variants.",
+    "sift": "The SIFT score predicting the effect of amino acid substitutions on protein function."
+}
