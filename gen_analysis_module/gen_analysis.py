@@ -131,24 +131,39 @@ def process_file(file_path, prompts, max_lines=1000):
 
     return md_output_filepath, md_output_filepath_no_family
 
+def safe_get(row, key):
+    """Return the value from the row for the given key or 'N/A' if missing."""
+    return row.get(key, 'N/A')
+
 # Extracts and formats variant information with PrettyTable integration
 def format_variant_info(row, prompts, include_family=True):
     """
     Format variant information into a markdown table, with an option to exclude family tables.
+    For any key (including ones with names starting with 'description_') that isn't found,
+    the function will insert 'N/A' as the default value.
     """
-    gene_symbol = row['symbol'][0] if isinstance(row['symbol'], list) else row['symbol']
-
+    gene_symbol = row.get('symbol', 'N/A')
+    if isinstance(gene_symbol, list):
+        gene_symbol = gene_symbol[0] if gene_symbol else 'N/A'
+    
     if not re.search("[A-Za-z0-9]", gene_symbol):
         logging.warning(f"Invalid gene symbol '{gene_symbol}'.")
         return None
 
     elaborations = generate_elaborations_for_prompts(prompts, gene_symbol)
 
-    variant_description = f"1. Variant description for {row['allele']}:\n"
-    variant_description += f"\ta. Amino acid change: {row.get('impact', 'ND')}\n"
-    variant_description += f"\tb. Gnomad allele frequency: {row.get('gnomadg_af', 'nan')}\n"
-    variant_description += f"\tc. Max allele frequency: {row.get('max_af', 'nan')}\n"
-    variant_description += f"\td. Polyphen/SIFT: {row.get('revel', 'ND')} / {row.get('sift', 'ND')}\n"
+    allele = safe_get(row, 'allele')
+    impact = safe_get(row, 'impact')
+    gnomad_af = safe_get(row, 'gnomadg_af')
+    max_af = safe_get(row, 'max_af')
+    revel = safe_get(row, 'revel')
+    sift = safe_get(row, 'sift')
+
+    variant_description = f"1. Variant description for {allele}:\n"
+    variant_description += f"\ta. Amino acid change: {impact}\n"
+    variant_description += f"\tb. Gnomad allele frequency: {gnomad_af}\n"
+    variant_description += f"\tc. Max allele frequency: {max_af}\n"
+    variant_description += f"\td. Polyphen/SIFT: {revel} / {sift}\n"
 
     if include_family:
         family_table_section = create_family_tables(row)
