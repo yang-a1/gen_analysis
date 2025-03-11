@@ -45,6 +45,7 @@ if MAX_TOKENS_VALUE  > 1000:
     if user_confirmation.lower() != 'yes':
         raise ValueError("Operation aborted by the user due to max_tokens exceeding 1000.")
 
+# TODO: Add would you like to continue warning message when token limit exceeded, if it occurs multiple times direct user to change max token
 
 
 # Read the CSS file
