@@ -1,0 +1,8 @@
+{
+    "members": [
+        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2",
+        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias",
+        "childAF1", "childAF2", "childF", "childM", "childUF1", "individualM", "unaffectedF"
+    ],
+    "family_related_strings": ["short alt observations", "read depth", "allele frequency"]
+}

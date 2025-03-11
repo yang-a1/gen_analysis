@@ -5,7 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 import time
 from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE, TEMPERATURE_VALUE, CSS_CONTENT, VARIANT_DESCRIPTION_PATH
+from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE, TEMPERATURE_VALUE, CSS_CONTENT, VARIANT_DESCRIPTION_PATH, FAMILY_MEMBERS_PATH
 import json
 import re
 import logging
@@ -56,6 +56,28 @@ def load_variant_description(json_path):
         print(f"Error loading {json_path}: {e}")
         return {}
 
+# Load family members from JSON
+def load_family_members(json_path):
+    """
+    Load the family members list from a JSON file.
+    """
+    if not os.path.exists(json_path):
+        print(f"Warning: {json_path} not found. Using default values.")
+        return {
+            "members": [],
+            "family_related_strings": []
+        }
+
+    try:
+        with open(json_path, 'r') as file:
+            return json.load(file)
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"Error loading {json_path}: {e}")
+        return {
+            "members": [],
+            "family_related_strings": []
+        }
+
 # Normalize column names for flexible matching
 def normalize_column_name(name):
     """
@@ -83,7 +105,7 @@ def md_name_creator(file_path):
     return md_output_filepath
 
 # Process files and format variant information
-def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
+def process_file(file_path, prompts, variant_descriptions, family_members_json, max_lines=1000):
     """
     Processes the TSV file, formats variant information, and writes two markdown files:
     1. One with family tables.
@@ -97,6 +119,7 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
 
     df = pd.read_csv(file_path, sep='\t')
 
+    # Keep all columns of interest
     columns_of_interest = [
         'chromosome', 'position', 'allele', 'family', 'symbol', 'variant_class', 'impact',
         'gnomadg_af', 'max_af', 'child: allele frequency', 'father: allele frequency', 'mother: allele frequency',
@@ -108,8 +131,6 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
         'hgvsc', 'hgvsp', 'revel', 'sift', 'strand', 'uniparc', 'symbol_list', 'gene_list'
     ]
 
-
-
     df_columns = list(set(df.columns) & set(columns_of_interest))
     if len(df_columns) == 0:
         print(f"Warning: No relevant columns in {file_path}")
@@ -117,25 +138,18 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
 
     df_filtered = df[df_columns]
 
-    members = [
-        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2",
-        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias",
-        "childAF1", "childAF2", "childF", "childM", "childUF1", "father",
-        "individualM", "unaffectedF"
-    ]
-    family_related_strings = ["short alt observations", "read depth", "allele frequency"]
+    members = family_members_json["members"]
+    family_related_strings = family_members_json.get("family_related_strings", [])
 
-    # get all column names with the string in family_related_strings in them
-    column_members = [col for col in df_filtered.columns if any(family_member in col.lower() for family_member in family_related_strings)]
-    # split the string by : and get the first element
+    # Detect columns with family-related data
+    column_members = [col for col in df_filtered.columns if any(fam_str in col.lower() for fam_str in family_related_strings)]
     family_members = [col.split(":")[0] for col in column_members]
-    # add family members to the members list
     members += family_members
 
-
-    family_related_columns = [col for col in df_filtered.columns if any(family_member in col.lower() for family_member in members)]
+    family_related_columns = [col for col in df_filtered.columns if any(member in col.lower() for member in members)]
     has_family_info = bool(family_related_columns)
 
+    # Define output file names
     md_output_filename = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output.md"
     md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
 
@@ -147,7 +161,7 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
     with open(md_output_filepath, 'w') as f:
         f.write(f"# {os.path.basename(file_path)}\n=================\n\n")
         for _, row in df_filtered.iterrows():
-            formatted_info = format_variant_info(row, prompts, variant_descriptions, include_family=True)
+            formatted_info = format_variant_info(row, prompts, variant_descriptions, family_members_json, include_family=True)
             if formatted_info:
                 f.write(formatted_info + "\n")
 
@@ -156,7 +170,7 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
         with open(md_output_filepath_no_family, 'w') as f:
             f.write(f"# {os.path.basename(file_path)} (No Family Info)\n=================\n\n")
             for _, row in df_filtered.iterrows():
-                formatted_info = format_variant_info(row, prompts, include_family=False)
+                formatted_info = format_variant_info(row, prompts, variant_descriptions, family_members_json, include_family=False)
                 if formatted_info:
                     f.write(formatted_info + "\n")
     else:
@@ -169,7 +183,7 @@ def safe_get(row, key):
     return row.get(key, 'N/A')
 
 # Extracts and formats variant information with PrettyTable integration
-def format_variant_info(row, prompts, variant_descriptions, include_family=True):
+def format_variant_info(row, prompts, variant_descriptions, family_members_json, include_family=True):
     """
     Format variant information dynamically using the preloaded variant_description.json mappings.
     """
@@ -183,44 +197,46 @@ def format_variant_info(row, prompts, variant_descriptions, include_family=True)
 
     elaborations = generate_elaborations_for_prompts(prompts, gene_symbol)
 
-    variant_description_text = ["Variant Description:"]
+    variant_description_text = ["## Variant Description"]
 
-    for json_key, description in variant_descriptions.items():
-        matched_column = find_matching_column(json_key, row.index)
+    if variant_descriptions:
+        for json_key, description in variant_descriptions.items():
+            matched_column = find_matching_column(json_key, row.index)
+            
+            if matched_column:
+                value = safe_get(row, matched_column)
+            else:
+                value = "**Could not find information from TSV file**"
 
-        if matched_column:
-            value = safe_get(row, matched_column)
-        else:
-            value = "**Could not find information from TSV file**"
+            variant_description_text.append(f"- **{description}**: {value}")
 
-        variant_description_text.append(f"- **{description}**: {value}")
+    else:
+        variant_description_text.append("No variant description available.")
 
     variant_description_text = "\n".join(variant_description_text)
 
+    family_table_section = ""
     if include_family:
-        family_table_section = create_family_tables(row)
-        return elaborations + "\n\n" + variant_description_text + "\n\n" + family_table_section + "\n"
-    else:
-        return elaborations + "\n\n" + variant_description_text + "\n"
+        family_table_section = create_family_tables(row, family_members_json)
 
-def create_family_tables(row):
+    return elaborations + "\n\n" + variant_description_text + "\n\n" + family_table_section + "\n"
+
+def create_family_tables(row, family_members_json):
     """
     Create separate tables for family members (e.g., child, father, mother).
     This function dynamically builds tables based on available columns.
     """
-    family_members = [
-        "child", "father", "mother", "affectedF", "affectedF1", "affectedF2",
-        "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias",
-        "childAF1", "childAF2", "childF", "childM", "childUF1", "father",
-        "individualM", "unaffectedF"
-    ]
+    family_members = set(family_members_json.get("members", []))  # Ensure uniqueness
 
     tables = []
+    seen_members = set()  # Track already added members
 
     for family_member in family_members:
         family_columns = [col for col in row.index if col.lower().startswith(family_member.lower())]
 
-        if family_columns:
+        if family_columns and family_member not in seen_members:
+            seen_members.add(family_member)
+
             table_header = f"### {family_member.capitalize()} Information"
             table = "| Attribute                          | Value                          |\n"
             table += "|------------------------------------|--------------------------------|\n"
@@ -285,10 +301,14 @@ def generate_elaboration(prompt):
 def main():
     prompts = load_prompts(PROMPTS_JSON_PATH)
     variant_descriptions = load_variant_description(VARIANT_DESCRIPTION_PATH)
+    family_members_json = load_family_members(FAMILY_MEMBERS_PATH)
+
     tsv_files = [os.path.join(RAW_DATA_DIR, file) for file in os.listdir(RAW_DATA_DIR) if file.endswith(".tsv")]
 
     for file_path in tsv_files:
-        md_file_path, md_file_path_no_family = process_file(file_path, prompts, variant_descriptions)
+        md_file_path, md_file_path_no_family = process_file(
+            file_path, prompts, variant_descriptions, family_members_json
+        )
 
         print(md_file_path)
         complete_html_pdf(md_file_path, CSS_CONTENT, PROMPTS_JSON_PATH)

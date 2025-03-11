@@ -34,6 +34,7 @@ prompts_json_filename = os.environ.get("prompts_json_file")
 PROMPTS_JSON_PATH = PROJ_ROOT / prompts_json_filename if prompts_json_filename else None
 
 VARIANT_DESCRIPTION_PATH = os.path.join(PROJ_ROOT, "variant_description.json")
+FAMILY_MEMBERS_PATH = os.path.join(PROJ_ROOT, "family_members.json")
 
 MAX_TOKENS_VALUE = int(os.environ.get('max_tokens', 0))
 TEMPERATURE_VALUE = float(os.environ.get('temperature', 0.0))
