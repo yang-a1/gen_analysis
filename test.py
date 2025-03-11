@@ -1,79 +1,64 @@
 import pandas as pd
 import openai
 import numpy as np
-from dotenv import load_dotenv, find_dotenv
 import os
 import time
-from openai import AzureOpenAI
-from gen_analysis_module.config import RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT, PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE, TEMPERATURE_VALUE, CSS_CONTENT, VARIANT_DESCRIPTION_PATH
 import json
 import re
 import logging
 from collections import OrderedDict
+from dotenv import load_dotenv, find_dotenv
+from openai import AzureOpenAI
+
+# Import your own modules and configuration
+from gen_analysis_module.config import (
+    RAW_DATA_DIR, INTERIM_DATA_DIR, PROCESSED_DATA_DIR, PROJ_ROOT,
+    PROMPTS_JSON_PATH, ENV_FILE_PATH, MAX_TOKENS_VALUE, TEMPERATURE_VALUE,
+    CSS_CONTENT
+)
 from gen_analysis_module.convert_md_html_pdf import markdown_to_html, complete_html_pdf
 
 # Load environment variables from .env file
 load_dotenv(find_dotenv(ENV_FILE_PATH))
 
-# Load prompts from the JSON configuration file
+# Define the path to the variant description JSON (adjust as needed)
+VARIANT_DESCRIPTION_JSON_PATH = os.path.join(PROJ_ROOT, "variant_description.json")
+
 def load_prompts(json_path):
     """
     Loads prompts from a JSON file. Returns an empty dictionary if the file is missing or empty.
     """
     if not json_path or not os.path.exists(json_path):
-        return {}  # Return an empty dictionary if the file is missing or empty
-
+        return {}
     try:
         with open(json_path, 'r') as file:
-            return json.load(file)
+            return json.load(file, object_pairs_hook=OrderedDict)
     except (json.JSONDecodeError, IOError) as e:
         print(f"Warning: Could not load prompts from {json_path}. Error: {e}")
         return {}
 
-# Dynamically create prompts from a dictionary and replace the gene symbol placeholder
+def load_variant_description(json_path):
+    """
+    Loads the variant description configuration from a JSON file.
+    Returns an ordered dictionary so that the fields are printed in a predictable order.
+    """
+    if not json_path or not os.path.exists(json_path):
+        return OrderedDict()
+    try:
+        with open(json_path, 'r') as file:
+            return json.load(file, object_pairs_hook=OrderedDict)
+    except (json.JSONDecodeError, IOError) as e:
+        print(f"Warning: Could not load variant description config from {json_path}. Error: {e}")
+        return OrderedDict()
+
 def create_prompts(prompts, gene_symbol):
     """
     Create dynamic prompts by replacing the gene symbol placeholder.
     """
     if not prompts:
         return OrderedDict()
-
     return OrderedDict((key, value.format(gene_symbol=gene_symbol)) for key, value in prompts.items())
 
-# Load variant description mapping from JSON
-def load_variant_description(json_path):
-    """
-    Load the variant description JSON file.
-    """
-    if not os.path.exists(json_path):
-        print(f"Warning: {json_path} not found.")
-        return {}
-
-    try:
-        with open(json_path, 'r') as file:
-            return json.load(file)
-    except (json.JSONDecodeError, IOError) as e:
-        print(f"Error loading {json_path}: {e}")
-        return {}
-
-# Normalize column names for flexible matching
-def normalize_column_name(name):
-    """
-    Normalize column names by removing spaces, dashes, underscores, and converting to lowercase.
-    """
-    return re.sub(r'[\s\-_]', '', name.lower())
-
-# Match TSV columns with JSON fields
-def find_matching_column(json_key, tsv_columns):
-    """
-    Find the best match for a JSON key in the TSV columns using normalization.
-    """
-    normalized_json_key = normalize_column_name(json_key)
-    normalized_columns = {normalize_column_name(col): col for col in tsv_columns}
-
-    return normalized_columns.get(normalized_json_key, None)
-
-# TODO: add this function to process_file to define the name outside of the function
 def md_name_creator(file_path):
     """
     Create a markdown file name from the file path.
@@ -82,41 +67,35 @@ def md_name_creator(file_path):
     md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
     return md_output_filepath
 
-# Process files and format variant information
-def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
+def safe_get(row, key):
+    """Return the value from the row for the given key or 'N/A' if missing."""
+    return row.get(key, 'N/A')
+
+def process_file(file_path, prompts, variant_desc_config, max_lines=1000):
     """
     Processes the TSV file, formats variant information, and writes two markdown files:
     1. One with family tables.
     2. One without family tables (if applicable).
     """
+    # Check the number of lines first
     with open(file_path, 'r') as f:
         line_count = sum(1 for _ in f)
     if line_count > max_lines:
-        print(f"Error: {file_path} is too long. Cannot exceed 1000 lines.")
+        print(f"Error: {file_path} is too long. Cannot exceed {max_lines} lines.")
         return None, None
 
+    # Read the TSV file into a DataFrame
     df = pd.read_csv(file_path, sep='\t')
-
-    columns_of_interest = [
-        'chromosome', 'position', 'allele', 'family', 'symbol', 'variant_class', 'impact',
-        'gnomadg_af', 'max_af', 'child: allele frequency', 'father: allele frequency', 'mother: allele frequency',
-        'child: short alt observations', 'father: short alt observations', 'mother: short alt observations',
-        'child: read depth', 'father: read depth', 'mother: read depth', 'filename',
-        'prob: absent', 'prob: artifact', 'prob: denovo_child', 'prob: inherited',
-        'abs_ref_alt_diff', 'alternative allele', 'clinical significance', 'existing_variation',
-        'hgvsg', 'var_type', 'consequence', 'feature', 'feature_type', 'gene', 'gnomad genome af',
-        'hgvsc', 'hgvsp', 'revel', 'sift', 'strand', 'uniparc', 'symbol_list', 'gene_list'
-    ]
-
-
-
-    df_columns = list(set(df.columns) & set(columns_of_interest))
-    if len(df_columns) == 0:
-        print(f"Warning: No relevant columns in {file_path}")
+    
+    # Instead of filtering for specific columns, we simply check if the DataFrame is empty.
+    if df.empty or len(df.columns) == 0:
+        print(f"Warning: Nothing to process in {file_path}")
         return None, None
 
-    df_filtered = df[df_columns]
+    # (Optional) You might want to rename or clean the columns if necessary.
+    df_filtered = df.copy()
 
+    # Determine if there is family information by checking for columns containing any family-related string.
     members = [
         "child", "father", "mother", "affectedF", "affectedF1", "affectedF2",
         "affectedM", "affectedM1", "affectedM2", "affectedM3", "alias",
@@ -124,21 +103,15 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
         "individualM", "unaffectedF"
     ]
     family_related_strings = ["short alt observations", "read depth", "allele frequency"]
-
-    # get all column names with the string in family_related_strings in them
-    column_members = [col for col in df_filtered.columns if any(family_member in col.lower() for family_member in family_related_strings)]
-    # split the string by : and get the first element
-    family_members = [col.split(":")[0] for col in column_members]
-    # add family members to the members list
-    members += family_members
-
-
-    family_related_columns = [col for col in df_filtered.columns if any(family_member in col.lower() for family_member in members)]
+    column_members = [col for col in df_filtered.columns if any(fr in col.lower() for fr in family_related_strings)]
+    family_members_from_columns = [col.split(":")[0] for col in column_members]
+    members += family_members_from_columns
+    family_related_columns = [col for col in df_filtered.columns if any(fm.lower() in col.lower() for fm in members)]
     has_family_info = bool(family_related_columns)
 
+    # Define output markdown file paths
     md_output_filename = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output.md"
     md_output_filepath = os.path.join(PROCESSED_DATA_DIR, md_output_filename)
-
     md_output_filename_no_family = f"{time.strftime('%Y%m%dT%H%M')}_{os.path.basename(file_path)}_output_no_family.md"
     md_output_filepath_no_family = os.path.join(PROCESSED_DATA_DIR, md_output_filename_no_family)
 
@@ -147,7 +120,7 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
     with open(md_output_filepath, 'w') as f:
         f.write(f"# {os.path.basename(file_path)}\n=================\n\n")
         for _, row in df_filtered.iterrows():
-            formatted_info = format_variant_info(row, prompts, variant_descriptions, include_family=True)
+            formatted_info = format_variant_info(row, prompts, variant_desc_config, include_family=True)
             if formatted_info:
                 f.write(formatted_info + "\n")
 
@@ -156,7 +129,7 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
         with open(md_output_filepath_no_family, 'w') as f:
             f.write(f"# {os.path.basename(file_path)} (No Family Info)\n=================\n\n")
             for _, row in df_filtered.iterrows():
-                formatted_info = format_variant_info(row, prompts, include_family=False)
+                formatted_info = format_variant_info(row, prompts, variant_desc_config, include_family=False)
                 if formatted_info:
                     f.write(formatted_info + "\n")
     else:
@@ -164,16 +137,14 @@ def process_file(file_path, prompts, variant_descriptions, max_lines=1000):
 
     return md_output_filepath, md_output_filepath_no_family
 
-def safe_get(row, key):
-    """Return the value from the row for the given key or 'N/A' if missing."""
-    return row.get(key, 'N/A')
-
-# Extracts and formats variant information with PrettyTable integration
-def format_variant_info(row, prompts, variant_descriptions, include_family=True):
+def format_variant_info(row, prompts, variant_desc_config, include_family=True):
     """
-    Format variant information dynamically using the preloaded variant_description.json mappings.
+    Format variant information into a markdown table, with an option to exclude family tables.
+    The variant description fields (and their labels) are defined entirely in the provided JSON file.
+    For any key that isn't found in the row, 'N/A' is used.
     """
-    gene_symbol = row.get('symbol', 'N/A')
+    # Retrieve the gene symbol (allowing for list type)
+    gene_symbol = safe_get(row, 'symbol')
     if isinstance(gene_symbol, list):
         gene_symbol = gene_symbol[0] if gene_symbol else 'N/A'
     
@@ -182,30 +153,29 @@ def format_variant_info(row, prompts, variant_descriptions, include_family=True)
         return None
 
     elaborations = generate_elaborations_for_prompts(prompts, gene_symbol)
+    
+    # Start the variant description with a header using the allele
+    allele = safe_get(row, 'allele')
+    variant_description = f"1. Variant description for {allele}:\n"
 
-    variant_description_text = ["Variant Description:"]
-
-    for json_key, description in variant_descriptions.items():
-        matched_column = find_matching_column(json_key, row.index)
-
-        if matched_column:
-            value = safe_get(row, matched_column)
-        else:
-            value = "**Could not find information from TSV file**"
-
-        variant_description_text.append(f"- **{description}**: {value}")
-
-    variant_description_text = "\n".join(variant_description_text)
+    # Iterate over the variant description configuration in order.
+    # The keys in the JSON file determine which fields to print,
+    # and their values provide the description (label) to print.
+    letter = ord('a')
+    for key, description in variant_desc_config.items():
+        value = safe_get(row, key)
+        variant_description += f"\t{chr(letter)}. {description}: {value}\n"
+        letter += 1
 
     if include_family:
         family_table_section = create_family_tables(row)
-        return elaborations + "\n\n" + variant_description_text + "\n\n" + family_table_section + "\n"
+        return elaborations + variant_description + "\n" + family_table_section + "\n"
     else:
-        return elaborations + "\n\n" + variant_description_text + "\n"
+        return elaborations + variant_description + "\n"
 
 def create_family_tables(row):
     """
-    Create separate tables for family members (e.g., child, father, mother).
+    Create separate markdown tables for family members (e.g., child, father, mother).
     This function dynamically builds tables based on available columns.
     """
     family_members = [
@@ -216,23 +186,18 @@ def create_family_tables(row):
     ]
 
     tables = []
-
     for family_member in family_members:
+        # Find all columns starting with the family member name (case-insensitive)
         family_columns = [col for col in row.index if col.lower().startswith(family_member.lower())]
-
         if family_columns:
             table_header = f"### {family_member.capitalize()} Information"
             table = "| Attribute                          | Value                          |\n"
             table += "|------------------------------------|--------------------------------|\n"
-
             for column in family_columns:
                 table += f"| {column:<34} | {row[column]:<30} |\n"
-
             tables.append(table_header + "\n" + table)
-
     return "\n\n".join(tables)
 
-# Generate elaborations for all prompts
 def generate_elaborations_for_prompts(prompts, gene_symbol):
     """
     Generate elaborations for all prompts dynamically.
@@ -244,30 +209,31 @@ def generate_elaborations_for_prompts(prompts, gene_symbol):
             elaborations += f"## {key.replace('_', ' ').capitalize()}: \n{elaboration}\n"
     return elaborations
 
-# Generate elaboration using OpenAI API (with retry mechanism)
 def generate_elaboration(prompt):
     """
-    Generates elaboration text using the OpenAI API with retry mechanism.
+    Generates elaboration text using the OpenAI API with a retry mechanism.
     """
     try:
         client = AzureOpenAI(
             api_key=os.environ['OPENAI_API_KEY'],
             api_version=os.environ['API_VERSION'],
             azure_endpoint=os.environ['openai_api_base'],
-            organization=os.environ['OPENAI_organization'])
+            organization=os.environ['OPENAI_organization']
+        )
 
         response = client.chat.completions.create(
             model=os.environ['model'],
-            messages=[{"role": "system", "content": "You are a professional and concise assistant."}, {"role": "user", "content": prompt}],
+            messages=[
+                {"role": "system", "content": "You are a professional and concise assistant."},
+                {"role": "user", "content": prompt}
+            ],
             max_tokens=MAX_TOKENS_VALUE,
             temperature=TEMPERATURE_VALUE
         )
 
         elaboration = response.choices[0].message.content.strip()
-
         if not elaboration or elaboration.lower().startswith("i'm sorry"):
             elaboration = "No relevant elaboration found for this gene symbol."
-
         return elaboration
 
     except client.error.RateLimitError:
@@ -281,18 +247,19 @@ def generate_elaboration(prompt):
         print(f"Unexpected error: {e}")
         return "Error generating elaboration."
 
-# Main function to process all files in the raw data directory
 def main():
     prompts = load_prompts(PROMPTS_JSON_PATH)
-    variant_descriptions = load_variant_description(VARIANT_DESCRIPTION_PATH)
-    tsv_files = [os.path.join(RAW_DATA_DIR, file) for file in os.listdir(RAW_DATA_DIR) if file.endswith(".tsv")]
+    variant_desc_config = load_variant_description(VARIANT_DESCRIPTION_JSON_PATH)
+
+    tsv_files = [
+        os.path.join(RAW_DATA_DIR, file)
+        for file in os.listdir(RAW_DATA_DIR) if file.endswith(".tsv")
+    ]
 
     for file_path in tsv_files:
-        md_file_path, md_file_path_no_family = process_file(file_path, prompts, variant_descriptions)
-
+        md_file_path, md_file_path_no_family = process_file(file_path, prompts, variant_desc_config)
         print(md_file_path)
         complete_html_pdf(md_file_path, CSS_CONTENT, PROMPTS_JSON_PATH)
-
         if md_file_path_no_family:
             print(md_file_path_no_family)
             complete_html_pdf(md_file_path_no_family, CSS_CONTENT, PROMPTS_JSON_PATH)
