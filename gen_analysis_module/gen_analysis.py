@@ -284,6 +284,8 @@ def generate_elaboration(prompt):
 
         elaboration = response.choices[0].message.content.strip()
 
+        if response.usage and response.usage.total_tokens >= MAX_TOKENS_VALUE:
+            elaboration += "\n\n**Warning: Response was likely truncated due to token limit. Consider refining the query.**"
         if not elaboration or elaboration.lower().startswith("i'm sorry"):
             elaboration = "No relevant elaboration found for this gene symbol."
 
