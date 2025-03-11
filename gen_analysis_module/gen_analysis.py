@@ -226,8 +226,7 @@ def create_family_tables(row, family_members_json):
     Create separate tables for family members (e.g., child, father, mother).
     This function dynamically builds tables based on available columns.
     """
-    family_members = set(family_members_json.get("members", []))  # Ensure uniqueness
-
+    family_members = set(family_members_json.get("members", []))
     tables = []
     seen_members = set()  # Track already added members
 
@@ -242,7 +241,11 @@ def create_family_tables(row, family_members_json):
             table += "|------------------------------------|--------------------------------|\n"
 
             for column in family_columns:
-                table += f"| {column:<34} | {row[column]:<30} |\n"
+                value = safe_get(row, column)
+                if value == "N/A":
+                    value = "**Could not find information**"
+
+                table += f"| {column:<34} | {value:<30} |\n"
 
             tables.append(table_header + "\n" + table)
 
