@@ -50,6 +50,8 @@ def markdown_to_html(markdown_file, CSS_CONTENT, prompts_json_path):
     md = markdown.Markdown(extensions=extensions)
     html_content = md.convert(md_content)
 
+    # Replace newlines with <br> tags
+    # html_content = html_content.replace('\n', '<br>')
     full_html_content = f'''
     <html>
     <head>
