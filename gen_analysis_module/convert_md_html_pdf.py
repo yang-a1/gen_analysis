@@ -18,7 +18,8 @@ def html_class_assignment(prompts_json_path, CSS_CONTENT, full_html_content):
 
     # open the full_html_content and replace all lines that have <h2> {key} </h2> with  <h2 class="{key}"> {key} </h2>
     for key, value in html_update_dicitonary.items():
-        full_html_content = full_html_content.replace(f'<h2>*{key}*</h2>', value)
+        # full_html_content = full_html_content.replace(f'<h2>*{key}*</h2>', value)
+        full_html_content = full_html_content.replace(f'<h2>{key}</h2>', f'<h2 class="{key}">{key}</h2>')
 
     return full_html_content
 
