@@ -8,7 +8,9 @@ import os
 import json
 
 
+
 def html_class_assignment(prompts_json_path, CSS_CONTENT, full_html_content):
+    from gen_analysis_module.gen_analysis import normalize_column_name
 
     with open(prompts_json_path, 'r') as file:
         prompts = json.load(file)
@@ -19,7 +21,12 @@ def html_class_assignment(prompts_json_path, CSS_CONTENT, full_html_content):
     # open the full_html_content and replace all lines that have <h2> {key} </h2> with  <h2 class="{key}"> {key} </h2>
     for key, value in html_update_dicitonary.items():
         # full_html_content = full_html_content.replace(f'<h2>*{key}*</h2>', value)
-        full_html_content = full_html_content.replace(f'<h2>{key}</h2>', f'<h2 class="{key}">{key}</h2>')
+        #TODO: replace with a function from gen_analysis.py
+        key_mod = key.replace('_', ' ').capitalize()
+        full_html_content = full_html_content.replace(f'<h2>{key_mod}:</h2>', f'<h2 class="{key}">{key_mod}:</h2>')
+
+
+
 
     return full_html_content
 
@@ -130,11 +137,11 @@ def complete_html_pdf(markdown_file, CSS_CONTENT, prompts_json_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Convert Markdown to HTML with syntax highlighting.')
-    parser.add_argument('input_file', help='The Markdown file to convert.')
+    parser.add_argument('input', help='The Markdown file to convert.')
 
 
     args = parser.parse_args()
-    markdown_file = args.input_file
+    markdown_file = args.input
 
     # confirm that the input file is a markdown file path exists
     if not os.path.exists(markdown_file):

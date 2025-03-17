@@ -190,7 +190,7 @@ def format_variant_info(row, prompts, variant_descriptions, family_members_json,
     gene_symbol = row.get('symbol', 'N/A')
     if isinstance(gene_symbol, list):
         gene_symbol = gene_symbol[0] if gene_symbol else 'N/A'
-    
+
     if not re.search("[A-Za-z0-9]", gene_symbol):
         logging.warning(f"Invalid gene symbol '{gene_symbol}'.")
         return None
@@ -202,7 +202,7 @@ def format_variant_info(row, prompts, variant_descriptions, family_members_json,
     if variant_descriptions:
         for json_key, description in variant_descriptions.items():
             matched_column = find_matching_column(json_key, row.index)
-            
+
             if matched_column:
                 value = safe_get(row, matched_column)
             else:
@@ -260,6 +260,7 @@ def generate_elaborations_for_prompts(prompts, gene_symbol):
     if prompts:
         for key, value in create_prompts(prompts, gene_symbol).items():
             elaboration = generate_elaboration(value)
+            #TODO: create a function for key.replace('_', ' ').capitalize() to allow it to be called in convert_md_html_pdf.py
             elaborations += f"## {key.replace('_', ' ').capitalize()}: \n{elaboration}\n"
     return elaborations
 
