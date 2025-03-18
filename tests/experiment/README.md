@@ -1,7 +1,20 @@
 # Experiment: Evaluating Gene Implication in Ataxia Using `gen_analysis`
 
-## Objective
+## Background
+
+## Summary
+
+## Purpose
 Determine if the program `gen_analysis` correctly identifies known ataxia-associated genes from the `Chicago_Ataxia_Exome_Gene_List.tsv`. Since all input genes are involved in ataxia, the expected outcome is a 100% accuracy.
+
+## Scope
+
+### Acceptance Criteria
+- The `gen_analysis.py` script must correctly identify 100% of the known ataxia-associated genes listed in the `Chicago_Ataxia_Exome_Gene_List.tsv` file.
+- Any deviation from 100% accuracy will be considered a failure of the experiment.
+- The results should be reproducible, meaning that running the script multiple times under the same conditions should yield the same 100% accuracy.
+- Detailed logs or records of the script's output should be maintained to verify the accuracy of the results.
+- The experiment will be considered successful only if all known ataxia genes are identified without any false negatives.
 
 ## Materials
 - `Chicago_Ataxia_Exome_Gene_List.tsv` file containing known ataxia genes.
@@ -15,32 +28,24 @@ Determine if the program `gen_analysis` correctly identifies known ataxia-associ
 - The results will be collected and analyzed to ensure that all known ataxia genes are correctly identified.
 - The experiment will be automated using a Python script to streamline the process of running `gen_analysis.py` for each gene in the list.
 
-### Preparations
-- Ensure the `Chicago_Ataxia_Exome_Gene_List.tsv` file is available and correctly formatted for input into `gen_analysis.py`.
+
 
 ## Procedure
-1. **Prepare the Environment**: Ensure that Python and any necessary libraries (e.g., pandas) are installed on your system.
-2. **Load the Gene List**: The `Chicago_Ataxia_Exome_Gene_List.tsv` file will be located in the data/raw folder of the project directory.
+1. - Ensure the `Chicago_Ataxia_Exome_Gene_List.tsv` file is available and correctly formatted for input into `gen_analysis.py`.
+2. **Prepare the Environment**: Ensure that Python and any necessary libraries (e.g., pandas) are installed on your system.
+3. **Load the Gene List**: The `Chicago_Ataxia_Exome_Gene_List.tsv` file will be located in the data/raw folder of the project directory.
 
-
-
-
-### Execution
-- Run the `gen_analysis.py` script with the `Chicago_Ataxia_Exome_Gene_List.tsv` as input.
+4. Run the `gen_analysis.py` script with the `Chicago_Ataxia_Exome_Gene_List.tsv` as input.
 ```bash
 python gen_analysis.py data/raw/Chicago_Ataxia_Exome_Gene_List.tsv
 ```
 
 
+
 ### Analysis
 - Review the output to determine if `gen_analysis.py` correctly identified all known ataxia-associated genes.
 
-### Acceptance Criteria
-- The `gen_analysis.py` script must correctly identify 100% of the known ataxia-associated genes listed in the `Chicago_Ataxia_Exome_Gene_List.tsv` file.
-- Any deviation from 100% accuracy will be considered a failure of the experiment.
-- The results should be reproducible, meaning that running the script multiple times under the same conditions should yield the same 100% accuracy.
-- Detailed logs or records of the script's output should be maintained to verify the accuracy of the results.
-- The experiment will be considered successful only if all known ataxia genes are identified without any false negatives.
+
 
 ## Investigation of Failure
 
@@ -82,4 +87,4 @@ Based on the findings from the investigation, the following recommendations may 
   - After making the necessary corrections and improvements, re-run the experiment to verify that the acceptance criteria are now met.
   - Document any changes made and ensure that the results are reproducible and meet the 100% accuracy requirement.
 
-By following these steps and recommendations, the cause of the failure can be identified and addressed, ensuring the success of the experiment in identifying all known ataxia-associated genes.
+## Conclusion
