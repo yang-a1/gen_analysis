@@ -131,6 +131,11 @@ def process_file(file_path, prompts, variant_descriptions, family_members_json, 
         'hgvsc', 'hgvsp', 'revel', 'sift', 'strand', 'uniparc', 'symbol_list', 'gene_list'
     ]
 
+    # add all columns with ': allele frequency' in the name to fix errors with family members not in columns of interest
+    columns_of_interest += [col for col in df.columns if ': allele frequency' in col]
+    columns_of_interest += [col for col in df.columns if ': short alt observations' in col]
+    columns_of_interest += [col for col in df.columns if ': read depth' in col]
+
     df_columns = list(set(df.columns) & set(columns_of_interest))
     if len(df_columns) == 0:
         print(f"Warning: No relevant columns in {file_path}")
