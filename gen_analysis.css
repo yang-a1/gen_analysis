@@ -3,8 +3,8 @@ h2 { color: #006400; } /* DarkGreen */
 h2.mouse-phenotype { color: #FFA500; } /* Orange */
 h2.mouse_prompt { color: #AC3E31; } /* PaleCarmine */
 h2.omim_prompt { color: #488A99; } /* HippieBlue */
-h2.reassign_me_1 { color: #B8860B; } /* DarkGoldenRod */
-h2.reassign_me_2 { color: #8A2BE2; } /* BlueViolet */
+h2.ataxia_flag { color: #B8860B; } /* DarkGoldenRod */
+h2.ataxia_prompt { color: #8A2BE2; } /* BlueViolet */
 h2.reassign_me_3 { color: #5F9EA0; } /* CadetBlue */
 h2.reassign_me_4 { color: #D2691E; } /* Chocolate */
 h2.reassign_me_5 { color: #DC143C; } /* Crimson */

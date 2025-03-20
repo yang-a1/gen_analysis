@@ -1,4 +1,3 @@
 {
-    "mouse_prompt": "Provide a professional, detailed description of mouse phenotypes associated with {gene_symbol} knockouts.",
-    "omim_prompt": "Provide a professional, detailed description of neurological diseases associated with {gene_symbol} as found in OMIM/GeneCards."
+    "ataxia_flag": "Flag if {gene_symbol} is known to be associated with Ataxia (1 for associated; 0 for not associated)"
 }
