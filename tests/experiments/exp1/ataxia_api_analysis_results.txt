@@ -1,7 +1,0 @@
-Total genes tested: 703
-Correctly flagged (TP): 277 (39.40%)
-Incorrectly flagged as not ataxia-related (FN): 39 (5.55%)
-Uncertain classifications: 387 (55.05%)
-Chi-square statistic: 611.1795918367347
-P-value: 1.923259590278856e-133
-Degrees of freedom: 2
