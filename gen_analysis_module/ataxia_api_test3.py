@@ -39,12 +39,12 @@ df = pd.read_csv(file_path, sep="\t")
 # take only with the following string in the name
 # df = df[df['symbol'].str.contains('AMACR|APOB|ARL3|ARL6IP1|ARV1|ATP2B4|B9D2|CCDC23|CDK16', regex=True)]
 
-selected_genes = [
-    "APOB", "BEAN1", "CCDC23", "COX14", "COX6A2", "DHFR", "DKC1", "EIF2AK1", "FITM2", "FZR1",
+#selected_genes = [
+#    "APOB", "BEAN1", "CCDC23", "COX14", "COX6A2", "DHFR", "DKC1", "EIF2AK1", "FITM2", "FZR1",
     #"HIKESHI", "HIP1R", "KIAA1715", "LYRM7", "NOL3", "NPHP1", "OBFC1", "PAX9", "POU4F1", "RAD50",
     #"REPS1", "RFC4", "RNF220", "SARS", "SARS2", "SELRC1", "SLC39A4", "SLC6A19", "SLC9A1", "STXBP2",
-    "THG1L", "TTC21B", "UROC1", "VWA3B"
-]
+#    "THG1L", "TTC21B", "UROC1", "VWA3B"
+#]
 
 df = df[df['symbol'].isin(selected_genes)]
 
