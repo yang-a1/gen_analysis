@@ -27,7 +27,7 @@ client = AzureOpenAI(
     azure_endpoint=OPENAI_ENDPOINT,
     organization=OPENAI_ORG
 )
-
+api_version="2025-03-01-preview"
 file_path = "references/Chicago_Ataxia_Exome_Gene_List.tsv"
 
 if not os.path.exists(file_path):
@@ -60,8 +60,9 @@ def query_ataxia_flag(gene_symbol):
     # gpt-4o vs gpt-4 which is Turbo.  gpt-4o give 6 whereas gpt-4 gives 5
     try:
         response = client.chat.completions.create(
-            # model="gpt-4o",  # Adjust model if needed
-            model="o3-mini",
+            # test with gpt-4 and 03-mini
+            # model="gpt-4",  # Adjust model if needed
+            # model="o3-mini",
             messages=[{"role": "system", "content": "You are a genetic expert providing concise responses."},
                       {"role": "user", "content": prompt}],
             # max_tokens=20,
@@ -73,7 +74,7 @@ def query_ataxia_flag(gene_symbol):
 
         output = response.choices[0].message.content.strip().lower()
         # print output
-        print(f"Gene: {gene_symbol}, Output: {output}")
+        # print(f"Gene: {gene_symbol}, Output: {output}")
         if "yes" in output:
             return 1  # API flagged it as associated with ataxia
         elif "no" in output:
