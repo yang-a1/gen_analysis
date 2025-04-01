@@ -46,10 +46,10 @@ df = pd.read_csv(file_path, sep="\t")
 #    "THG1L", "TTC21B", "UROC1", "VWA3B"
 #]
 
-df = df[df['symbol'].isin(selected_genes)]
+# df = df[df['symbol'].isin(selected_genes)]
 
-if "symbol" not in df.columns:
-    raise ValueError("ERROR: The TSV file must contain a 'symbol' column.")
+#if "symbol" not in df.columns:
+#    raise ValueError("ERROR: The TSV file must contain a 'symbol' column.")
 
 # Function to query OpenAI API and classify response
 def query_ataxia_flag(gene_symbol):
