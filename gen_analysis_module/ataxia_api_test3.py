@@ -34,10 +34,19 @@ if not os.path.exists(file_path):
     raise FileNotFoundError(f"ERROR: File '{file_path}' not found. Ensure the path is correct.")
 
 df = pd.read_csv(file_path, sep="\t")
+# df = pd.read_csv(file_path, sep="\t", nrows=50)  # For testing, read only the first 50 rows
 # take only the first 50 rows for testing
 # take only with the following string in the name
-df = df[df['symbol'].str.contains('AMACR|APOB|ARL3|ARL6IP1|ARV1|ATP2B4|B9D2|CCDC23|CDK16', regex=True)]
+# df = df[df['symbol'].str.contains('AMACR|APOB|ARL3|ARL6IP1|ARV1|ATP2B4|B9D2|CCDC23|CDK16', regex=True)]
 
+selected_genes = [
+    "APOB", "BEAN1", "CCDC23", "COX14", "COX6A2", "DHFR", "DKC1", "EIF2AK1", "FITM2", "FZR1",
+    #"HIKESHI", "HIP1R", "KIAA1715", "LYRM7", "NOL3", "NPHP1", "OBFC1", "PAX9", "POU4F1", "RAD50",
+    #"REPS1", "RFC4", "RNF220", "SARS", "SARS2", "SELRC1", "SLC39A4", "SLC6A19", "SLC9A1", "STXBP2",
+    "THG1L", "TTC21B", "UROC1", "VWA3B"
+]
+
+df = df[df['symbol'].isin(selected_genes)]
 
 if "symbol" not in df.columns:
     raise ValueError("ERROR: The TSV file must contain a 'symbol' column.")
@@ -51,18 +60,20 @@ def query_ataxia_flag(gene_symbol):
     # gpt-4o vs gpt-4 which is Turbo.  gpt-4o give 6 whereas gpt-4 gives 5
     try:
         response = client.chat.completions.create(
-            model="gpt-4o",  # Adjust model if needed
-            # model="o3-mini"
+            # model="gpt-4o",  # Adjust model if needed
+            model="o3-mini",
             messages=[{"role": "system", "content": "You are a genetic expert providing concise responses."},
                       {"role": "user", "content": prompt}],
-            max_tokens=20,
+            # max_tokens=20,
+            # max_completion_tokens=20,
             #temperature=0.0
             # temperature=0.3
-            temperature=0.7
+            # temperature=0.7
         )
 
         output = response.choices[0].message.content.strip().lower()
-
+        # print output
+        print(f"Gene: {gene_symbol}, Output: {output}")
         if "yes" in output:
             return 1  # API flagged it as associated with ataxia
         elif "no" in output:
@@ -76,7 +87,7 @@ def query_ataxia_flag(gene_symbol):
 
 df["API_Flag"] = df["symbol"].apply(query_ataxia_flag)
 
-output_file = "data/processed/ataxia_api_results2.csv"
+output_file = "data/processed/ataxia_api_results3.csv"
 df.to_csv(output_file, index=False)
 
 print(f"\n API flagging complete! Results saved to {output_file}\n")
