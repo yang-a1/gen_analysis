@@ -21,6 +21,8 @@ Another script (`ataxia_api_analysis.py`) analyzes the output and computes summa
 To determine if the GPT-4 model can correctly identify all known ataxia-associated genes based solely on symbolic prompts. Since the input gene list is curated for ataxia, the expected result is a 100% positive classification (all genes flagged as "Yes").
 
 ## Scope
+The scope is limited to genes already known or suspected to be associated with neurological disorders although there may be limited evidence for some genes.
+
 
 ### Acceptance Criteria
 
