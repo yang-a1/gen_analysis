@@ -22,7 +22,7 @@ client = AzureOpenAI(
     organization=OPENAI_ORG
 )
 
-file_path = "data/raw/Chicago_Ataxia_Exome_Gene_List_2.tsv"
+file_path = "Chicago_Ataxia_Exome_Gene_List_2.tsv"
 
 if not os.path.exists(file_path):
     raise FileNotFoundError(f"ERROR: File '{file_path}' not found. Ensure the path is correct.")
@@ -34,7 +34,7 @@ if "symbol" not in df.columns:
 
 # Function to query OpenAI API and classify response
 def query_ataxia_flag(gene_symbol):
-    prompt = f"Is the gene {gene_symbol} associated with ataxia? Respond with 'Yes' if there is a known association, 'No' if not, and 'Uncertain' if evidence is unclear."
+    prompt = f"Are variants in {gene_symbol} associated with neurological disorders? Respond with 'Yes' if there is evidence of a known association, 'No' if no evidence."
 
     try:
         response = client.chat.completions.create(
@@ -60,7 +60,7 @@ def query_ataxia_flag(gene_symbol):
 
 df["API_Flag"] = df["symbol"].apply(query_ataxia_flag)
 
-output_file = "data/processed/ataxia_api_results.csv"
+output_file = "ataxia_api_results.csv"
 df.to_csv(output_file, index=False)
 
 print(f"\n API flagging complete! Results saved to {output_file}\n")

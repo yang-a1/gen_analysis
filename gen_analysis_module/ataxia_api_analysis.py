@@ -1,7 +1,7 @@
 import pandas as pd
 from scipy.stats import chi2_contingency
 
-df = pd.read_csv("data/processed/ataxia_api_results.csv")
+df = pd.read_csv("ataxia_api_results.csv")
 
 # Compute counts
 true_positives = sum(df["API_Flag"] == 1)
@@ -15,7 +15,7 @@ print(f"Incorrectly flagged as not ataxia-related (FN): {false_negatives} ({(fal
 print(f"Uncertain classifications: {uncertain} ({(uncertain / total) * 100:.2f}%)")
 
 observed = [true_positives, false_negatives, uncertain]
-expected = [total, 0, 0]  # Ideally, all should be "Yes"
+expected = [703, 20, 0]  # Ideally, all should be "Yes"
 
 res = chi2_contingency([observed, expected])
 
