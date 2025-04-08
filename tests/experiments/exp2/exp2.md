@@ -1,4 +1,4 @@
-# Experiment: Evaluating Gene Implication in Ataxia Using `gen_analysis`
+# Experiment 2: Evaluating Gene Implication in Ataxia Using `gen_analysis` using a new model
 
 ## Background
 
