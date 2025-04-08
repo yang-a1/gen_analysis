@@ -1,4 +1,4 @@
-# Experiment: Evaluating Gene Implication in Ataxia Using `gen_analysis`
+# Experiment 1: Evaluating Gene Implication in Ataxia Using `gen_analysis`
 
 ## Background
 
@@ -19,6 +19,7 @@ Another script (`ataxia_api_analysis.py`) analyzes the output and computes summa
 To determine if the GPT-4 model can correctly identify all known ataxia-associated genes based solely on symbolic prompts. Since the input gene list is curated for ataxia, the expected result is a 100% positive classification (all genes flagged as "Yes").
 
 ## Scope
+The scope is limited to genes already known or suspected to be associated with neurological disorders although there may be limited evidence for some genes.
 
 ### Acceptance Criteria
 
@@ -67,8 +68,8 @@ From 703 genes tested:
 
 Chi-square test:
 
-- **Statistic**: 611.18  
-- **p-value**: 1.92e-133  
+- **Statistic**: 611.18
+- **p-value**: 1.92e-133
 - **Degrees of freedom**: 2
 
 These results show a large deviation from the expected outcome (100% positive classification), and the extremely low p-value confirms that this deviation is statistically significant.
@@ -94,7 +95,21 @@ Despite its strengths, GPT-4 is a general-purpose model that wasn't explicitly t
 ## Recommendations
 
 - **Improve Prompts**: Use more structured and specific language referencing known sources (e.g., “Is this gene associated with ataxia according to OMIM?”).
-- **Use Domain Models**: Consider switching to biomedical-specific models like BioGPT or PubMedBERT.
+
+``` python
+    prompt = f"Is the gene {gene_symbol} associated with ataxia? Respond with 'Yes' if there is a known association, 'No' if not, and 'Uncertain' if evidence is unclear."
+
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4",  # Adjust model if needed
+            messages=[{"role": "system", "content": "You are a genetic expert providing concise responses."},
+                      {"role": "user", "content": prompt}],
+            max_tokens=20,
+            temperature=0.3
+        )
+```
+
+- **Use Domain Models**: Consider switching to biomedical-specific models as they become available.
 - **Add Fallbacks**: For “Uncertain” cases, implement a manual review or a second-tier query.
 - **Validate Data**: Perform more preprocessing or augmentation to help steer the model.
 - **Retrain with Feedback**: Consider fine-tuning a smaller model with labeled examples.
